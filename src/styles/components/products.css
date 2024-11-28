@@ -2,33 +2,57 @@
 .products {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16;
 }
+
 .product-card {
-  @apply card overflow-hidden transform transition duration-300 hover:scale-105;
+  @apply overflow-hidden transform transition duration-300 hover:scale-105 bg-white rounded-lg shadow-md;
 }
+
 .product-card__image-container {
-  @apply relative h-48;
+  @apply relative h-48 m-0;
 }
+
 .product-card__image {
-  @apply w-full h-full object-cover;
+  @apply w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500;
 }
+
+.product-card__image-overlay {
+  @apply absolute inset-0 bg-slate-900 mix-blend-hard-light opacity-60 group-hover:opacity-0 transition-opacity duration-500;
+}
+
 .product-card__content {
   @apply p-6;
 }
+
+.product-card__content header {
+  @apply mb-4;
+}
+
 .product-card__title {
   @apply text-xl font-bold mb-2;
 }
+
 .product-card__description {
-  @apply text-gray-600 mb-4;
+  @apply text-gray-600;
 }
+
 .product-card__footer {
-  @apply flex justify-between items-center;
+  @apply flex justify-between items-center mt-auto;
 }
+
 .product-card__price {
-  @apply text-blue-600 font-semibold;
+  @apply text-blue-600 font-semibold m-0;
 }
+
 .product-card__button {
-  @apply flex items-center space-x-2 text-slate-900 hover:text-blue-600 transition-colors;
+  @apply flex items-center gap-2 text-slate-900 hover:text-blue-600 transition-colors;
 }
+
 .product-card__button-icon {
   @apply h-4 w-4;
+}
+
+.sr-only {
+  @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
 }

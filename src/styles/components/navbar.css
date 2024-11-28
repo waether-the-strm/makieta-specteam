@@ -12,7 +12,7 @@
   @apply flex items-center justify-between h-16;
 }
 .navbar__logo-link {
-  @apply w-20;
+  @apply w-20 block;
 }
 .navbar__logo-image {
   @apply w-full h-auto transform scale-150 invert;
