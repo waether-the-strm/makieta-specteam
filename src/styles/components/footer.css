@@ -1,0 +1,7 @@
+/* Footer Component */
+.footer {
+  @apply bg-slate-900 text-white py-8;
+}
+.footer__container {
+  @apply container text-center;
+}

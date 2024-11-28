@@ -1,0 +1,11 @@
+.search {
+  @apply relative max-w-xl mx-auto my-12;
+}
+
+.search__input {
+  @apply w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+.search__icon {
+  @apply absolute left-3 icon top-1/2 transform -translate-y-1/2 text-gray-400;
+}

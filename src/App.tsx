@@ -1,12 +1,16 @@
-import Navbar from './components/Navbar';
-import RentalPage from './pages/RentalPage';
-import { MapPin, Mail, Bitcoin, CreditCard, Phone, Clock } from 'lucide-react';
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import RentalPage from "./pages/RentalPage";
+import { MapPin, Mail, Bitcoin, CreditCard, Phone, Clock } from "lucide-react";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <RentalPage />
+
+      <Routes>
+        <Route path="/" element={<RentalPage />} />
+      </Routes>
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-slate-900 text-white">

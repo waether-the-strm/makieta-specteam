@@ -1,0 +1,16 @@
+/* About Component */
+.about {
+  @apply section bg-white rounded-lg shadow-lg p-8;
+}
+
+.about__title {
+  @apply section-title;
+}
+
+.about__content {
+  @apply prose max-w-none;
+}
+
+.about__text {
+  @apply text-gray-600;
+}

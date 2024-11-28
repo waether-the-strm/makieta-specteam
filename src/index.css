@@ -1,3 +1,12 @@
+@import "./styles/components/navbar.css";
+@import "./styles/components/hero.css";
+@import "./styles/components/products.css";
+@import "./styles/components/about.css";
+@import "./styles/components/faq.css";
+@import "./styles/components/contact.css";
+@import "./styles/components/footer.css";
+@import "./styles/components/search.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,8 +15,68 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply antialiased;
+  }
+
+  .layout {
+    @apply min-h-screen bg-gray-50;
+  }
+
+  .main {
+    @apply min-h-screen bg-gray-50;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .icon {
+    @apply size-5;
+  }
+
+  .nav-icon {
+    @apply icon cursor-pointer hover:text-slate-300;
+  }
+
+  .feature-icon {
+    @apply icon h-8 w-8;
+  }
+
+  .button {
+    @apply px-8 py-3 rounded-lg transition;
+  }
+
+  .primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700;
+  }
+
+  .outline {
+    @apply bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow;
+  }
+
+  .input-base {
+    @apply w-full rounded focus:outline-none;
+  }
+
+  .feature-base {
+    @apply flex items-center space-x-4;
+  }
+
+  .section {
+    @apply py-12;
+  }
+}
+
+@layer utilities {
+  .section-title {
+    @apply text-2xl font-bold mb-6;
   }
 }

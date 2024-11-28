@@ -1,0 +1,22 @@
+/* FAQ Component */
+.faq {
+  @apply container section space-y-6;
+}
+.faq__title {
+  @apply section-title;
+}
+.faq__list {
+  @apply space-y-4;
+}
+.faq__item {
+  @apply card;
+}
+.faq__question {
+  @apply text-lg font-semibold text-blue-600 mb-2;
+}
+.faq__answer {
+  @apply text-gray-600;
+}
+.faq__item {
+  @apply p-6;
+}

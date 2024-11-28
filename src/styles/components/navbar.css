@@ -1,0 +1,40 @@
+/* Navbar Component */
+.navbar {
+  @apply bg-slate-900 text-white w-full z-50 transition-all duration-300;
+}
+.navbar--fixed {
+  @apply fixed;
+}
+.navbar__container {
+  @apply container;
+}
+.navbar__content {
+  @apply flex items-center justify-between h-16;
+}
+.navbar__logo-link {
+  @apply w-20;
+}
+.navbar__logo-image {
+  @apply w-full h-auto transform scale-150 invert;
+}
+.navbar__menu {
+  @apply hidden md:block;
+}
+.navbar__links {
+  @apply feature-base ml-10 items-baseline;
+}
+.navbar__link {
+  @apply hover:bg-slate-800 px-3 py-2 rounded-md;
+}
+.navbar__actions {
+  @apply hidden md:flex items-center space-x-4;
+}
+.navbar__icon {
+  @apply icon nav-icon;
+}
+.navbar__mobile-menu {
+  @apply md:hidden;
+}
+.navbar__mobile-button {
+  @apply h-6 w-6;
+}

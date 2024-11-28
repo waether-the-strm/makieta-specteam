@@ -1,0 +1,39 @@
+/* Contact Component */
+.contact {
+  @apply section py-20 bg-slate-900 text-white;
+}
+.contact__title {
+  @apply section-title text-3xl text-center mb-12;
+}
+.contact__grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-12;
+}
+.contact__info {
+  @apply space-y-6;
+}
+.contact__info-title {
+  @apply text-xl font-semibold mb-4;
+}
+.contact__info-item {
+  @apply feature-base;
+}
+.contact__info-icon {
+  @apply icon;
+}
+.contact__payment {
+  @apply flex items-center space-x-4 pt-4;
+}
+.contact__payment-title {
+  @apply font-semibold;
+}
+.contact__payment-icon {
+  @apply icon;
+}
+
+/* Contact Form */
+.contact-form {
+  @apply space-y-4;
+}
+.contact-form__input {
+  @apply input-base px-4 py-2 bg-slate-800 border border-slate-700 focus:border-blue-500;
+}
