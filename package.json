@@ -8,9 +8,9 @@
   "repository": "git@github.com:waether-the-strm/makieta-specteam.git",
   "scripts": {
     "dev": "vite & npm run watch:css",
-    "build": "npm run build:css && vite build",
+    "build": "npm run build:css && tsc && vite build",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "build:static": "npm run build && npm run build:server && node scripts/generate-static.js",
+    "build:static": "npm run build && npm run build:server && node --experimental-json-modules scripts/generate-static.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "build:css": "tailwindcss -i ./src/index.css -o ./dist/output.css",

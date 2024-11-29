@@ -1,6 +1,6 @@
 /* FAQ Component */
 .faq {
-  @apply container section space-y-6;
+  @apply  section space-y-6;
 }
 .faq__title {
   @apply section-title;
@@ -9,7 +9,7 @@
   @apply gap-5 grid grid-cols-1 md:grid-cols-3;
 }
 .faq__item {
-  @apply card p-8;
+  @apply bg-white rounded-lg shadow p-8;
 }
 .faq__question {
   @apply font-heading text-xl font-semibold text-rose-600 mb-2;

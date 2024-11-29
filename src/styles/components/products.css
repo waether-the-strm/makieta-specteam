@@ -23,10 +23,6 @@
   @apply p-6;
 }
 
-.product-card__content header {
-  @apply mb-4;
-}
-
 .product-card__title {
   @apply text-xl font-bold mb-2;
 }

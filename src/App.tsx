@@ -59,7 +59,7 @@ function App() {
                   rows={4}
                   className="contact-form__input"
                 ></textarea>
-                <button className="button contact-button">Send Message</button>
+                <button className="button primary w-full">Send Message</button>
               </form>
             </div>
           </div>

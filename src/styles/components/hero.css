@@ -18,13 +18,13 @@
   @apply text-center;
 }
 .hero__title {
-  @apply font-heading text-4xl md:text-5xl font-bold mb-6;
+  @apply font-heading text-4xl md:text-5xl font-bold mt-16 mb-10;
 }
 .hero__subtitle {
   @apply font-body text-xl md:text-2xl mb-8 text-gray-300;
 }
 .hero__buttons {
-  @apply flex flex-wrap justify-center gap-4;
+  @apply flex flex-wrap justify-center gap-4 my-20;
 }
 .hero__features {
   @apply mt-14;

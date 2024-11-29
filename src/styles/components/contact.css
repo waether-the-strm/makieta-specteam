@@ -17,18 +17,6 @@
 .contact__info-item {
   @apply feature-base;
 }
-.contact__info-icon {
-  @apply icon;
-}
-.contact__payment {
-  @apply flex items-center space-x-4 pt-4;
-}
-.contact__payment-title {
-  @apply font-heading font-semibold;
-}
-.contact__payment-icon {
-  @apply icon;
-}
 
 /* Contact Form */
 .contact-form {

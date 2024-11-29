@@ -21,12 +21,18 @@ export default function Hero() {
                 Profesjonalny sprzęt dostępny od zaraz
               </p>
               <div className="hero__buttons">
-                <a href="#categories" className="button primary">
+                <a
+                  href="#categories"
+                  className="button primary w-full md:w-auto"
+                >
                   Zobacz nasz sprzęt
                 </a>
-                <button className="button outline">
+                <a
+                  href="#contact"
+                  className="button secondary w-full md:w-auto"
+                >
                   Skontaktuj się z nami
-                </button>
+                </a>
               </div>
             </div>
           </div>

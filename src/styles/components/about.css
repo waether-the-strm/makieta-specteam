@@ -1,6 +1,6 @@
 /* About Component */
 .about {
-  @apply section bg-slate-900 rounded-lg shadow-lg p-8 w-full mx-auto;
+  @apply section bg-slate-900/95 shadow-lg md:py-28 md:mt-28 mb-16 shadow-md w-full mx-auto;
 }
 
 .about__content {
@@ -12,6 +12,6 @@
 }
 
 .about__logo {
-  @apply w-full max-w-24 md:mx-14;
+  @apply w-full max-w-32 md:mx-14;
   grid-row: span 2;
 }

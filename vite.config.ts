@@ -26,4 +26,8 @@ export default defineConfig((_config) => ({
     target: "node",
     noExternal: ["lucide-react", "framer-motion", "react-router-dom", /\.css$/],
   },
+  server: {
+    host: true,
+    port: 5173,
+  },
 }));

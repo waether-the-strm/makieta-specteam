@@ -33,8 +33,8 @@ export default function RentalPage() {
         </div>
       </section>
 
-      <div className="container">
-        <section className="about">
+      <section className="about">
+        <div className="container">
           <h2 className="section-title ml-60 text-slate-100">O nas</h2>
           <div className="about__content">
             <LogoVertical fill="#fff" className="about__logo" />
@@ -52,8 +52,8 @@ export default function RentalPage() {
               się po określonym czasie).
             </p>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
       <div className="container">
         <FAQ />
