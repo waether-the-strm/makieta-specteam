@@ -1,6 +1,7 @@
 /* Navbar Component */
 .navbar {
-  @apply bg-slate-900 text-white w-full z-50 transition-all duration-300;
+  @apply bg-slate-900 text-white w-full z-40 transition-all duration-300;
+  @apply fixed top-0 left-0 right-0;
 }
 .navbar--fixed {
   @apply fixed;
@@ -40,4 +41,55 @@
 }
 .nav-link:hover {
   @apply text-rose-400;
+}
+.navbar__mobile-overlay {
+  @apply fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-50;
+  @apply items-center justify-center;
+  @apply w-full h-full;
+  @apply touch-none;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.navbar__mobile-links {
+  @apply flex flex-col items-center space-y-8;
+  @apply -translate-y-8;
+}
+.navbar__mobile-link {
+  @apply text-2xl font-heading text-white hover:text-rose-500;
+  @apply transform transition-all duration-200;
+}
+.navbar__mobile-actions {
+  @apply flex items-center space-x-6 mt-12;
+}
+.navbar__mobile-close {
+  @apply absolute top-4 right-4;
+  @apply p-2 rounded-full hover:bg-slate-800;
+  @apply transform transition-all duration-200;
+}
+.navbar__mobile-close-icon {
+  @apply text-white size-8;
+}
+.no-scroll {
+  @apply overflow-hidden;
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .navbar__mobile-overlay {
+    height: 100vh;
+    height: -webkit-fill-available;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+/* Optymalizacja dla mobile safari */
+.navbar__mobile-links {
+  @apply flex flex-col items-center space-y-8;
+  @apply -translate-y-8;
 }
