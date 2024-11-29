@@ -13,7 +13,5 @@ export function render(url: string) {
     </React.StrictMode>
   );
 
-  console.log("Generated HTML:", html);
-
   return { html };
 }

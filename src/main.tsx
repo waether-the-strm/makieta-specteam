@@ -18,8 +18,3 @@ if (rootElement) {
     </StrictMode>
   );
 }
-
-window.onload = () => {
-  console.log("Window loaded");
-  console.log("Root content:", document.getElementById("root")?.innerHTML);
-};

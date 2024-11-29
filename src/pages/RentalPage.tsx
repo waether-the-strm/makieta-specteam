@@ -6,8 +6,6 @@ import FAQ from "../components/FAQ";
 import { categories } from "../data/categories";
 
 export default function RentalPage() {
-  console.log("Rendering RentalPage");
-
   return (
     <>
       <Hero />

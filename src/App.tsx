@@ -5,7 +5,6 @@ import RentalPage from "./pages/RentalPage";
 import { MapPin, Mail, Bitcoin, CreditCard, Phone, Clock } from "lucide-react";
 
 function App() {
-  console.log("Rendering App component");
   return (
     <main className="main">
       <div className="layout">
