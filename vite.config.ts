@@ -2,8 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default defineConfig((_config) => ({
+  base: process.env.NODE_ENV === "production" ? "/makieta-specteam/" : "/",
   plugins: [react()],
   optimizeDeps: {
     exclude: ["lucide-react"],
