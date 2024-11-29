@@ -24,6 +24,6 @@ export default defineConfig((_config) => ({
   ssr: {
     format: "esm",
     target: "node",
-    noExternal: ["lucide-react", "framer-motion", "react-router-dom"],
+    noExternal: ["lucide-react", "framer-motion", "react-router-dom", /\.css$/],
   },
 }));

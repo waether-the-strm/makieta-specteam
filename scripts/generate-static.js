@@ -17,6 +17,9 @@ async function generateStatic() {
     for (const url of routes) {
       const { html: appHtml } = await render(url);
 
+      // Zachowaj wszystkie skrypty z oryginalnego template
+      const scripts = template.match(/<script[^>]*>[^<]*<\/script>/g) || [];
+
       const finalHtml = template.replace(
         '<div id="root"></div>',
         `<div id="root">${appHtml}</div>`
@@ -30,7 +33,13 @@ async function generateStatic() {
       await fs.mkdir(dirname(filePath), { recursive: true });
       await fs.writeFile(filePath, finalHtml);
 
-      console.log(`Generated: ${filePath}`);
+      // Wydrukuj zawartość wygenerowanego pliku dla debugowania
+      const generatedFile = await fs.readFile(filePath, "utf-8");
+      console.log("Generated file contains scripts:", scripts.length);
+      console.log(
+        "Generated file contains root div:",
+        generatedFile.includes('id="root"')
+      );
     }
   } catch (error) {
     console.error("Error generating static files:", error);

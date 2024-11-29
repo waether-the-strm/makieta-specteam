@@ -1,18 +1,20 @@
+import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import RentalPage from "./pages/RentalPage";
 import { MapPin, Mail, Bitcoin, CreditCard, Phone, Clock } from "lucide-react";
 
 function App() {
+  console.log("Rendering App component");
   return (
     <main className="main">
       <div className="layout">
         <Navbar />
-
-        <Routes>
-          <Route path="/" element={<RentalPage />} />
-        </Routes>
-
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<RentalPage />} />
+          </Routes>
+        </Suspense>
         <section id="contact" className="contact">
           <div className="container">
             <h2 className="contact__title">Contact Us</h2>
