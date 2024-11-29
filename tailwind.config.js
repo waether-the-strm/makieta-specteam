@@ -8,7 +8,12 @@ export default {
     "./src/styles/**/*.css",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: ["Poppins", "sans-serif"],
+        heading: ["Merriweather", "serif"],
+      },
+    },
   },
   plugins: [typography()],
 };

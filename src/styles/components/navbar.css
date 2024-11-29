@@ -38,3 +38,9 @@
 .navbar__mobile-button {
   @apply h-6 w-6;
 }
+.nav-link.active {
+  @apply text-rose-500;
+}
+.nav-link:hover {
+  @apply text-rose-400;
+}

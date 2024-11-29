@@ -6,17 +6,14 @@
   @apply section-title;
 }
 .faq__list {
-  @apply space-y-4;
+  @apply gap-5 grid grid-cols-1 md:grid-cols-3;
 }
 .faq__item {
-  @apply card;
+  @apply card p-8;
 }
 .faq__question {
-  @apply text-lg font-semibold text-blue-600 mb-2;
+  @apply font-heading text-xl font-semibold text-rose-600 mb-2;
 }
 .faq__answer {
-  @apply text-gray-600;
-}
-.faq__item {
-  @apply p-6;
+  @apply font-body text-gray-600 md:text-lg pl-6 pt-3;
 }

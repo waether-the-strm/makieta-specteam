@@ -40,11 +40,11 @@
 }
 
 .product-card__price {
-  @apply text-blue-600 font-semibold m-0;
+  @apply text-rose-500 font-semibold m-0;
 }
 
 .product-card__button {
-  @apply flex items-center gap-2 text-slate-900 hover:text-blue-600 transition-colors;
+  @apply flex items-center gap-2 text-slate-900 hover:text-rose-600 transition-colors;
 }
 
 .product-card__button-icon {

@@ -3,7 +3,7 @@
   @apply section py-20 bg-slate-900 text-white;
 }
 .contact__title {
-  @apply section-title text-3xl text-center mb-12;
+  @apply font-heading section-title text-3xl text-center mb-12;
 }
 .contact__grid {
   @apply grid grid-cols-1 md:grid-cols-2 gap-12;
@@ -12,7 +12,7 @@
   @apply space-y-6;
 }
 .contact__info-title {
-  @apply text-xl font-semibold mb-4;
+  @apply font-heading text-xl font-semibold mb-4;
 }
 .contact__info-item {
   @apply feature-base;
@@ -24,7 +24,7 @@
   @apply flex items-center space-x-4 pt-4;
 }
 .contact__payment-title {
-  @apply font-semibold;
+  @apply font-heading font-semibold;
 }
 .contact__payment-icon {
   @apply icon;
@@ -35,5 +35,11 @@
   @apply space-y-4;
 }
 .contact-form__input {
-  @apply input-base px-4 py-2 bg-slate-800 border border-slate-700 focus:border-blue-500;
+  @apply input-base px-4 py-2 bg-slate-800 border border-slate-700 focus:border-rose-500;
+}
+.contact-form__input:focus {
+  @apply ring-2 ring-rose-500;
+}
+.contact-form__submit {
+  @apply bg-rose-500 hover:bg-rose-600;
 }

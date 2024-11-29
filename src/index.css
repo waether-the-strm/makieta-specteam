@@ -14,6 +14,16 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    @apply font-body;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
   }
 
   body {
@@ -47,15 +57,15 @@
   }
 
   .button {
-    @apply px-8 py-3 rounded-lg transition;
+    @apply px-8 py-3 rounded-lg transition border-2 border-transparent;
   }
 
   .primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700;
+    @apply bg-rose-500 text-white hover:bg-rose-600;
   }
 
   .outline {
-    @apply bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900;
+    @apply bg-transparent border-white text-white hover:bg-white hover:text-slate-900;
   }
 
   .card {
