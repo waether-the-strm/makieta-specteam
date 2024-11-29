@@ -2,11 +2,7 @@
 import typography from "@tailwindcss/typography";
 
 export default {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-    "./src/**/*.css",
-    "./src/styles/**/*.css",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     extend: {
       fontFamily: {

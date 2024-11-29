@@ -1,10 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import compression from "vite-plugin-compression";
 
 export default defineConfig((_config) => ({
   base: process.env.NODE_ENV === "production" ? "/makieta-specteam/" : "/",
-  plugins: [react()],
+  plugins: [
+    react(),
+    compression({
+      algorithm: "gzip",
+      ext: ".gz",
+    }),
+  ],
   optimizeDeps: {
     exclude: ["lucide-react"],
   },

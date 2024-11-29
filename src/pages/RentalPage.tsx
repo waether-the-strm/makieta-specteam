@@ -28,6 +28,8 @@ export default function RentalPage() {
               subtitle={category.subtitle}
               price={category.price}
               image={category.image}
+              imageWidth={category.imageWidth}
+              imageHeight={category.imageHeight}
             />
           ))}
         </div>

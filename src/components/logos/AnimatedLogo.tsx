@@ -18,7 +18,12 @@ export default function AnimatedLogo({
   const scrollY = useScrollPosition();
 
   const scale = useTransform(
-    useSpring(scrollY, { stiffness: 100, damping: 20 }),
+    useSpring(scrollY, { 
+      stiffness: 100, 
+      damping: 20,
+      restSpeed: 0.01,
+      restDelta: 0.01 
+    }),
     [0, scrollThreshold],
     [maxScale, minScale]
   );

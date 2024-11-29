@@ -5,6 +5,8 @@ interface CategoryCardProps {
   subtitle: string;
   price: string;
   image: string;
+  imageWidth: number;
+  imageHeight: number;
 }
 
 export default function CategoryCard({
@@ -12,6 +14,8 @@ export default function CategoryCard({
   subtitle,
   price,
   image,
+  imageWidth,
+  imageHeight,
 }: CategoryCardProps) {
   const titleId = `product-${title.toLowerCase().replace(/\s+/g, "-")}`;
 
@@ -19,7 +23,14 @@ export default function CategoryCard({
     <article className="product-card group">
       <a href="#" className="block h-full" aria-labelledby={titleId}>
         <figure className="product-card__image-container">
-          <img src={image} alt="" className="product-card__image" />
+          <img
+            src={image}
+            alt=""
+            className="product-card__image"
+            width={imageWidth}
+            height={imageHeight}
+            loading="lazy"
+          />
           <div
             className="product-card__image-overlay"
             role="presentation"
