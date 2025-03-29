@@ -39,21 +39,21 @@ function App() {
                       <input
                         type="text"
                         placeholder="Imię"
-                        className="w-full p-2.5 rounded bg-gray-800/50 border border-gray-700/50 text-gray-200 placeholder-gray-500"
+                        className="w-full p-2.5 rounded-md bg-gray-800/50 border border-gray-700/50 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-transparent transition-all duration-200"
                       />
                       <input
                         type="email"
                         placeholder="Email"
-                        className="w-full p-2.5 rounded bg-gray-800/50 border border-gray-700/50 text-gray-200 placeholder-gray-500"
+                        className="w-full p-2.5 rounded-md bg-gray-800/50 border border-gray-700/50 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-transparent transition-all duration-200"
                       />
                       <textarea
                         placeholder="Wiadomość"
                         rows={4}
-                        className="w-full p-2.5 rounded bg-gray-800/50 border border-gray-700/50 text-gray-200 placeholder-gray-500"
+                        className="w-full p-2.5 rounded-md bg-gray-800/50 border border-gray-700/50 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-transparent transition-all duration-200 resize-none"
                       ></textarea>
                       <button
                         type="submit"
-                        className="w-full bg-pink-600 text-white py-2.5 px-4 rounded hover:bg-pink-700"
+                        className="w-full bg-pink-600 text-white py-2.5 px-4 rounded-md hover:bg-pink-700 active:bg-pink-800 transition-all duration-200 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:ring-offset-2 focus:ring-offset-gray-900"
                       >
                         Wyślij wiadomość
                       </button>
@@ -61,27 +61,30 @@ function App() {
                     {/* Informacje kontaktowe */}
                     <div>
                       <div className="space-y-4">
-                        <div className="contact__info-item flex items-center space-x-3">
-                          <Phone size={18} className="text-gray-500" />
-                          <a href="tel:+48123456789" className="text-sm">
+                        <div className="contact__info-item group flex items-center space-x-3 p-2 rounded-md hover:bg-gray-800/30 transition-all duration-200">
+                          <Phone size={18} className="text-pink-500/70" />
+                          <a
+                            href="tel:+48123456789"
+                            className="text-sm group-hover:text-white transition-colors duration-200"
+                          >
                             +48 123 456 789
                           </a>
                         </div>
-                        <div className="contact__info-item flex items-center space-x-3">
-                          <Mail size={18} className="text-gray-500" />
+                        <div className="contact__info-item group flex items-center space-x-3 p-2 rounded-md hover:bg-gray-800/30 transition-all duration-200">
+                          <Mail size={18} className="text-pink-500/70" />
                           <a
                             href="mailto:contact@specteam.pl"
-                            className="text-sm"
+                            className="text-sm group-hover:text-white transition-colors duration-200"
                           >
                             contact@specteam.pl
                           </a>
                         </div>
-                        <div className="contact__info-item flex items-center space-x-3">
-                          <MapPin size={18} className="text-gray-500" />
+                        <div className="contact__info-item group flex items-center space-x-3 p-2 rounded-md hover:bg-gray-800/30 transition-all duration-200">
+                          <MapPin size={18} className="text-pink-500/70" />
                           <span className="text-sm">Warszawa, Polska</span>
                         </div>
-                        <div className="contact__info-item flex items-center space-x-3">
-                          <Clock size={18} className="text-gray-500" />
+                        <div className="contact__info-item group flex items-center space-x-3 p-2 rounded-md hover:bg-gray-800/30 transition-all duration-200">
+                          <Clock size={18} className="text-pink-500/70" />
                           <span className="text-sm">Pon-Pt: 9:00 - 18:00</span>
                         </div>
                       </div>
@@ -91,11 +94,14 @@ function App() {
                           Akceptujemy
                         </h4>
                         <div className="flex space-x-3">
-                          <div className="p-2 rounded bg-gray-800/30">
-                            <CreditCard size={20} className="text-gray-500" />
+                          <div className="p-2 rounded-md bg-gray-800/30">
+                            <CreditCard
+                              size={20}
+                              className="text-pink-500/70"
+                            />
                           </div>
-                          <div className="p-2 rounded bg-gray-800/30">
-                            <Bitcoin size={20} className="text-gray-500" />
+                          <div className="p-2 rounded-md bg-gray-800/30">
+                            <Bitcoin size={20} className="text-pink-500/70" />
                           </div>
                         </div>
                       </div>
