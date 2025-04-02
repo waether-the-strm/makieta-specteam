@@ -37,4 +37,7 @@ export default defineConfig((_config) => ({
     host: true,
     port: 5173,
   },
+  define: {
+    "process.env": {},
+  },
 }));

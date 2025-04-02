@@ -1,3 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./components/navbar.css";
+@import "./components/hero.css";
+@import "./components/product.css";
+
 /* Main Layout */
 .app {
   @apply min-h-screen bg-gray-900 text-white;

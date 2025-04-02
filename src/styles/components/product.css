@@ -1,0 +1,204 @@
+/* Product Page Styles */
+.product {
+  @apply bg-slate-900 text-white py-12;
+}
+
+.product__container {
+  @apply container mx-auto px-4;
+}
+
+.product__breadcrumbs {
+  @apply text-sm text-slate-400 mb-8;
+}
+
+.product__breadcrumbs-link {
+  @apply hover:text-rose-400 transition-colors;
+}
+
+.product__content {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-12;
+}
+
+.product__gallery {
+  @apply bg-slate-800 rounded-lg overflow-hidden shadow-lg;
+}
+
+.product__gallery-main {
+  @apply relative aspect-square mb-4;
+}
+
+.product__gallery-main img {
+  @apply w-full h-full object-cover;
+}
+
+.product__gallery-thumbs {
+  @apply grid grid-cols-4 gap-2 p-4;
+}
+
+.product__gallery-thumb {
+  @apply aspect-square cursor-pointer rounded-lg overflow-hidden border-2 border-transparent hover:border-rose-500 transition-colors;
+}
+
+.product__gallery-thumb.active {
+  @apply border-rose-500;
+}
+
+.product__gallery-thumb img {
+  @apply w-full h-full object-cover;
+}
+
+.product__info {
+  @apply space-y-6;
+}
+
+.product__title {
+  @apply text-3xl font-bold text-white;
+}
+
+.product__availability {
+  @apply text-sm text-emerald-400;
+}
+
+.product__rating {
+  @apply flex items-center gap-2 text-amber-400;
+}
+
+.product__features {
+  @apply space-y-3;
+}
+
+.product__feature {
+  @apply flex items-center gap-2 text-slate-200;
+}
+
+.product__feature-icon {
+  @apply text-rose-400;
+}
+
+.product__actions {
+  @apply bg-slate-800 p-6 rounded-lg space-y-6 shadow-lg;
+}
+
+.product__price {
+  @apply text-2xl font-bold text-white;
+}
+
+.product__price-rental {
+  @apply text-sm text-slate-400;
+}
+
+.product__price-purchase {
+  @apply text-lg text-rose-400;
+}
+
+.product__buttons {
+  @apply flex flex-col gap-4;
+}
+
+.product__button {
+  @apply w-full py-3 px-6 rounded-lg font-medium transition-colors;
+}
+
+.product__button--rental {
+  @apply bg-rose-600 hover:bg-rose-700 text-white;
+}
+
+.product__button--purchase {
+  @apply bg-indigo-600 hover:bg-indigo-700 text-white;
+}
+
+.product__button--disabled {
+  @apply bg-slate-600 cursor-not-allowed;
+}
+
+.product__rental-options {
+  @apply space-y-4;
+}
+
+.product__rental-option {
+  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors cursor-pointer;
+}
+
+.product__rental-option.active {
+  @apply bg-rose-600;
+}
+
+.product__rental-days {
+  @apply w-full p-3 bg-slate-700 rounded-lg text-white;
+}
+
+.product__quantity {
+  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg;
+}
+
+.product__quantity-button {
+  @apply w-8 h-8 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 transition-colors;
+}
+
+.product__quantity-value {
+  @apply text-lg font-medium text-white;
+}
+
+.product__info-bottom {
+  @apply text-sm text-slate-400 space-y-2;
+}
+
+.product__description {
+  @apply mb-12 bg-slate-800 p-6 rounded-lg shadow-lg;
+}
+
+.product__description-title {
+  @apply text-2xl font-bold mb-4 text-white;
+}
+
+.product__description-content {
+  @apply text-slate-200 leading-relaxed;
+}
+
+.product__faq {
+  @apply mb-12;
+}
+
+.product__faq-title {
+  @apply text-2xl font-bold mb-6 text-white;
+}
+
+.product__faq-item {
+  @apply mb-4 bg-slate-800 rounded-lg overflow-hidden shadow-lg;
+}
+
+.product__faq-question {
+  @apply p-4 bg-slate-700 text-white font-medium cursor-pointer;
+}
+
+.product__faq-answer {
+  @apply p-4 text-slate-200;
+}
+
+.product__specs {
+  @apply bg-slate-800 rounded-lg p-6 shadow-lg;
+}
+
+.product__specs-title {
+  @apply text-2xl font-bold mb-6 text-white;
+}
+
+.product__specs-table {
+  @apply w-full;
+}
+
+.product__specs-row {
+  @apply border-b border-slate-700 last:border-0;
+}
+
+.product__specs-cell {
+  @apply py-3;
+}
+
+.product__specs-label {
+  @apply text-slate-400 font-medium;
+}
+
+.product__specs-value {
+  @apply text-slate-200;
+}

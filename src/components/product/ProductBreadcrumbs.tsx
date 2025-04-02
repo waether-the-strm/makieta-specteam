@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface ProductBreadcrumbsProps {
@@ -6,21 +6,24 @@ interface ProductBreadcrumbsProps {
   name: string;
 }
 
-const ProductBreadcrumbs = ({ category, name }: ProductBreadcrumbsProps) => {
+const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({
+  category,
+  name,
+}) => {
   return (
-    <div className="flex items-center space-x-2 text-sm text-gray-400 mb-8">
-      <Link to="/" className="hover:text-white transition-colors">
+    <div className="product__breadcrumbs">
+      <Link to="/" className="product__breadcrumbs-link">
         Oferta
       </Link>
-      <ChevronRight size={16} />
+      <span className="mx-2">&gt;</span>
       <Link
         to={`/category/${category.toLowerCase()}`}
-        className="hover:text-white transition-colors"
+        className="product__breadcrumbs-link"
       >
         {category}
       </Link>
-      <ChevronRight size={16} />
-      <span className="text-orange-500 font-semibold">{name}</span>
+      <span className="mx-2">&gt;</span>
+      <span className="font-semibold text-rose-500">{name}</span>
     </div>
   );
 };
