@@ -1,0 +1,45 @@
+/* Main Layout */
+.app {
+  @apply min-h-screen bg-gray-900 text-white;
+}
+
+.main {
+  @apply flex-grow;
+}
+
+.layout {
+  @apply min-h-screen flex flex-col;
+}
+
+/* Container */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Footer */
+.footer {
+  @apply mt-auto;
+}
+
+.footer__container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Contact Form */
+.contact__info-item {
+  @apply flex items-center space-x-3 p-2 rounded-md hover:bg-gray-800/30 transition-all duration-200;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
