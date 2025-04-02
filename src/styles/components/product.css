@@ -154,55 +154,68 @@ html {
 
 /* Opis produktu */
 .product__description {
-  @apply p-6;
+  @apply p-6 pb-5;
 }
 
 .product__description-title {
   @apply text-2xl font-bold mb-4 text-white;
+  font-family: var(--font-heading);
 }
 
 .product__description-content {
   @apply text-slate-200 leading-relaxed;
 }
 
-/* Separator pomiędzy opisem a tabami */
-.product__tabs-divider {
-  @apply h-px bg-slate-700 mx-6;
-}
-
-/* Style dla zakładek */
+/* Style dla zakładek - z fontem Merriweather */
 .product__tabs {
-  @apply p-6 pt-5;
+  @apply p-0;
+  position: relative;
+  width: 100%;
 }
 
 .product__tabs-header {
-  @apply flex border-b border-slate-700 mb-6;
+  @apply flex w-full;
+  position: relative;
+  background-color: rgba(15, 23, 42, 0.3);
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .product__tab-button {
-  @apply py-3 px-6 font-medium text-slate-400 transition-colors relative;
+  @apply py-4 px-6 transition-colors text-center flex-1;
+  position: relative;
+  font-family: var(--font-heading);
+  @apply font-bold text-base tracking-wide;
+  z-index: 1;
+  width: 50%;
+  text-transform: uppercase;
+}
+
+.product__tab-button:hover {
+  @apply text-white bg-slate-700 bg-opacity-40;
 }
 
 .product__tab-button.active {
   @apply text-white;
+  background-color: transparent;
 }
 
 .product__tab-button.active::after {
   content: "";
   position: absolute;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  @apply bg-rose-600;
-}
-
-.product__tab-button:hover:not(.active) {
-  @apply text-slate-200;
+  height: 3px;
+  width: 100%;
+  @apply bg-rose-500;
+  z-index: 2;
 }
 
 .product__tabs-content {
-  @apply py-2;
+  @apply p-6;
+  width: 100%;
 }
 
 /* Poprawienie dropdowna */
@@ -283,40 +296,70 @@ select {
   @apply text-sm text-slate-400 space-y-2;
 }
 
-/* Specyfikacje w tabeli */
+/* Specyfikacje w tabeli - poprawiona wersja */
 .product__specs-table {
-  @apply w-full;
+  @apply w-full border-separate;
+  border-spacing: 0;
 }
 
 .product__specs-row {
   @apply border-b border-slate-700 last:border-0;
+  transition: background-color 0.2s ease;
+}
+
+.product__specs-row:hover {
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .product__specs-cell {
   @apply py-3;
 }
 
+.product__specs-cell:first-child {
+  @apply pl-0;
+}
+
+.product__specs-cell:last-child {
+  @apply pr-0;
+}
+
 .product__specs-label {
   @apply text-slate-400 font-medium;
+  width: 40%;
 }
 
 .product__specs-value {
   @apply text-slate-200;
+  width: 60%;
 }
 
-/* Lżejsze FAQ */
+/* Lżejsze FAQ - z fontem Merriweather dla pytań */
 .product__faq {
-  @apply space-y-4;
+  @apply space-y-6;
+  width: 100%;
 }
 
 .product__faq-item {
-  @apply border-b border-slate-700 last:border-0 pb-4 last:pb-0;
+  @apply border-b border-slate-700 last:border-0 pb-6 last:pb-0;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.product__faq-item:hover {
+  background-color: rgba(255, 255, 255, 0.02);
 }
 
 .product__faq-question {
-  @apply text-white font-medium mb-2;
+  /* Font nagłówkowy dla pytań */
+  @apply text-white mb-3 font-bold;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.4;
 }
 
 .product__faq-answer {
   @apply text-slate-300;
+  /* Delikatna kursywa dla odpowiedzi */
+  font-style: italic;
+  line-height: 1.6;
 }

@@ -135,12 +135,20 @@ const ProductPage: React.FC = () => {
 
               {/* Zakładki - Szczegóły Techniczne i FAQ */}
               <div className="product__tabs">
-                <div className="product__tabs-header">
+                <div
+                  className="product__tabs-header"
+                  role="tablist"
+                  aria-label="Informacje o produkcie"
+                >
                   <button
                     className={`product__tab-button ${
                       activeTab === "specs" ? "active" : ""
                     }`}
                     onClick={() => setActiveTab("specs")}
+                    role="tab"
+                    aria-selected={activeTab === "specs"}
+                    aria-controls="panel-specs"
+                    id="tab-specs"
                   >
                     Szczegóły techniczne
                   </button>
@@ -149,6 +157,10 @@ const ProductPage: React.FC = () => {
                       activeTab === "faq" ? "active" : ""
                     }`}
                     onClick={() => setActiveTab("faq")}
+                    role="tab"
+                    aria-selected={activeTab === "faq"}
+                    aria-controls="panel-faq"
+                    id="tab-faq"
                   >
                     Pytania i odpowiedzi
                   </button>
@@ -156,7 +168,12 @@ const ProductPage: React.FC = () => {
 
                 <div className="product__tabs-content">
                   {/* Specyfikacje */}
-                  {activeTab === "specs" && (
+                  <div
+                    id="panel-specs"
+                    role="tabpanel"
+                    aria-labelledby="tab-specs"
+                    className={activeTab === "specs" ? "" : "hidden"}
+                  >
                     <div className="product__specs">
                       <table className="product__specs-table">
                         <tbody>
@@ -173,10 +190,15 @@ const ProductPage: React.FC = () => {
                         </tbody>
                       </table>
                     </div>
-                  )}
+                  </div>
 
                   {/* FAQ */}
-                  {activeTab === "faq" && (
+                  <div
+                    id="panel-faq"
+                    role="tabpanel"
+                    aria-labelledby="tab-faq"
+                    className={activeTab === "faq" ? "" : "hidden"}
+                  >
                     <div className="product__faq">
                       {product.faq.map((item, index) => (
                         <div key={index} className="product__faq-item">
@@ -189,7 +211,7 @@ const ProductPage: React.FC = () => {
                         </div>
                       ))}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             </div>
