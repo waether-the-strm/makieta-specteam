@@ -166,7 +166,7 @@ html {
   @apply text-slate-200 leading-relaxed;
 }
 
-/* Style dla zakładek - z fontem Merriweather */
+/* Style dla zakładek - poprawiona wersja */
 .product__tabs {
   @apply p-0;
   position: relative;
@@ -182,10 +182,21 @@ html {
   width: 100%;
 }
 
+/* Linia pod całym nagłówkiem tabów */
+.product__tabs-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  @apply bg-slate-700;
+}
+
 .product__tab-button {
   @apply py-4 px-6 transition-colors text-center flex-1;
   position: relative;
-  font-family: var(--font-heading);
   @apply font-bold text-base tracking-wide;
   z-index: 1;
   width: 50%;
@@ -216,6 +227,10 @@ html {
 .product__tabs-content {
   @apply p-6;
   width: 100%;
+  /* Jaśniejsze tło dla zawartości tabów */
+  background-color: rgba(30, 41, 59, 0.5);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
 /* Poprawienie dropdowna */
@@ -296,70 +311,99 @@ select {
   @apply text-sm text-slate-400 space-y-2;
 }
 
-/* Specyfikacje w tabeli - poprawiona wersja */
+/* Specyfikacje w tabeli - bardziej skompresowana struktura */
+.product__specs {
+  width: 100%;
+  @apply space-y-0 rounded-md overflow-hidden;
+}
+
 .product__specs-table {
-  @apply w-full border-separate;
+  @apply w-full border-collapse;
   border-spacing: 0;
+  font-size: 0.95rem;
 }
 
 .product__specs-row {
-  @apply border-b border-slate-700 last:border-0;
-  transition: background-color 0.2s ease;
+  @apply border-b border-slate-700/20 last:border-0;
+  transition: background-color 0.15s ease;
+}
+
+/* Delikatniejsze naprzemienne tła dla wierszy */
+.product__specs-row:nth-child(odd) {
+  background-color: rgba(30, 41, 59, 0.2);
+}
+
+.product__specs-row:nth-child(even) {
+  background-color: rgba(30, 41, 59, 0.05);
 }
 
 .product__specs-row:hover {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(51, 65, 85, 0.3);
 }
 
 .product__specs-cell {
   @apply py-3;
+  padding-left: 0.875rem;
+  padding-right: 0.875rem;
 }
 
 .product__specs-cell:first-child {
-  @apply pl-0;
+  @apply pl-3;
 }
 
 .product__specs-cell:last-child {
-  @apply pr-0;
+  @apply pr-3;
 }
 
 .product__specs-label {
-  @apply text-slate-400 font-medium;
+  @apply text-slate-400 font-normal;
   width: 40%;
+  /* Bardziej tabelaryczny wygląd */
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+/* Subtelniejszy separator między kolumnami */
+.product__specs-label::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  right: 0;
+  height: 50%;
+  width: 1px;
+  background-color: rgba(148, 163, 184, 0.1);
 }
 
 .product__specs-value {
-  @apply text-slate-200;
+  @apply text-slate-100 font-normal;
   width: 60%;
 }
 
-/* Lżejsze FAQ - z fontem Merriweather dla pytań */
+/* Lżejsze FAQ - poprawiona wersja */
 .product__faq {
   @apply space-y-6;
   width: 100%;
 }
 
 .product__faq-item {
-  @apply border-b border-slate-700 last:border-0 pb-6 last:pb-0;
+  @apply border-b border-slate-700/50 last:border-0 pb-6 last:pb-0 mb-2;
   transition: background-color 0.2s ease;
   width: 100%;
 }
 
-.product__faq-item:hover {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
 .product__faq-question {
-  /* Font nagłówkowy dla pytań */
   @apply text-white mb-3 font-bold;
   font-family: var(--font-heading);
   font-size: 1.05rem;
   line-height: 1.4;
+  /* Poprawić kontrast dla pytania */
+  color: rgb(229, 231, 235);
 }
 
 .product__faq-answer {
-  @apply text-slate-300;
-  /* Delikatna kursywa dla odpowiedzi */
+  /* Poprawić kontrast dla odpowiedzi */
+  @apply text-slate-200;
   font-style: italic;
   line-height: 1.6;
+  padding-left: 0.5rem;
 }
