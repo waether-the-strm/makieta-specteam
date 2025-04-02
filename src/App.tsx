@@ -28,7 +28,7 @@ function App() {
             </Suspense>
             <footer
               id="contact-footer"
-              className="footer bg-gray-900 text-gray-400 py-12 mt-12"
+              className="footer bg-gray-900 text-gray-400 py-12"
             >
               <div className="footer__container container mx-auto px-4 max-w-4xl">
                 <div className="space-y-8">
