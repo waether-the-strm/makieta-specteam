@@ -6,11 +6,17 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+image-checker.log # Log ze skryptu sprawdzania obrazków
 
 node_modules
 dist
 dist-ssr
 *.local
+
+# Ignored scripts and their outputs
+.scripts/
+available-images.json
+checked-urls.json
 
 # Editor directories and files
 .vscode/*

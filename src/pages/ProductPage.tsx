@@ -1,85 +1,189 @@
+import React from "react";
 import { useParams } from "react-router-dom";
-import ProductGallery from "../components/product/ProductGallery";
 import ProductBreadcrumbs from "../components/product/ProductBreadcrumbs";
+import ProductGallery from "../components/product/ProductGallery";
 import ProductActions from "../components/product/ProductActions";
 
-// Mock data - później zastąpimy danymi z API
-const mockProduct = {
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  price: {
+    rental: {
+      daily: number;
+      weekly: number;
+      monthly: number;
+    };
+    purchase: number;
+  };
+  images: string[];
+  features: string[];
+  faq: Array<{
+    question: string;
+    answer: string;
+  }>;
+  specs: Array<{
+    label: string;
+    value: string;
+  }>;
+  rating: number;
+  isAvailable: boolean;
+}
+
+// Przykładowe dane produktu do testów
+const mockProduct: Product = {
   id: "1",
-  name: "DJI Mavic 3 Pro",
-  category: "Drony",
-  images: [
-    "https://example.com/drone1.jpg",
-    "https://example.com/drone2.jpg",
-    "https://example.com/drone3.jpg",
-    "https://example.com/drone4.jpg",
-  ],
-  rentalPrices: [
-    { days: 3, price: 1200, dailyPrice: 400 },
-    { days: 7, price: 2100, dailyPrice: 300 },
-    { days: 14, price: 3500, dailyPrice: 250 },
-  ],
-  deposit: 5000,
-  purchasePrice: {
-    gross: 15999,
-    net: 13007.32,
+  name: "Lokalizator GPS",
+  category: "Lokalizatory GPS",
+  description: "Profesjonalny lokalizator GPS z długim czasem pracy.",
+  price: {
+    rental: {
+      daily: 50,
+      weekly: 300,
+      monthly: 1000,
+    },
+    purchase: 2500,
   },
-  features: ["Kamera 4K", "Zasięg 15km", "Czas lotu 46min", "Waga 958g"],
-  description: "Profesjonalny dron DJI Mavic 3 Pro z kamerą Hasselblad...",
+  images: [
+    // Wybrane zdjęcia dla produktu "gps" z available-images.json
+    // Duże zdjęcie
+    "https://www.specteam.pl/products/gps/pics/lok4.jpg", // 1173x766
+    // Średnie zdjęcia
+    "https://www.specteam.pl/products/gps/pics/lok1.jpg", // 565x442
+    "https://www.specteam.pl/products/gps/pics/lok2.jpg", // 700x525
+    "https://www.specteam.pl/products/gps/pics/lok3.jpg", // 650x548
+    // Mniejsze zdjęcia
+    "https://www.specteam.pl/products/gps/pics/1.jpg", // 400x372
+    "https://www.specteam.pl/products/gps/pics/2.jpg", // 292x387
+    "https://www.specteam.pl/products/gps/pics/3.jpg", // 300x397
+    // Miniaturki (można ich użyć w komponencie galerii)
+    // "https://www.specteam.pl/products/gps/pics/thumbnail_lok3.jpg", // 180x151
+    // "https://www.specteam.pl/products/gps/pics/thumbnail_lok4.jpg", // 180x117
+  ],
+  features: [
+    "Kilka miesięcy pracy na jednym ładowaniu",
+    "Podgląd w aplikacji w dołączonym telefonie",
+    "Precyzyjne ustalanie pozycji z dokładnością GPS",
+    "Gotowy telefon w zestawie (z kartą sim i pakietem danych)",
+    "Bardzo długi czas pracy - nawet do kilku tygodni",
+    "Bardzo małe rozmiary nadajnika",
+    "Zerowy koszt eksploatacji: brak abonamentu itp opłat.",
+  ],
+  faq: [
+    {
+      question: "Co muszę mieć swojego aby korzystać z zestawu?",
+      answer:
+        "Kompletnie nic. W zestawie znajduje się telefon sparowany z lokalizatorem.",
+    },
+    {
+      question: "Jaki zasięg ma nadajnik?",
+      answer: "Działa w całej Polsce",
+    },
+    {
+      question: "Jak długo działa nadajnik?",
+      answer:
+        "Nawet do kilku tygodni. Osobiście to testowaliśmy w różnych warunkach.",
+    },
+    {
+      question: "Gdzie w samochodzie najlepiej ukryć nadajnik?",
+      answer:
+        "W takim miejscu, w którym będzie miał zasięg GSM i GPS. Schowek na okulary przy lusterku jest idealnym miejscem. Schowek po stronie pasażera również powinien się sprawdzić w większości samochodów. Inne punkty są zależne od konstrukcji auta i zasięgu sieci w okolicy.",
+    },
+  ],
+  specs: [
+    { label: "Wymiary lokalizatora", value: "97 x 24 x 31 mm" },
+    { label: "Czas pracy", value: "do kilku tygodni" },
+    { label: "Karta sim w lokalizatorze", value: "tak" },
+    { label: "Karta sim w telefonie", value: "tak" },
+    { label: "Częstość podawania pozycji", value: "10 sekund" },
+    { label: "Wskaźnik stanu baterii", value: "procentowy" },
+    { label: "Mikrofon", value: "brak" },
+    { label: "Zapis historii", value: "tak" },
+    {
+      label: "Telefon",
+      value: 'Redmi 4X, rozmiar: 140 x 70 x 9 mm (ekran 5")',
+    },
+  ],
+  rating: 4.92,
+  isAvailable: true,
 };
 
-const ProductPage = () => {
-  const { id } = useParams();
-  // Później pobierzemy dane produktu na podstawie id
+const ProductPage: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+
+  // TODO: Pobieranie danych produktu na podstawie id
+  // Na razie używamy mock-danych
   const product = mockProduct;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumbs */}
+    <div className="product">
+      <div className="product__container">
         <ProductBreadcrumbs category={product.category} name={product.name} />
 
-        {/* Main Product Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-          {/* Gallery */}
-          <ProductGallery images={product.images} name={product.name} />
+        <div className="product__content">
+          <div className="product__gallery">
+            <ProductGallery images={product.images} />
+          </div>
 
-          {/* Actions Panel */}
-          <ProductActions
-            rentalPrices={product.rentalPrices}
-            deposit={product.deposit}
-            purchasePrice={product.purchasePrice}
-          />
-        </div>
+          <div className="product__info">
+            <h1 className="product__title">{product.name}</h1>
 
-        {/* Features and Additional Info */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Specyfikacja</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {product.features.map((feature, index) => (
-              <div key={index} className="bg-white p-4 rounded-lg shadow-sm">
-                {feature}
-              </div>
-            ))}
+            <div className="product__availability">
+              <span>🟢 Produkt dostępny</span>
+            </div>
+
+            <div className="product__rating">
+              <span className="product__rating-stars">⭐⭐⭐⭐⭐</span>
+              <span className="product__rating-score">{product.rating}/5</span>
+            </div>
+
+            <div className="product__features">
+              {product.features.map((feature, index) => (
+                <div key={index} className="product__feature">
+                  <span className="product__feature-icon">✓</span>
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <ProductActions product={product} />
           </div>
         </div>
 
-        {/* Product Description */}
-        <div className="mt-12">
-          <h2 className="text-2xl font-bold mb-6">Opis produktu</h2>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <p className="text-gray-600">{product.description}</p>
+        <div className="product__description">
+          <h2 className="product__description-title">Opis</h2>
+          <div className="product__description-content">
+            {product.description}
           </div>
         </div>
 
-        {/* Bottom CTA Buttons */}
-        <div className="mt-12 flex gap-4 justify-center">
-          <button className="bg-orange-500 text-white px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors">
-            Wypożycz teraz
-          </button>
-          <button className="bg-white text-orange-500 border-2 border-orange-500 px-8 py-3 rounded-lg hover:bg-orange-50 transition-colors">
-            Kup teraz
-          </button>
+        <div className="product__faq">
+          <h2 className="product__faq-title">Pytania i odpowiedzi</h2>
+          {product.faq.map((item, index) => (
+            <div key={index} className="product__faq-item">
+              <div className="product__faq-question">{item.question}</div>
+              <div className="product__faq-answer">{item.answer}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="product__specs">
+          <h2 className="product__specs-title">Szczegóły techniczne</h2>
+          <table className="product__specs-table">
+            <tbody>
+              {product.specs.map((spec, index) => (
+                <tr key={index} className="product__specs-row">
+                  <td className="product__specs-cell product__specs-label">
+                    {spec.label}
+                  </td>
+                  <td className="product__specs-cell product__specs-value">
+                    {spec.value}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
