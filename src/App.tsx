@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import { MapPin, Mail, Phone, CreditCard, Bitcoin, Clock } from "lucide-react";
+import "./styles/main.css";
+import "./styles/components/navbar.css";
 
 // Lazy loading komponentów
 const RentalPage = lazy(() => import("./pages/RentalPage"));
