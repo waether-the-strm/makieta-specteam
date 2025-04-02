@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Dodajemy import index.css, aby zmienne CSS były dostępne globalnie */
+@import "./index.css";
+
 @import "./components/navbar.css";
 @import "./components/hero.css";
 @import "./components/product.css";

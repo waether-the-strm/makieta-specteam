@@ -1,0 +1,16 @@
+:root {
+  --navbar-height: 90px;
+}
+
+/* Dodajmy style dla html i body, aby zapewnić prawidłowe przewijanie */
+html {
+  scroll-padding-top: var(
+    --navbar-height
+  ); /* Dopasowane do wysokości navbara */
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  overflow-y: visible;
+}

@@ -46,20 +46,13 @@ const mockProduct: Product = {
     purchase: 2500,
   },
   images: [
-    // Wybrane zdjęcia dla produktu "gps" z available-images.json
-    // Duże zdjęcie
     "https://www.specteam.pl/products/gps/pics/lok4.jpg", // 1173x766
-    // Średnie zdjęcia
     "https://www.specteam.pl/products/gps/pics/lok1.jpg", // 565x442
     "https://www.specteam.pl/products/gps/pics/lok2.jpg", // 700x525
     "https://www.specteam.pl/products/gps/pics/lok3.jpg", // 650x548
-    // Mniejsze zdjęcia
     "https://www.specteam.pl/products/gps/pics/1.jpg", // 400x372
     "https://www.specteam.pl/products/gps/pics/2.jpg", // 292x387
     "https://www.specteam.pl/products/gps/pics/3.jpg", // 300x397
-    // Miniaturki (można ich użyć w komponencie galerii)
-    // "https://www.specteam.pl/products/gps/pics/thumbnail_lok3.jpg", // 180x151
-    // "https://www.specteam.pl/products/gps/pics/thumbnail_lok4.jpg", // 180x117
   ],
   features: [
     "Kilka miesięcy pracy na jednym ładowaniu",
@@ -110,10 +103,6 @@ const mockProduct: Product = {
 };
 
 const ProductPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-
-  // TODO: Pobieranie danych produktu na podstawie id
-  // Na razie używamy mock-danych
   const product = mockProduct;
 
   return (
@@ -122,68 +111,89 @@ const ProductPage: React.FC = () => {
         <ProductBreadcrumbs category={product.category} name={product.name} />
 
         <div className="product__content">
-          <div className="product__gallery">
-            <ProductGallery images={product.images} />
+          {/* Lewa kolumna - tylko galeria i treść tekstowa */}
+          <div className="product__left-column">
+            {/* Galeria na górze */}
+            <div className="product__gallery-container">
+              <div className="product__gallery">
+                <ProductGallery images={product.images} />
+              </div>
+            </div>
+
+            {/* Treść tekstowa */}
+            <div className="product__text-content">
+              {/* Opis */}
+              <div className="product__description">
+                <h2 className="product__description-title">Opis</h2>
+                <div className="product__description-content">
+                  {product.description}
+                </div>
+              </div>
+
+              {/* FAQ */}
+              <div className="product__faq">
+                <h2 className="product__faq-title">Pytania i odpowiedzi</h2>
+                {product.faq.map((item, index) => (
+                  <div key={index} className="product__faq-item">
+                    <div className="product__faq-question">{item.question}</div>
+                    <div className="product__faq-answer">{item.answer}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Specyfikacje */}
+              <div className="product__specs">
+                <h2 className="product__specs-title">Szczegóły techniczne</h2>
+                <table className="product__specs-table">
+                  <tbody>
+                    {product.specs.map((spec, index) => (
+                      <tr key={index} className="product__specs-row">
+                        <td className="product__specs-cell product__specs-label">
+                          {spec.label}
+                        </td>
+                        <td className="product__specs-cell product__specs-value">
+                          {spec.value}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
-          <div className="product__info">
-            <h1 className="product__title">{product.name}</h1>
+          {/* Prawa kolumna - nagłówek, cechy i panel akcji */}
+          <div className="product__right-column">
+            {/* Informacje podstawowe o produkcie i lista cech w jednym kontenerze */}
+            <div className="product__info-features">
+              {/* Informacje podstawowe o produkcie */}
+              <h1 className="product__title">{product.name}</h1>
 
-            <div className="product__availability">
-              <span>🟢 Produkt dostępny</span>
+              <div className="product__availability">
+                <span>🟢 Produkt dostępny</span>
+              </div>
+
+              <div className="product__rating">
+                <span className="product__rating-stars">⭐⭐⭐⭐⭐</span>
+                <span className="product__rating-score">
+                  {product.rating}/5
+                </span>
+              </div>
+
+              {/* Lista cech produktu */}
+              <div className="product__features">
+                {product.features.map((feature, index) => (
+                  <div key={index} className="product__feature">
+                    <span className="product__feature-icon">✓</span>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="product__rating">
-              <span className="product__rating-stars">⭐⭐⭐⭐⭐</span>
-              <span className="product__rating-score">{product.rating}/5</span>
-            </div>
-
-            <div className="product__features">
-              {product.features.map((feature, index) => (
-                <div key={index} className="product__feature">
-                  <span className="product__feature-icon">✓</span>
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
-
+            {/* Panel akcji będzie przyklejał się przy przewijaniu */}
             <ProductActions product={product} />
           </div>
-        </div>
-
-        <div className="product__description">
-          <h2 className="product__description-title">Opis</h2>
-          <div className="product__description-content">
-            {product.description}
-          </div>
-        </div>
-
-        <div className="product__faq">
-          <h2 className="product__faq-title">Pytania i odpowiedzi</h2>
-          {product.faq.map((item, index) => (
-            <div key={index} className="product__faq-item">
-              <div className="product__faq-question">{item.question}</div>
-              <div className="product__faq-answer">{item.answer}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="product__specs">
-          <h2 className="product__specs-title">Szczegóły techniczne</h2>
-          <table className="product__specs-table">
-            <tbody>
-              {product.specs.map((spec, index) => (
-                <tr key={index} className="product__specs-row">
-                  <td className="product__specs-cell product__specs-label">
-                    {spec.label}
-                  </td>
-                  <td className="product__specs-cell product__specs-value">
-                    {spec.value}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
       </div>
     </div>

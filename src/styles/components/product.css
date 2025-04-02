@@ -1,10 +1,11 @@
 /* Product Page Styles */
+
 .product {
-  @apply bg-slate-900 text-white py-12;
+  @apply bg-slate-900 text-white min-h-screen;
 }
 
 .product__container {
-  @apply container mx-auto px-4;
+  @apply container mx-auto px-4 py-12;
 }
 
 .product__breadcrumbs {
@@ -19,36 +20,85 @@
   @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-12;
 }
 
+/* Lewa kolumna - galeria i treść */
+.product__left-column {
+  @apply space-y-8;
+}
+
+/* Prawa kolumna - nagłówek, cechy i panel akcji */
+.product__right-column {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+}
+
+/* Wspólny kontener dla informacji i cech produktu */
+.product__info-features {
+  @apply space-y-6;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Kontener dla galerii */
+.product__gallery-container {
+  @apply mb-8;
+}
+
 .product__gallery {
   @apply bg-slate-800 rounded-lg overflow-hidden shadow-lg;
 }
 
 .product__gallery-main {
-  @apply relative aspect-square mb-4;
+  @apply relative aspect-square;
 }
 
 .product__gallery-main img {
-  @apply w-full h-full object-cover;
+  @apply w-full h-full object-contain;
 }
 
 .product__gallery-thumbs {
-  @apply grid grid-cols-4 gap-2 p-4;
+  @apply p-3 flex gap-2 overflow-x-auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.product__gallery-thumbs::-webkit-scrollbar {
+  display: none;
 }
 
 .product__gallery-thumb {
-  @apply aspect-square cursor-pointer rounded-lg overflow-hidden border-2 border-transparent hover:border-rose-500 transition-colors;
+  @apply w-16 h-16;
+  @apply aspect-square cursor-pointer rounded-md overflow-hidden border-2 border-transparent transition-all duration-300;
+  opacity: 0.7;
+  filter: grayscale(30%);
+}
+
+.product__gallery-thumb:hover {
+  @apply border-rose-400;
+  opacity: 1;
+  filter: grayscale(0%);
 }
 
 .product__gallery-thumb.active {
-  @apply border-rose-500;
+  @apply border-rose-600 shadow-lg;
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.product__gallery-thumb.previewing {
+  @apply border-rose-400;
+  opacity: 0.9;
+  filter: grayscale(10%);
 }
 
 .product__gallery-thumb img {
   @apply w-full h-full object-cover;
 }
 
+/* Informacje o produkcie */
 .product__info {
-  @apply space-y-6;
+  @apply space-y-4 bg-slate-800 p-6 rounded-lg shadow-lg;
 }
 
 .product__title {
@@ -56,15 +106,15 @@
 }
 
 .product__availability {
-  @apply text-sm text-emerald-400;
+  @apply text-sm text-emerald-400 mt-2;
 }
 
 .product__rating {
-  @apply flex items-center gap-2 text-amber-400;
+  @apply flex items-center gap-2 text-amber-400 mt-2;
 }
 
 .product__features {
-  @apply space-y-3;
+  @apply space-y-3 mt-8;
 }
 
 .product__feature {
@@ -75,8 +125,31 @@
   @apply text-rose-400;
 }
 
+/* Panel akcji - sticky */
 .product__actions {
-  @apply bg-slate-800 p-6 rounded-lg space-y-6 shadow-lg;
+  @apply bg-slate-800 p-6 rounded-lg shadow-lg;
+  position: -webkit-sticky;
+  position: sticky;
+  /* Używamy wartości liczbowej dla większej niezawodności */
+  top: 78px;
+  z-index: 10;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* Usunięcie spacera, który nie jest potrzebny przy sticky */
+.product__actions-spacer {
+  display: none;
+}
+
+/* Dodajemy scroll-padding dla lepszego zachowania przy przewijaniu */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* Zawartość tekstowa (opis, FAQ, specyfikacje) */
+.product__text-content {
+  @apply space-y-8;
 }
 
 .product__price {
@@ -144,7 +217,7 @@
 }
 
 .product__description {
-  @apply mb-12 bg-slate-800 p-6 rounded-lg shadow-lg;
+  @apply bg-slate-800 p-6 rounded-lg shadow-lg;
 }
 
 .product__description-title {
@@ -156,7 +229,7 @@
 }
 
 .product__faq {
-  @apply mb-12;
+  @apply mt-8;
 }
 
 .product__faq-title {
@@ -176,7 +249,7 @@
 }
 
 .product__specs {
-  @apply bg-slate-800 rounded-lg p-6 shadow-lg;
+  @apply bg-slate-800 rounded-lg p-6 shadow-lg mt-8;
 }
 
 .product__specs-title {
