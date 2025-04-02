@@ -147,7 +147,74 @@ html {
   scroll-padding-top: 80px;
 }
 
-/* Zawartość tekstowa (opis, FAQ, specyfikacje) */
+/* Panel informacyjny - opis i zakładki */
+.product__info-panel {
+  @apply bg-slate-800 rounded-lg shadow-lg overflow-hidden;
+}
+
+/* Opis produktu */
+.product__description {
+  @apply p-6;
+}
+
+.product__description-title {
+  @apply text-2xl font-bold mb-4 text-white;
+}
+
+.product__description-content {
+  @apply text-slate-200 leading-relaxed;
+}
+
+/* Separator pomiędzy opisem a tabami */
+.product__tabs-divider {
+  @apply h-px bg-slate-700 mx-6;
+}
+
+/* Style dla zakładek */
+.product__tabs {
+  @apply p-6 pt-5;
+}
+
+.product__tabs-header {
+  @apply flex border-b border-slate-700 mb-6;
+}
+
+.product__tab-button {
+  @apply py-3 px-6 font-medium text-slate-400 transition-colors relative;
+}
+
+.product__tab-button.active {
+  @apply text-white;
+}
+
+.product__tab-button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  @apply bg-rose-600;
+}
+
+.product__tab-button:hover:not(.active) {
+  @apply text-slate-200;
+}
+
+.product__tabs-content {
+  @apply py-2;
+}
+
+/* Poprawienie dropdowna */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 42px !important;
+}
+
+/* Zawartość tekstowa */
 .product__text-content {
   @apply space-y-8;
 }
@@ -216,46 +283,7 @@ html {
   @apply text-sm text-slate-400 space-y-2;
 }
 
-.product__description {
-  @apply bg-slate-800 p-6 rounded-lg shadow-lg;
-}
-
-.product__description-title {
-  @apply text-2xl font-bold mb-4 text-white;
-}
-
-.product__description-content {
-  @apply text-slate-200 leading-relaxed;
-}
-
-.product__faq {
-  @apply mt-8;
-}
-
-.product__faq-title {
-  @apply text-2xl font-bold mb-6 text-white;
-}
-
-.product__faq-item {
-  @apply mb-4 bg-slate-800 rounded-lg overflow-hidden shadow-lg;
-}
-
-.product__faq-question {
-  @apply p-4 bg-slate-700 text-white font-medium cursor-pointer;
-}
-
-.product__faq-answer {
-  @apply p-4 text-slate-200;
-}
-
-.product__specs {
-  @apply bg-slate-800 rounded-lg p-6 shadow-lg mt-8;
-}
-
-.product__specs-title {
-  @apply text-2xl font-bold mb-6 text-white;
-}
-
+/* Specyfikacje w tabeli */
 .product__specs-table {
   @apply w-full;
 }
@@ -274,4 +302,21 @@ html {
 
 .product__specs-value {
   @apply text-slate-200;
+}
+
+/* Lżejsze FAQ */
+.product__faq {
+  @apply space-y-4;
+}
+
+.product__faq-item {
+  @apply border-b border-slate-700 last:border-0 pb-4 last:pb-0;
+}
+
+.product__faq-question {
+  @apply text-white font-medium mb-2;
+}
+
+.product__faq-answer {
+  @apply text-slate-300;
 }

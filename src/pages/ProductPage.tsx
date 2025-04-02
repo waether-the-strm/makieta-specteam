@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductBreadcrumbs from "../components/product/ProductBreadcrumbs";
 import ProductGallery from "../components/product/ProductGallery";
@@ -104,6 +104,7 @@ const mockProduct: Product = {
 
 const ProductPage: React.FC = () => {
   const product = mockProduct;
+  const [activeTab, setActiveTab] = useState<"specs" | "faq">("specs");
 
   return (
     <div className="product">
@@ -111,7 +112,7 @@ const ProductPage: React.FC = () => {
         <ProductBreadcrumbs category={product.category} name={product.name} />
 
         <div className="product__content">
-          {/* Lewa kolumna - tylko galeria i treść tekstowa */}
+          {/* Lewa kolumna - galeria i treść tekstowa */}
           <div className="product__left-column">
             {/* Galeria na górze */}
             <div className="product__gallery-container">
@@ -120,8 +121,8 @@ const ProductPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Treść tekstowa */}
-            <div className="product__text-content">
+            {/* Panel informacyjny - opis i zakładki */}
+            <div className="product__info-panel">
               {/* Opis */}
               <div className="product__description">
                 <h2 className="product__description-title">Opis</h2>
@@ -130,34 +131,66 @@ const ProductPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* FAQ */}
-              <div className="product__faq">
-                <h2 className="product__faq-title">Pytania i odpowiedzi</h2>
-                {product.faq.map((item, index) => (
-                  <div key={index} className="product__faq-item">
-                    <div className="product__faq-question">{item.question}</div>
-                    <div className="product__faq-answer">{item.answer}</div>
-                  </div>
-                ))}
-              </div>
+              <div className="product__tabs-divider"></div>
 
-              {/* Specyfikacje */}
-              <div className="product__specs">
-                <h2 className="product__specs-title">Szczegóły techniczne</h2>
-                <table className="product__specs-table">
-                  <tbody>
-                    {product.specs.map((spec, index) => (
-                      <tr key={index} className="product__specs-row">
-                        <td className="product__specs-cell product__specs-label">
-                          {spec.label}
-                        </td>
-                        <td className="product__specs-cell product__specs-value">
-                          {spec.value}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              {/* Zakładki - Szczegóły Techniczne i FAQ */}
+              <div className="product__tabs">
+                <div className="product__tabs-header">
+                  <button
+                    className={`product__tab-button ${
+                      activeTab === "specs" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("specs")}
+                  >
+                    Szczegóły techniczne
+                  </button>
+                  <button
+                    className={`product__tab-button ${
+                      activeTab === "faq" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("faq")}
+                  >
+                    Pytania i odpowiedzi
+                  </button>
+                </div>
+
+                <div className="product__tabs-content">
+                  {/* Specyfikacje */}
+                  {activeTab === "specs" && (
+                    <div className="product__specs">
+                      <table className="product__specs-table">
+                        <tbody>
+                          {product.specs.map((spec, index) => (
+                            <tr key={index} className="product__specs-row">
+                              <td className="product__specs-cell product__specs-label">
+                                {spec.label}
+                              </td>
+                              <td className="product__specs-cell product__specs-value">
+                                {spec.value}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+
+                  {/* FAQ */}
+                  {activeTab === "faq" && (
+                    <div className="product__faq">
+                      {product.faq.map((item, index) => (
+                        <div key={index} className="product__faq-item">
+                          <div className="product__faq-question">
+                            {item.question}
+                          </div>
+                          <div className="product__faq-answer">
+                            {item.answer}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

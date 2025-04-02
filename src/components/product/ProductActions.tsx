@@ -5,6 +5,9 @@ interface Product {
   name: string;
   price: {
     rental: {
+      daily: number;
+      weekly: number;
+      monthly: number;
       [key: string]: number;
     };
     purchase: number;
@@ -18,8 +21,15 @@ interface ProductActionsProps {
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const [isRental, setIsRental] = useState(true);
-  const [rentalDays, setRentalDays] = useState("1");
+  const [rentalPeriod, setRentalPeriod] = useState("daily");
   const [quantity, setQuantity] = useState(1);
+
+  // Mapowanie okresów wypożyczenia na ich polskie etykiety i wartości
+  const rentalOptions = [
+    { id: "daily", label: "1 dzień", price: product.price.rental.daily },
+    { id: "weekly", label: "7 dni", price: product.price.rental.weekly },
+    { id: "monthly", label: "30 dni", price: product.price.rental.monthly },
+  ];
 
   const handleQuantityChange = (delta: number) => {
     const newQuantity = quantity + delta;
@@ -30,7 +40,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   const getPrice = () => {
     if (isRental) {
-      return product.price.rental[rentalDays] * quantity;
+      return product.price.rental[rentalPeriod] * quantity;
     }
     return product.price.purchase * quantity;
   };
@@ -66,14 +76,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             Okres wypożyczenia
           </label>
           <select
-            value={rentalDays}
-            onChange={(e) => setRentalDays(e.target.value)}
+            value={rentalPeriod}
+            onChange={(e) => setRentalPeriod(e.target.value)}
             className="w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none"
           >
-            <option value="1">1 dzień ({product.price.rental["1"]} zł)</option>
-            <option value="3">3 dni ({product.price.rental["3"]} zł)</option>
-            <option value="5">5 dni ({product.price.rental["5"]} zł)</option>
-            <option value="7">7 dni ({product.price.rental["7"]} zł)</option>
+            {rentalOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label} ({option.price} zł)
+              </option>
+            ))}
           </select>
         </div>
       )}
