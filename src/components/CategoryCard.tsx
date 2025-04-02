@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface CategoryCardProps {
   title: string;
@@ -18,10 +19,15 @@ export default function CategoryCard({
   imageHeight,
 }: CategoryCardProps) {
   const titleId = `product-${title.toLowerCase().replace(/\s+/g, "-")}`;
+  const productId = title.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <article className="product-card group">
-      <a href="#" className="block h-full" aria-labelledby={titleId}>
+      <Link
+        to={`/product/${productId}`}
+        className="block h-full"
+        aria-labelledby={titleId}
+      >
         <figure className="product-card__image-container">
           <img
             src={image}
@@ -54,7 +60,7 @@ export default function CategoryCard({
             </span>
           </footer>
         </div>
-      </a>
+      </Link>
     </article>
   );
 }
