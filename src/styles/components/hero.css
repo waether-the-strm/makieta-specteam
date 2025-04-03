@@ -1,6 +1,6 @@
 /* Hero Component */
 .hero {
-  @apply bg-gray-50 pt-16 overflow-hidden;
+  @apply bg-gray-50 overflow-hidden;
 }
 .hero__background {
   @apply relative bg-slate-900 text-white;

@@ -9,7 +9,13 @@ if (!rootElement) throw new Error("Failed to find the root element");
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <BrowserRouter basename={import.meta.env.PROD ? "/makieta-specteam" : "/"}>
+    <BrowserRouter
+      basename={import.meta.env.PROD ? "/makieta-specteam" : "/"}
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <App />
     </BrowserRouter>
   </React.StrictMode>

@@ -7,50 +7,47 @@
   @apply fixed;
 }
 .navbar__container {
-  @apply container;
+  @apply container mx-auto px-4;
 }
 .navbar__content {
   @apply flex items-center justify-between h-16;
 }
-.navbar__logo-link {
+.navbar__logo {
   @apply w-20 block;
 }
-.navbar__logo-image {
-  @apply w-full h-auto transform scale-150 invert;
+.navbar__logo svg {
+  @apply w-full h-auto;
 }
 .navbar__menu {
   @apply hidden md:block;
 }
 .navbar__links {
-  @apply feature-base ml-10 items-baseline;
+  @apply flex items-center space-x-4 ml-10;
 }
 .navbar__link {
-  @apply hover:bg-slate-800 px-3 py-2 rounded-md;
+  @apply hover:bg-slate-800 px-3 py-2 rounded-md text-gray-300 hover:text-white transition-colors;
 }
 .navbar__actions {
   @apply hidden md:flex items-center space-x-4;
 }
-.navbar__mobile-menu {
-  @apply md:hidden;
+.navbar__icon {
+  @apply w-5 h-5 text-gray-300 hover:text-white transition-colors cursor-pointer;
 }
 .navbar__mobile-button {
-  @apply h-6 w-6;
-}
-.nav-link.active {
-  @apply text-rose-500;
-}
-.nav-link:hover {
-  @apply text-rose-400;
+  @apply md:hidden p-2 text-gray-300 hover:text-white transition-colors;
 }
 .navbar__mobile-overlay {
   @apply fixed inset-0 bg-slate-900/95 backdrop-blur-sm z-50;
-  @apply items-center justify-center;
+  @apply flex items-center justify-center;
   @apply w-full h-full;
   @apply touch-none;
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+.navbar__mobile-content {
+  @apply flex flex-col items-center justify-center flex-grow;
 }
 .navbar__mobile-links {
   @apply flex flex-col items-center space-y-8;
@@ -92,4 +89,9 @@
 .navbar__mobile-links {
   @apply flex flex-col items-center space-y-8;
   @apply -translate-y-8;
+}
+
+/* Dodajemy padding-top do głównego kontenera strony */
+.layout {
+  @apply pt-16;
 }

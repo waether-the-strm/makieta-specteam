@@ -1,0 +1,412 @@
+/* Product Page Styles */
+
+.product {
+  @apply bg-slate-900 text-white min-h-screen;
+}
+
+.product__container {
+  @apply container mx-auto px-4;
+  @apply py-8;
+}
+
+.product__breadcrumbs {
+  @apply text-sm text-slate-400 mb-8;
+}
+
+.product__breadcrumbs-link {
+  @apply hover:text-rose-400 transition-colors;
+}
+
+.product__content {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-12;
+}
+
+/* Lewa kolumna - galeria i treść */
+.product__left-column {
+  @apply space-y-8;
+}
+
+/* Prawa kolumna - nagłówek, cechy i panel akcji */
+.product__right-column {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+}
+
+/* Wspólny kontener dla informacji i cech produktu */
+.product__info-features {
+  @apply space-y-6;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+/* Kontener dla galerii */
+.product__gallery-container {
+  @apply mb-8;
+}
+
+.product__gallery {
+  @apply bg-slate-800 rounded-lg overflow-hidden shadow-lg;
+}
+
+.product__gallery-main {
+  position: relative;
+  padding-top: 56.25%; /* Proporcje 16:9 */
+  width: 100%;
+  background-color: rgba(15, 23, 42, 0.6);
+}
+
+.product__gallery-main img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: all 0.3s ease;
+}
+
+.product__gallery-thumbs {
+  @apply p-3 flex gap-2 overflow-x-auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  min-height: 76px; /* Stała wysokość dla paska miniatur */
+}
+
+.product__gallery-thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.product__gallery-thumb {
+  flex: 0 0 76px;
+  height: 60px;
+  @apply cursor-pointer rounded-md overflow-hidden border-2 border-transparent transition-all duration-300;
+  position: relative;
+  opacity: 0.7;
+  filter: grayscale(30%);
+}
+
+.product__gallery-thumb:hover {
+  @apply border-rose-400;
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+.product__gallery-thumb.active {
+  @apply border-rose-600 shadow-lg;
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.product__gallery-thumb.previewing {
+  @apply border-rose-400;
+  opacity: 0.9;
+  filter: grayscale(10%);
+}
+
+.product__gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Informacje o produkcie */
+.product__info {
+  @apply space-y-4 bg-slate-800 p-6 rounded-lg shadow-lg;
+}
+
+.product__title {
+  @apply text-3xl font-bold text-white;
+}
+
+.product__availability {
+  @apply text-sm text-emerald-400 mt-2;
+}
+
+.product__rating {
+  @apply flex items-center gap-2 text-amber-400 mt-2;
+}
+
+.product__features {
+  @apply space-y-3 mt-8;
+}
+
+.product__feature {
+  @apply flex items-center gap-2 text-slate-200;
+}
+
+.product__feature-icon {
+  @apply text-rose-400;
+}
+
+/* Panel akcji - sticky */
+.product__actions {
+  @apply bg-slate-800 p-6 rounded-lg shadow-lg;
+  position: -webkit-sticky;
+  position: sticky;
+  /* Używamy wartości liczbowej dla większej niezawodności */
+  top: 78px;
+  z-index: 10;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* Usunięcie spacera, który nie jest potrzebny przy sticky */
+.product__actions-spacer {
+  display: none;
+}
+
+/* Dodajemy scroll-padding dla lepszego zachowania przy przewijaniu */
+html {
+  scroll-padding-top: 80px;
+}
+
+/* Panel informacyjny - opis i zakładki */
+.product__info-panel {
+  @apply bg-slate-800 rounded-lg shadow-lg overflow-hidden;
+}
+
+/* Opis produktu */
+.product__description {
+  @apply p-6 pb-5;
+}
+
+.product__description-title {
+  @apply text-2xl font-bold mb-4 text-white;
+  font-family: var(--font-heading);
+}
+
+.product__description-content {
+  @apply text-slate-200 leading-relaxed;
+}
+
+/* Style dla zakładek - poprawiona wersja */
+.product__tabs {
+  @apply p-0;
+  position: relative;
+  width: 100%;
+}
+
+.product__tabs-header {
+  @apply flex w-full;
+  position: relative;
+  background-color: rgba(15, 23, 42, 0.3);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Linia pod całym nagłówkiem tabów */
+.product__tabs-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  @apply bg-slate-700;
+}
+
+.product__tab-button {
+  @apply py-4 px-6 transition-colors text-center flex-1;
+  position: relative;
+  @apply font-bold text-base tracking-wide;
+  z-index: 1;
+  width: 50%;
+  text-transform: uppercase;
+}
+
+.product__tab-button:hover {
+  @apply text-white bg-slate-700 bg-opacity-40;
+}
+
+.product__tab-button.active {
+  @apply text-white;
+  background-color: transparent;
+}
+
+.product__tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  width: 100%;
+  @apply bg-rose-500;
+  z-index: 2;
+}
+
+.product__tabs-content {
+  @apply p-6;
+  width: 100%;
+  /* Jaśniejsze tło dla zawartości tabów */
+  background-color: rgba(30, 41, 59, 0.5);
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+/* Poprawienie dropdowna */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 42px !important;
+}
+
+/* Zawartość tekstowa */
+.product__text-content {
+  @apply space-y-8;
+}
+
+.product__price {
+  @apply text-2xl font-bold text-white;
+}
+
+.product__price-rental {
+  @apply text-sm text-slate-400;
+}
+
+.product__price-purchase {
+  @apply text-lg text-rose-400;
+}
+
+.product__buttons {
+  @apply flex flex-col gap-4;
+}
+
+.product__button {
+  @apply w-full py-3 px-6 rounded-lg font-medium transition-colors;
+}
+
+.product__button--rental {
+  @apply bg-rose-600 hover:bg-rose-700 text-white;
+}
+
+.product__button--purchase {
+  @apply bg-indigo-600 hover:bg-indigo-700 text-white;
+}
+
+.product__button--disabled {
+  @apply bg-slate-600 cursor-not-allowed;
+}
+
+.product__rental-options {
+  @apply space-y-4;
+}
+
+.product__rental-option {
+  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors cursor-pointer;
+}
+
+.product__rental-option.active {
+  @apply bg-rose-600;
+}
+
+.product__rental-days {
+  @apply w-full p-3 bg-slate-700 rounded-lg text-white;
+}
+
+.product__quantity {
+  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg;
+}
+
+.product__quantity-button {
+  @apply w-8 h-8 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 transition-colors;
+}
+
+.product__quantity-value {
+  @apply text-lg font-medium text-white;
+}
+
+.product__info-bottom {
+  @apply text-sm text-slate-400 space-y-2;
+}
+
+/* Specyfikacje w tabeli - bardziej skompresowana struktura */
+.product__specs {
+  width: 100%;
+  @apply space-y-0 rounded-md overflow-hidden;
+}
+
+.product__specs-table {
+  @apply w-full border-collapse;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+.product__specs-row {
+  @apply border-b border-slate-700/20 last:border-0;
+  transition: background-color 0.15s ease;
+}
+
+/* Delikatniejsze naprzemienne tła dla wierszy */
+.product__specs-row:nth-child(odd) {
+  background-color: rgba(30, 41, 59, 0.2);
+}
+
+.product__specs-row:nth-child(even) {
+  background-color: rgba(30, 41, 59, 0.05);
+}
+
+.product__specs-row:hover {
+  background-color: rgba(51, 65, 85, 0.3);
+}
+
+.product__specs-cell {
+  @apply py-3;
+}
+
+.product__specs-cell:first-child {
+  @apply pl-3;
+}
+
+.product__specs-cell:last-child {
+  @apply pr-3;
+}
+
+.product__specs-label {
+  @apply text-slate-400 font-normal;
+  width: 50%;
+  position: relative;
+  letter-spacing: -0.01em;
+}
+
+.product__specs-value {
+  @apply text-slate-100 font-normal;
+  width: 60%;
+}
+
+/* Lżejsze FAQ - poprawiona wersja */
+.product__faq {
+  @apply space-y-6;
+  width: 100%;
+}
+
+.product__faq-item {
+  @apply border-b border-slate-700/50 last:border-0 pb-6 last:pb-0 mb-2;
+  transition: background-color 0.2s ease;
+  width: 100%;
+}
+
+.product__faq-question {
+  @apply text-white mb-3 font-bold;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  /* Poprawić kontrast dla pytania */
+  color: rgb(229, 231, 235);
+}
+
+.product__faq-answer {
+  /* Poprawić kontrast dla odpowiedzi */
+  @apply text-slate-200;
+  font-style: italic;
+  line-height: 1.6;
+  padding-left: 0.5rem;
+}

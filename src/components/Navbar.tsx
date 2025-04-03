@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
 import AnimatedLogo from "./logos/AnimatedLogo";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const menuVariants = {
   hidden: {
@@ -87,41 +88,39 @@ export default function Navbar() {
   }, [isOpen]);
 
   const links = [
-    { href: "#products", label: "Products" },
-    { href: "#rental", label: "Rental" },
-    { href: "#store", label: "Store" },
-    { href: "#support", label: "Support" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#products", label: "Products" },
+    { href: "/#rental", label: "Rental" },
+    { href: "/store", label: "Store" },
+    { href: "/support", label: "Support" },
+    { href: "/#contact", label: "Contact" },
   ];
 
   return (
     <nav className="navbar navbar--fixed">
       <div className="container">
         <div className="navbar__content">
-          <div className="navbar__logo">
-            <a href="/" className="navbar__logo-link">
-              <AnimatedLogo
-                logoFill="#fff"
-                minScale={0.9}
-                maxScale={1.3}
-                scrollThreshold={100}
-              />
-            </a>
-          </div>
+          <Link to="/" className="navbar__logo">
+            <AnimatedLogo
+              logoFill="#fff"
+              minScale={0.9}
+              maxScale={1.3}
+              scrollThreshold={100}
+            />
+          </Link>
 
           <div className="navbar__menu">
             <div className="navbar__links">
               {links.map((link) => (
-                <a key={link.href} href={link.href} className="navbar__link">
+                <Link key={link.href} to={link.href} className="navbar__link">
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
 
           <div className="navbar__actions">
-            <Search className="nav-icon" />
-            <ShoppingCart className="nav-icon" />
+            <Search className="navbar__icon" />
+            <ShoppingCart className="navbar__icon" />
           </div>
 
           <button
@@ -158,15 +157,15 @@ export default function Navbar() {
         >
           <div className="navbar__mobile-links">
             {links.map((link) => (
-              <motion.a
-                key={link.href}
-                href={link.href}
-                className="navbar__mobile-link"
-                variants={itemVariants}
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </motion.a>
+              <motion.div key={link.href} variants={itemVariants}>
+                <Link
+                  to={link.href}
+                  className="navbar__mobile-link"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
           </div>
 
@@ -174,8 +173,8 @@ export default function Navbar() {
             className="navbar__mobile-actions"
             variants={itemVariants}
           >
-            <Search className="nav-icon" />
-            <ShoppingCart className="nav-icon" />
+            <Search className="navbar__icon" />
+            <ShoppingCart className="navbar__icon" />
           </motion.div>
         </motion.div>
       </motion.div>

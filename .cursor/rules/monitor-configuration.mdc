@@ -1,0 +1,72 @@
+---
+description: Monitoring of new ESLint, Prettier and Husky configuration
+globs: **/*.js, **/*.jsx, **/*.ts, **/*.tsx, **/*.css, **/*.scss, **/*.json, src/config/**/*.json
+---
+
+# Configuration Monitoring
+
+## Monitoring Areas
+
+### 1. Husky and Git Hooks
+
+- [ ] Check if pre-commit hook runs on every commit
+- [ ] Monitor for absence of deprecated configuration warnings
+- [ ] Verify `.husky/pre-commit` file permissions (chmod +x)
+
+### 2. Lint-staged
+
+- [ ] Check code formatting correctness before commit
+- [ ] Monitor progress messages (✔ Running tasks, ✔ Applying modifications)
+- [ ] Verify state backup functionality (git stash)
+- [ ] Check for conflicts with other tools
+
+### 3. ESLint
+
+- [ ] Verify checking of all .ts/.tsx files
+- [ ] Monitor rule consistency across the project
+- [ ] Check for false positives/negatives
+
+### 4. Prettier
+
+- [ ] Verify formatting consistency across all file types
+- [ ] Monitor for conflicts with ESLint
+- [ ] Check adherence to `.prettierrc` settings
+- [ ] Verify file ignoring from `.prettierignore`
+
+### 5. Package.json Scripts
+
+- [ ] Test new scripts functionality (`typecheck`, `lint`, `format`)
+- [ ] Monitor for conflicts between scripts
+- [ ] Verify script execution order
+
+### 6. Issues to Detect
+
+- [ ] Monitor commit process performance
+- [ ] Check for unexpected file modifications
+- [ ] Verify functionality across different operating systems
+- [ ] Monitor IDE integration (VS Code)
+
+### 7. Improvement Suggestions
+
+- [ ] Consider adding commitlint
+- [ ] Consider automatic CHANGELOG.md generation
+- [ ] Consider additional git-hooks (pre-push, post-merge)
+
+### 8. Documentation
+
+- [ ] Update README.md with found issues and solutions
+- [ ] Document non-standard configuration behaviors
+
+## Monitoring Schedule
+
+- Daily: Review commit logs
+- Weekly: Performance and issues review
+- Monthly: Documentation and rules update
+
+## Reporting
+
+All discovered issues should be:
+
+1. Recorded in this file
+2. Added as repository issues
+3. Documented in README.md if they affect workflow
