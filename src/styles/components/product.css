@@ -359,8 +359,6 @@ select {
 
 .product__specs-cell {
   @apply py-3;
-  padding-left: 0.875rem;
-  padding-right: 0.875rem;
 }
 
 .product__specs-cell:first-child {
@@ -373,21 +371,9 @@ select {
 
 .product__specs-label {
   @apply text-slate-400 font-normal;
-  width: 40%;
-  /* Bardziej tabelaryczny wygląd */
+  width: 50%;
   position: relative;
   letter-spacing: -0.01em;
-}
-
-/* Subtelniejszy separator między kolumnami */
-.product__specs-label::after {
-  content: "";
-  position: absolute;
-  top: 25%;
-  right: 0;
-  height: 50%;
-  width: 1px;
-  background-color: rgba(148, 163, 184, 0.1);
 }
 
 .product__specs-value {

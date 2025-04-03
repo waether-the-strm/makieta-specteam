@@ -131,8 +131,6 @@ const ProductPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="product__tabs-divider"></div>
-
               {/* Zakładki - Szczegóły Techniczne i FAQ */}
               <div className="product__tabs">
                 <div
