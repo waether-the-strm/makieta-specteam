@@ -102,9 +102,15 @@ const mockProduct: Product = {
   isAvailable: true,
 };
 
-const ProductPage: React.FC = () => {
+interface ProductPageProps {
+  defaultActiveTab?: "faq" | "specs";
+}
+
+const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
   const product = mockProduct;
-  const [activeTab, setActiveTab] = useState<"specs" | "faq">("specs");
+  const [activeTab, setActiveTab] = useState<"faq" | "specs">(
+    defaultActiveTab || "faq"
+  );
 
   return (
     <div className="product">
@@ -131,25 +137,13 @@ const ProductPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Zakładki - Szczegóły Techniczne i FAQ */}
+              {/* Zakładki - FAQ i Szczegóły Techniczne */}
               <div className="product__tabs">
                 <div
                   className="product__tabs-header"
                   role="tablist"
                   aria-label="Informacje o produkcie"
                 >
-                  <button
-                    className={`product__tab-button ${
-                      activeTab === "specs" ? "active" : ""
-                    }`}
-                    onClick={() => setActiveTab("specs")}
-                    role="tab"
-                    aria-selected={activeTab === "specs"}
-                    aria-controls="panel-specs"
-                    id="tab-specs"
-                  >
-                    Szczegóły techniczne
-                  </button>
                   <button
                     className={`product__tab-button ${
                       activeTab === "faq" ? "active" : ""
@@ -162,9 +156,42 @@ const ProductPage: React.FC = () => {
                   >
                     Pytania i odpowiedzi
                   </button>
+                  <button
+                    className={`product__tab-button ${
+                      activeTab === "specs" ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab("specs")}
+                    role="tab"
+                    aria-selected={activeTab === "specs"}
+                    aria-controls="panel-specs"
+                    id="tab-specs"
+                  >
+                    Szczegóły techniczne
+                  </button>
                 </div>
 
                 <div className="product__tabs-content">
+                  {/* FAQ */}
+                  <div
+                    id="panel-faq"
+                    role="tabpanel"
+                    aria-labelledby="tab-faq"
+                    className={activeTab === "faq" ? "" : "hidden"}
+                  >
+                    <div className="product__faq">
+                      {product.faq.map((item, index) => (
+                        <div key={index} className="product__faq-item">
+                          <div className="product__faq-question">
+                            {item.question}
+                          </div>
+                          <div className="product__faq-answer">
+                            {item.answer}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                   {/* Specyfikacje */}
                   <div
                     id="panel-specs"
@@ -187,27 +214,6 @@ const ProductPage: React.FC = () => {
                           ))}
                         </tbody>
                       </table>
-                    </div>
-                  </div>
-
-                  {/* FAQ */}
-                  <div
-                    id="panel-faq"
-                    role="tabpanel"
-                    aria-labelledby="tab-faq"
-                    className={activeTab === "faq" ? "" : "hidden"}
-                  >
-                    <div className="product__faq">
-                      {product.faq.map((item, index) => (
-                        <div key={index} className="product__faq-item">
-                          <div className="product__faq-question">
-                            {item.question}
-                          </div>
-                          <div className="product__faq-answer">
-                            {item.answer}
-                          </div>
-                        </div>
-                      ))}
                     </div>
                   </div>
                 </div>
