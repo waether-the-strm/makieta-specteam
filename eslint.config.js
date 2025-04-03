@@ -24,17 +24,5 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
     },
-  },
-  {
-    files: ["**/*.css"],
-    rules: {
-      "@typescript-eslint/at-rule-no-unknown": "off",
-      "at-rule-no-unknown": [
-        true,
-        {
-          ignoreAtRules: ["apply", "tailwind", "screen", "layer"],
-        },
-      ],
-    },
   }
 );

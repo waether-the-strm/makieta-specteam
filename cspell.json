@@ -1,0 +1,91 @@
+{
+  "version": "0.2",
+  "language": "en,pl",
+  "words": [
+    // Add project-specific words here
+    "specteam",
+    "lokalizator",
+    "lokalizatory",
+    "mikrokamery",
+    "mikrosłuchawki",
+    "detektory",
+    "rejestratory",
+    "podsłuchy",
+    "lokalizatora",
+    "lokalizatorem",
+    "testid",
+    "clsx",
+    "tailwindcss",
+    "lucide",
+    "framer",
+    "AnimatePresence",
+    "motion",
+    "react",
+    "reduxjs",
+    "redux",
+    "clsx",
+    "tanstack",
+    "sonner",
+    "vaul",
+    "embla",
+    "radix",
+    "zod",
+    "autoprefixer",
+    "nprogress",
+    "tsup",
+    "vite",
+    "vitest",
+    "chromatic",
+    "playwright",
+    "eslint",
+    "prettier",
+    "lintstaged",
+    "commitlint",
+    "typicode",
+    "daisyui",
+    "lhId",
+    "boundingRect"
+  ],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "*.log",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    ".vscode/**",
+    ".idea/**",
+    "*.svg",
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.gif",
+    "*.woff",
+    "*.woff2",
+    "*.ttf",
+    "*.eot",
+    "*.mp4",
+    "*.webm",
+    "*.json"
+  ],
+  "languageSettings": [
+    {
+      "languageId": "typescript,javascript,typescriptreact,javascriptreact",
+      "locale": "en,pl",
+      "ignoreRegExpList": [
+        "/#.*$/gm", // Ignore comments starting with #
+        "///.*$/gm" // Ignore comments starting with //
+      ]
+    },
+    {
+      "languageId": "markdown",
+      "locale": "en,pl"
+    },
+    {
+      "languageId": "css,scss,less",
+      "locale": "en" // CSS typically uses English keywords
+    }
+  ]
+}
