@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import ProductBreadcrumbs from "../components/product/ProductBreadcrumbs";
 import ProductGallery from "../components/product/ProductGallery";
 import ProductActions from "../components/product/ProductActions";
@@ -102,14 +101,19 @@ const mockProduct: Product = {
   isAvailable: true,
 };
 
+enum ProductTab {
+  FAQ = "faq",
+  SPECS = "specs",
+}
+
 interface ProductPageProps {
-  defaultActiveTab?: "faq" | "specs";
+  defaultActiveTab?: ProductTab;
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
   const product = mockProduct;
-  const [activeTab, setActiveTab] = useState<"faq" | "specs">(
-    defaultActiveTab || "faq"
+  const [activeTab, setActiveTab] = useState<ProductTab>(
+    defaultActiveTab || ProductTab.FAQ
   );
 
   return (
@@ -146,11 +150,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                 >
                   <button
                     className={`product__tab-button ${
-                      activeTab === "faq" ? "active" : ""
+                      activeTab === ProductTab.FAQ ? "active" : ""
                     }`}
-                    onClick={() => setActiveTab("faq")}
+                    onClick={() => setActiveTab(ProductTab.FAQ)}
                     role="tab"
-                    aria-selected={activeTab === "faq"}
+                    aria-selected={activeTab === ProductTab.FAQ}
                     aria-controls="panel-faq"
                     id="tab-faq"
                   >
@@ -158,11 +162,11 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                   </button>
                   <button
                     className={`product__tab-button ${
-                      activeTab === "specs" ? "active" : ""
+                      activeTab === ProductTab.SPECS ? "active" : ""
                     }`}
-                    onClick={() => setActiveTab("specs")}
+                    onClick={() => setActiveTab(ProductTab.SPECS)}
                     role="tab"
-                    aria-selected={activeTab === "specs"}
+                    aria-selected={activeTab === ProductTab.SPECS}
                     aria-controls="panel-specs"
                     id="tab-specs"
                   >
@@ -176,7 +180,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                     id="panel-faq"
                     role="tabpanel"
                     aria-labelledby="tab-faq"
-                    className={activeTab === "faq" ? "" : "hidden"}
+                    className={activeTab === ProductTab.FAQ ? "" : "hidden"}
                   >
                     <div className="product__faq">
                       {product.faq.map((item, index) => (
@@ -197,7 +201,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                     id="panel-specs"
                     role="tabpanel"
                     aria-labelledby="tab-specs"
-                    className={activeTab === "specs" ? "" : "hidden"}
+                    className={activeTab === ProductTab.SPECS ? "" : "hidden"}
                   >
                     <div className="product__specs">
                       <table className="product__specs-table">
