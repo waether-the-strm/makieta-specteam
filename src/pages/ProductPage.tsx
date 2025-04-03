@@ -1,41 +1,41 @@
-import React, { useState } from "react";
-import ProductBreadcrumbs from "../components/product/ProductBreadcrumbs";
-import ProductGallery from "../components/product/ProductGallery";
-import ProductActions from "../components/product/ProductActions";
+import React, { useState } from 'react'
+import ProductBreadcrumbs from '../components/product/ProductBreadcrumbs'
+import ProductGallery from '../components/product/ProductGallery'
+import ProductActions from '../components/product/ProductActions'
 
 interface Product {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
+  id: string
+  name: string
+  category: string
+  description: string
   price: {
     rental: {
-      daily: number;
-      weekly: number;
-      monthly: number;
-    };
-    purchase: number;
-  };
-  images: string[];
-  features: string[];
+      daily: number
+      weekly: number
+      monthly: number
+    }
+    purchase: number
+  }
+  images: string[]
+  features: string[]
   faq: Array<{
-    question: string;
-    answer: string;
-  }>;
+    question: string
+    answer: string
+  }>
   specs: Array<{
-    label: string;
-    value: string;
-  }>;
-  rating: number;
-  isAvailable: boolean;
+    label: string
+    value: string
+  }>
+  rating: number
+  isAvailable: boolean
 }
 
 // Przykładowe dane produktu do testów
 const mockProduct: Product = {
-  id: "1",
-  name: "Lokalizator GPS",
-  category: "Lokalizatory GPS",
-  description: "Profesjonalny lokalizator GPS z długim czasem pracy.",
+  id: '1',
+  name: 'Lokalizator GPS',
+  category: 'Lokalizatory GPS',
+  description: 'Profesjonalny lokalizator GPS z długim czasem pracy.',
   price: {
     rental: {
       daily: 50,
@@ -45,76 +45,72 @@ const mockProduct: Product = {
     purchase: 2500,
   },
   images: [
-    "https://www.specteam.pl/products/gps/pics/lok4.jpg", // 1173x766
-    "https://www.specteam.pl/products/gps/pics/lok1.jpg", // 565x442
-    "https://www.specteam.pl/products/gps/pics/lok2.jpg", // 700x525
-    "https://www.specteam.pl/products/gps/pics/lok3.jpg", // 650x548
-    "https://www.specteam.pl/products/gps/pics/1.jpg", // 400x372
-    "https://www.specteam.pl/products/gps/pics/2.jpg", // 292x387
-    "https://www.specteam.pl/products/gps/pics/3.jpg", // 300x397
+    'https://www.specteam.pl/products/gps/pics/lok4.jpg', // 1173x766
+    'https://www.specteam.pl/products/gps/pics/lok1.jpg', // 565x442
+    'https://www.specteam.pl/products/gps/pics/lok2.jpg', // 700x525
+    'https://www.specteam.pl/products/gps/pics/lok3.jpg', // 650x548
+    'https://www.specteam.pl/products/gps/pics/1.jpg', // 400x372
+    'https://www.specteam.pl/products/gps/pics/2.jpg', // 292x387
+    'https://www.specteam.pl/products/gps/pics/3.jpg', // 300x397
   ],
   features: [
-    "Kilka miesięcy pracy na jednym ładowaniu",
-    "Podgląd w aplikacji w dołączonym telefonie",
-    "Precyzyjne ustalanie pozycji z dokładnością GPS",
-    "Gotowy telefon w zestawie (z kartą sim i pakietem danych)",
-    "Bardzo długi czas pracy - nawet do kilku tygodni",
-    "Bardzo małe rozmiary nadajnika",
-    "Zerowy koszt eksploatacji: brak abonamentu itp opłat.",
+    'Kilka miesięcy pracy na jednym ładowaniu',
+    'Podgląd w aplikacji w dołączonym telefonie',
+    'Precyzyjne ustalanie pozycji z dokładnością GPS',
+    'Gotowy telefon w zestawie (z kartą sim i pakietem danych)',
+    'Bardzo długi czas pracy - nawet do kilku tygodni',
+    'Bardzo małe rozmiary nadajnika',
+    'Zerowy koszt eksploatacji: brak abonamentu itp opłat.',
   ],
   faq: [
     {
-      question: "Co muszę mieć swojego aby korzystać z zestawu?",
-      answer:
-        "Kompletnie nic. W zestawie znajduje się telefon sparowany z lokalizatorem.",
+      question: 'Co muszę mieć swojego aby korzystać z zestawu?',
+      answer: 'Kompletnie nic. W zestawie znajduje się telefon sparowany z lokalizatorem.',
     },
     {
-      question: "Jaki zasięg ma nadajnik?",
-      answer: "Działa w całej Polsce",
+      question: 'Jaki zasięg ma nadajnik?',
+      answer: 'Działa w całej Polsce',
     },
     {
-      question: "Jak długo działa nadajnik?",
-      answer:
-        "Nawet do kilku tygodni. Osobiście to testowaliśmy w różnych warunkach.",
+      question: 'Jak długo działa nadajnik?',
+      answer: 'Nawet do kilku tygodni. Osobiście to testowaliśmy w różnych warunkach.',
     },
     {
-      question: "Gdzie w samochodzie najlepiej ukryć nadajnik?",
+      question: 'Gdzie w samochodzie najlepiej ukryć nadajnik?',
       answer:
-        "W takim miejscu, w którym będzie miał zasięg GSM i GPS. Schowek na okulary przy lusterku jest idealnym miejscem. Schowek po stronie pasażera również powinien się sprawdzić w większości samochodów. Inne punkty są zależne od konstrukcji auta i zasięgu sieci w okolicy.",
+        'W takim miejscu, w którym będzie miał zasięg GSM i GPS. Schowek na okulary przy lusterku jest idealnym miejscem. Schowek po stronie pasażera również powinien się sprawdzić w większości samochodów. Inne punkty są zależne od konstrukcji auta i zasięgu sieci w okolicy.',
     },
   ],
   specs: [
-    { label: "Wymiary lokalizatora", value: "97 x 24 x 31 mm" },
-    { label: "Czas pracy", value: "do kilku tygodni" },
-    { label: "Karta sim w lokalizatorze", value: "tak" },
-    { label: "Karta sim w telefonie", value: "tak" },
-    { label: "Częstość podawania pozycji", value: "10 sekund" },
-    { label: "Wskaźnik stanu baterii", value: "procentowy" },
-    { label: "Mikrofon", value: "brak" },
-    { label: "Zapis historii", value: "tak" },
+    { label: 'Wymiary lokalizatora', value: '97 x 24 x 31 mm' },
+    { label: 'Czas pracy', value: 'do kilku tygodni' },
+    { label: 'Karta sim w lokalizatorze', value: 'tak' },
+    { label: 'Karta sim w telefonie', value: 'tak' },
+    { label: 'Częstość podawania pozycji', value: '10 sekund' },
+    { label: 'Wskaźnik stanu baterii', value: 'procentowy' },
+    { label: 'Mikrofon', value: 'brak' },
+    { label: 'Zapis historii', value: 'tak' },
     {
-      label: "Telefon",
+      label: 'Telefon',
       value: 'Redmi 4X, rozmiar: 140 x 70 x 9 mm (ekran 5")',
     },
   ],
   rating: 4.92,
   isAvailable: true,
-};
+}
 
 enum ProductTab {
-  FAQ = "faq",
-  SPECS = "specs",
+  FAQ = 'faq',
+  SPECS = 'specs',
 }
 
 interface ProductPageProps {
-  defaultActiveTab?: ProductTab;
+  defaultActiveTab?: ProductTab
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
-  const product = mockProduct;
-  const [activeTab, setActiveTab] = useState<ProductTab>(
-    defaultActiveTab || ProductTab.FAQ
-  );
+  const product = mockProduct
+  const [activeTab, setActiveTab] = useState<ProductTab>(defaultActiveTab || ProductTab.FAQ)
 
   return (
     <div className="product">
@@ -136,9 +132,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
               {/* Opis */}
               <div className="product__description">
                 <h2 className="product__description-title">Opis</h2>
-                <div className="product__description-content">
-                  {product.description}
-                </div>
+                <div className="product__description-content">{product.description}</div>
               </div>
 
               {/* Zakładki - FAQ i Szczegóły Techniczne */}
@@ -150,7 +144,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                 >
                   <button
                     className={`product__tab-button ${
-                      activeTab === ProductTab.FAQ ? "active" : ""
+                      activeTab === ProductTab.FAQ ? 'active' : ''
                     }`}
                     onClick={() => setActiveTab(ProductTab.FAQ)}
                     role="tab"
@@ -162,7 +156,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                   </button>
                   <button
                     className={`product__tab-button ${
-                      activeTab === ProductTab.SPECS ? "active" : ""
+                      activeTab === ProductTab.SPECS ? 'active' : ''
                     }`}
                     onClick={() => setActiveTab(ProductTab.SPECS)}
                     role="tab"
@@ -180,17 +174,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                     id="panel-faq"
                     role="tabpanel"
                     aria-labelledby="tab-faq"
-                    className={activeTab === ProductTab.FAQ ? "" : "hidden"}
+                    className={activeTab === ProductTab.FAQ ? '' : 'hidden'}
                   >
                     <div className="product__faq">
                       {product.faq.map((item, index) => (
                         <div key={index} className="product__faq-item">
-                          <div className="product__faq-question">
-                            {item.question}
-                          </div>
-                          <div className="product__faq-answer">
-                            {item.answer}
-                          </div>
+                          <div className="product__faq-question">{item.question}</div>
+                          <div className="product__faq-answer">{item.answer}</div>
                         </div>
                       ))}
                     </div>
@@ -201,7 +191,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                     id="panel-specs"
                     role="tabpanel"
                     aria-labelledby="tab-specs"
-                    className={activeTab === ProductTab.SPECS ? "" : "hidden"}
+                    className={activeTab === ProductTab.SPECS ? '' : 'hidden'}
                   >
                     <div className="product__specs">
                       <table className="product__specs-table">
@@ -238,9 +228,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
 
               <div className="product__rating">
                 <span className="product__rating-stars">⭐⭐⭐⭐⭐</span>
-                <span className="product__rating-score">
-                  {product.rating}/5
-                </span>
+                <span className="product__rating-score">{product.rating}/5</span>
               </div>
 
               {/* Lista cech produktu */}
@@ -260,7 +248,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductPage;
+export default ProductPage
