@@ -5,7 +5,8 @@
 }
 
 .product__container {
-  @apply container mx-auto px-4 py-12;
+  @apply container mx-auto px-4;
+  @apply py-8;
 }
 
 .product__breadcrumbs {
@@ -200,7 +201,7 @@ html {
 
 /* Linia pod całym nagłówkiem tabów */
 .product__tabs-header::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   right: 0;
@@ -229,7 +230,7 @@ html {
 }
 
 .product__tab-button.active::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;

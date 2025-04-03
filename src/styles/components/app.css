@@ -1,0 +1,109 @@
+/* App Component */
+.app {
+  @apply flex flex-col min-h-screen;
+}
+
+.app__main {
+  @apply flex-grow;
+}
+
+.app__layout {
+  @apply relative;
+  @apply pt-16;
+}
+
+/* Footer Component */
+.footer {
+  @apply bg-gray-900 text-gray-400 py-12;
+}
+
+.footer__container {
+  @apply container mx-auto px-4 max-w-4xl;
+}
+
+.footer__content {
+  @apply space-y-8;
+}
+
+.footer__title {
+  @apply text-xl font-semibold text-gray-100;
+}
+
+.footer__grid {
+  @apply grid md:grid-cols-2 gap-8;
+}
+
+/* Footer Form */
+.footer-form {
+  @apply space-y-4;
+}
+
+.footer-form__input {
+  @apply w-full p-2.5 rounded-md bg-gray-800/50 border border-gray-700/50;
+  @apply text-gray-200 placeholder-gray-500;
+  @apply focus:outline-none focus:ring-2 focus:ring-pink-500/50 focus:border-transparent;
+  @apply transition-all duration-200;
+}
+
+.footer-form__input--textarea {
+  @apply resize-none;
+}
+
+.footer-form__submit {
+  @apply w-full bg-pink-600 text-white py-2.5 px-4 rounded-md;
+  @apply hover:bg-pink-700 active:bg-pink-800;
+  @apply transition-all duration-200;
+  @apply font-medium text-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-pink-500/50;
+  @apply focus:ring-offset-2 focus:ring-offset-gray-900;
+}
+
+/* Footer Contact Info */
+.footer-info {
+  @apply space-y-4;
+}
+
+.footer-info__item {
+  @apply flex items-center space-x-3 p-2 rounded-md;
+  @apply hover:bg-gray-800/30;
+  @apply transition-all duration-200;
+}
+
+.footer-info__icon {
+  @apply text-pink-500/70;
+}
+
+.footer-info__link {
+  @apply text-sm transition-colors duration-200;
+}
+
+.footer-info__item:hover .footer-info__link {
+  @apply text-white;
+}
+
+.footer-info__text {
+  @apply text-sm;
+}
+
+/* Footer Payment Methods */
+.footer-payment {
+  @apply mt-6 pt-6 border-t border-gray-800;
+}
+
+.footer-payment__title {
+  @apply text-sm font-medium mb-3 text-gray-300;
+}
+
+.footer-payment__methods {
+  @apply flex space-x-3;
+}
+
+.footer-payment__method {
+  @apply p-2 rounded-md bg-gray-800/30;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+  @apply text-center border-t border-gray-800 mt-12 pt-6;
+  @apply text-xs text-gray-500;
+}
