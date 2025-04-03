@@ -1,4 +1,4 @@
-import { MapPin, Mail, Bitcoin, CreditCard, Phone, Clock } from "lucide-react";
+import { MapPin, Mail, Bitcoin, CreditCard, Phone, Clock } from 'lucide-react'
 
 export default function Contact() {
   return (
@@ -26,33 +26,23 @@ export default function Contact() {
             </div>
             <div className="contact__payment">
               <h4 className="contact__payment-title">Payment Methods:</h4>
-              <CreditCard className="icon" />
-              <Bitcoin className="icon" />
+              <div className="contact__payment-icons">
+                <CreditCard className="icon" />
+                <Bitcoin className="icon" />
+              </div>
             </div>
           </div>
 
           <form className="contact-form">
-            <input
-              type="text"
-              placeholder="Name"
-              className="contact-form__input"
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              className="contact-form__input"
-            />
-            <textarea
-              placeholder="Message"
-              rows={4}
-              className="contact-form__input"
-            ></textarea>
-            <button className="button primary button--full">
+            <input type="text" placeholder="Name" className="contact-form__input" />
+            <input type="email" placeholder="Email" className="contact-form__input" />
+            <textarea placeholder="Message" rows={4} className="contact-form__input"></textarea>
+            <button type="submit" className="contact-form__submit">
               Send Message
             </button>
           </form>
         </div>
       </div>
     </section>
-  );
+  )
 }
