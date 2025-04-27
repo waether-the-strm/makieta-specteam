@@ -1,52 +1,43 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { resolve } from "path";
-import compression from "vite-plugin-compression";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
+import compression from 'vite-plugin-compression'
 
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === "production";
-
-  return {
-    base: isProduction ? "/makieta-specteam/" : "/",
-    plugins: [
-      react(),
-      compression({
-        algorithm: "gzip",
-        ext: ".gz",
-      }),
-    ],
-    optimizeDeps: {
-      exclude: ["lucide-react"],
-    },
-    build: {
-      rollupOptions: {
-        input: {
-          main: resolve(__dirname, "index.html"),
-        },
-        output: {
-          manualChunks: undefined,
-        },
+export default defineConfig({
+  base: '/',
+  plugins: [
+    react(),
+    compression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+  ],
+  optimizeDeps: {
+    exclude: ['lucide-react'],
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
       },
-      outDir: "dist/client",
-      emptyOutDir: true,
-      sourcemap: true,
+      output: {
+        manualChunks: undefined,
+      },
     },
-    ssr: {
-      format: "esm",
-      target: "node",
-      noExternal: [
-        "lucide-react",
-        "framer-motion",
-        "react-router-dom",
-        /\.css$/,
-      ],
-    },
-    server: {
-      host: true,
-      port: 5173,
-    },
-    define: {
-      "process.env": {},
-    },
-  };
-});
+    outDir: 'dist/client',
+    emptyOutDir: true,
+    sourcemap: true,
+  },
+  ssr: {
+    // format: 'esm',
+    target: 'node',
+    noExternal: ['lucide-react', 'framer-motion', 'react-router-dom', /\.css$/],
+  },
+  server: {
+    host: true,
+    port: 5173,
+  },
+  define: {
+    'process.env': {},
+  },
+})

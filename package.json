@@ -8,7 +8,8 @@
   "repository": "git@github.com:waether-the-strm/makieta-specteam.git",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:client": "tsc && vite build",
+    "build": "npm run build:static",
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -20,7 +21,7 @@
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "build:static": "npm run build && npm run build:server && node scripts/generate-static.js",
+    "build:static": "npm run build:client && npm run build:server && node scripts/generate-static.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
