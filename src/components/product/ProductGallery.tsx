@@ -1,70 +1,60 @@
-import React, { useState, useCallback, memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useCallback, memo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface ProductGalleryProps {
-  images: string[];
+  images: string[]
 }
 
-// Domyślne zdjęcia z domeny specteam.pl
-const DEFAULT_IMAGES = [
-  // TX
-  "https://www.specteam.pl/products/TX/pics/m11.jpg",
-  "https://www.specteam.pl/products/TX/pics/m12.jpg",
-  "https://www.specteam.pl/products/TX/pics/1.jpg",
-  "https://www.specteam.pl/products/TX/pics/3.jpg",
-  // video_recorder
-  "https://www.specteam.pl/products/video_recorder/pics/a.jpg",
-  "https://www.specteam.pl/products/video_recorder/pics/b.jpg",
-  "https://www.specteam.pl/products/video_recorder/pics/c.jpg",
-  "https://www.specteam.pl/products/video_recorder/pics/1.jpg",
-];
-
 const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [previewIndex, setPreviewIndex] = useState<number | null>(null);
-  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
+  const [selectedImage, setSelectedImage] = useState(0)
+  const [previewIndex, setPreviewIndex] = useState<number | null>(null)
 
-  const displayImages = images.length > 0 ? images : DEFAULT_IMAGES;
-
-  const displayIndex = previewIndex !== null ? previewIndex : selectedImage;
-
-  const mainImageSrc = failedImages.has(displayIndex)
-    ? DEFAULT_IMAGES[displayIndex % DEFAULT_IMAGES.length]
-    : displayImages[displayIndex];
-
-  const handleImageError = useCallback(
-    (index: number, event: React.SyntheticEvent<HTMLImageElement>) => {
-      const target = event.currentTarget;
-      if (!target || failedImages.has(index)) return;
-
-      console.log(`[ProductGallery] Image load error for index ${index}:`, {
-        failedUrl: target.src,
-        isMainImage: target.dataset.isMain === "true",
-      });
-
-      setFailedImages((prev) => new Set([...prev, index]));
+  const handleThumbnailClick = useCallback(
+    (index: number) => {
+      if (images && index >= 0 && index < images.length) {
+        setSelectedImage(index)
+        setPreviewIndex(null)
+      }
     },
-    [failedImages]
-  );
+    [images]
+  )
 
-  const handleThumbnailClick = useCallback((index: number) => {
-    setSelectedImage(index);
-    setPreviewIndex(null);
-  }, []);
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '')
+
+  const getFullImageUrl = (imagePath: string): string => {
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+      return imagePath
+    }
+    if (imagePath.startsWith('/')) {
+      const effectiveBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
+      return `${effectiveBaseUrl}${imagePath}`
+    }
+    return imagePath
+  }
+
+  const displayImages = images
+  if (!displayImages || displayImages.length === 0) {
+    return <div className="product__gallery-placeholder">Brak zdjęć produktu</div>
+  }
+
+  const displayIndex = previewIndex !== null ? previewIndex : selectedImage
+  const mainImageSrc = getFullImageUrl(displayImages[displayIndex])
 
   const handleMouseEnter = (index: number) => {
-    setPreviewIndex(index);
-  };
+    if (index >= 0 && index < displayImages.length) {
+      setPreviewIndex(index)
+    }
+  }
 
   const handleMouseLeave = () => {
-    setPreviewIndex(null);
-  };
+    setPreviewIndex(null)
+  }
 
   const variants = {
     enter: { opacity: 0 },
-    center: { opacity: 1, transition: { duration: 0.3, ease: "easeInOut" } },
-    exit: { opacity: 0, transition: { duration: 0.2, ease: "easeInOut" } },
-  };
+    center: { opacity: 1, transition: { duration: 0.3, ease: 'easeInOut' } },
+    exit: { opacity: 0, transition: { duration: 0.2, ease: 'easeInOut' } },
+  }
 
   return (
     <div className="product__gallery">
@@ -79,8 +69,6 @@ const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
             animate="center"
             exit="exit"
             className="w-full h-full object-contain absolute inset-0"
-            data-is-main="true"
-            onError={(e) => handleImageError(displayIndex, e)}
           />
         </AnimatePresence>
       </div>
@@ -89,24 +77,23 @@ const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
           <div
             key={index}
             className={`product__gallery-thumb flex-shrink-0 ${
-              selectedImage === index && previewIndex === null ? "active" : ""
-            } ${previewIndex === index ? "previewing" : ""}`}
+              selectedImage === index && previewIndex === null ? 'active' : ''
+            } ${previewIndex === index ? 'previewing' : ''}`}
             onClick={() => handleThumbnailClick(index)}
             onMouseEnter={() => handleMouseEnter(index)}
           >
             <img
-              src={image}
+              src={getFullImageUrl(image)}
               alt={`Miniatura ${index + 1}`}
               className="w-full h-full object-cover"
-              onError={(e) => handleImageError(index, e)}
             />
           </div>
         ))}
       </div>
     </div>
-  );
-});
+  )
+})
 
-ProductGallery.displayName = "ProductGallery";
+ProductGallery.displayName = 'ProductGallery'
 
-export default ProductGallery;
+export default ProductGallery

@@ -23,7 +23,7 @@ function App() {
                 <Route path="/" element={<RentalPage />} />
                 <Route path="/store" element={<StorePage />} />
                 <Route path="/support" element={<SupportPage />} />
-                <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/product/:categoryId" element={<ProductPage />} />
               </Routes>
             </Suspense>
             <footer id="contact-footer" className="footer">
