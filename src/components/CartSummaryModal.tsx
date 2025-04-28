@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useCart } from '../hooks/useCart'
-import { X } from 'lucide-react'
+import { X, Trash2 } from 'lucide-react'
 
 interface CartSummaryDrawerProps {
   isOpen: boolean
@@ -8,7 +8,7 @@ interface CartSummaryDrawerProps {
 }
 
 const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }) => {
-  const { items } = useCart()
+  const { items, removeItem } = useCart()
   const drawerRef = useRef<HTMLDivElement>(null)
 
   // Zamknięcie ESC
@@ -49,7 +49,7 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
       <div
         ref={drawerRef}
         className="cart-summary cart-summary--drawer cart-summary--slide-in"
-        style={{ minWidth: 320 }}
+        style={{ minWidth: 320, display: 'flex', flexDirection: 'column' }}
         role="dialog"
         aria-modal="true"
         data-testid="cart-summary-modal"
@@ -63,7 +63,7 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
           <X className="cart-summary__close-icon" />
         </button>
         <h2 className="cart-summary__title">Twój koszyk</h2>
-        <div className="cart-summary__content">
+        <div className="cart-summary__content" style={{ flex: 1, width: '100%' }}>
           {items.length === 0 ? (
             <div className="cart-summary__empty">
               <div className="cart-summary__empty-icon" aria-hidden="true">
@@ -100,41 +100,53 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                       <span className="cart-summary__item-price">
                         {item.price * item.quantity} zł
                       </span>
+                      <button
+                        className="cart-summary__item-remove"
+                        title="Usuń z koszyka"
+                        onClick={() => removeItem(item.id)}
+                      >
+                        <Trash2 size={18} />
+                      </button>
                     </div>
-                    <div className="cart-summary__item-details">
-                      <span>
-                        Ilość: <span className="cart-summary__item-quantity">{item.quantity}</span>
-                      </span>
-                      <span>
-                        Typ:{' '}
-                        <span className="cart-summary__item-type">
+                    <div className="cart-summary__item-table">
+                      <div className="cart-summary__item-table-row">
+                        <span className="cart-summary__item-table-label">Ilość:</span>
+                        <span className="cart-summary__item-table-value">{item.quantity}</span>
+                      </div>
+                      <div className="cart-summary__item-table-row">
+                        <span className="cart-summary__item-table-label">Typ:</span>
+                        <span className="cart-summary__item-table-value">
                           {item.isRental ? 'Wypożyczenie' : 'Zakup'}
                         </span>
-                      </span>
+                      </div>
                       {item.isRental && item.rentalPeriod && (
-                        <span>
-                          Okres:{' '}
-                          <span className="cart-summary__item-period">{item.rentalPeriod}</span>
-                        </span>
+                        <div className="cart-summary__item-table-row">
+                          <span className="cart-summary__item-table-label">Okres:</span>
+                          <span className="cart-summary__item-table-value">
+                            {item.rentalPeriod}
+                          </span>
+                        </div>
                       )}
                       {item.isRental && item.rentalDate && (
-                        <span>
-                          Data:{' '}
-                          <span className="cart-summary__item-date">
+                        <div className="cart-summary__item-table-row">
+                          <span className="cart-summary__item-table-label">Data:</span>
+                          <span className="cart-summary__item-table-value">
                             {item.rentalDate instanceof Date
                               ? item.rentalDate.toLocaleDateString()
                               : String(item.rentalDate)}
                           </span>
-                        </span>
+                        </div>
                       )}
                     </div>
                   </li>
                 ))}
               </ul>
-              <div className="cart-summary__total-row">
-                <span className="cart-summary__total-label">Suma:</span>
-                <span className="cart-summary__total-value">{total} zł</span>
-              </div>
+              {items.length > 0 && (
+                <div className="cart-summary__total-row cart-summary__total-row--footer">
+                  <span className="cart-summary__total-label">Suma:</span>
+                  <span className="cart-summary__total-value">{total} zł</span>
+                </div>
+              )}
             </>
           )}
         </div>
