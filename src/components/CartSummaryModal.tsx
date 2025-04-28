@@ -41,56 +41,61 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 z-40 bg-black/40 transition-opacity animate-fadeIn"
+        className="cart-summary__overlay cart-summary__overlay--fade-in"
         aria-hidden="true"
+        data-testid="cart-summary-overlay"
       />
       {/* Drawer */}
       <div
         ref={drawerRef}
-        className="fixed top-0 right-0 z-50 h-full w-full max-w-[400px] bg-slate-800 shadow-2xl border-l border-slate-700 flex flex-col animate-cartDrawerDrawer sm:w-[400px] sm:max-w-full"
+        className="cart-summary cart-summary--drawer cart-summary--slide-in"
         style={{ minWidth: 320 }}
         role="dialog"
         aria-modal="true"
         data-testid="cart-summary-modal"
       >
         <button
-          className="absolute top-3 right-3 text-slate-400 hover:text-white"
+          className="cart-summary__close"
           onClick={onClose}
           aria-label="Zamknij koszyk"
+          data-testid="cart-summary-close"
         >
-          <X className="w-6 h-6" />
+          <X className="cart-summary__close-icon" />
         </button>
-        <h2 className="text-2xl font-bold mb-4 text-white px-6 pt-6">Twój koszyk</h2>
-        <div className="flex-1 overflow-y-auto px-6 pb-6">
+        <h2 className="cart-summary__title">Twój koszyk</h2>
+        <div className="cart-summary__content">
           {items.length === 0 ? (
-            <p className="text-slate-300">Koszyk jest pusty.</p>
+            <p className="cart-summary__empty">Koszyk jest pusty.</p>
           ) : (
-            <ul className="divide-y divide-slate-700 mb-4">
+            <ul className="cart-summary__list">
               {items.map(item => (
-                <li key={item.id} className="py-2 flex flex-col gap-1">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white font-medium">{item.name}</span>
-                    <span className="text-rose-400 font-bold">{item.price * item.quantity} zł</span>
+                <li key={item.id} className="cart-summary__item">
+                  <div className="cart-summary__item-row">
+                    <span className="cart-summary__item-name">{item.name}</span>
+                    <span className="cart-summary__item-price">
+                      {item.price * item.quantity} zł
+                    </span>
                   </div>
-                  <div className="flex flex-wrap gap-2 text-xs text-slate-400 mt-1">
+                  <div className="cart-summary__item-details">
                     <span>
-                      Ilość: <span className="text-white font-semibold">{item.quantity}</span>
+                      Ilość: <span className="cart-summary__item-quantity">{item.quantity}</span>
                     </span>
                     <span>
                       Typ:{' '}
-                      <span className="text-white font-semibold">
+                      <span className="cart-summary__item-type">
                         {item.isRental ? 'Wypożyczenie' : 'Zakup'}
                       </span>
                     </span>
                     {item.isRental && item.rentalPeriod && (
                       <span>
-                        Okres: <span className="text-white font-semibold">{item.rentalPeriod}</span>
+                        Okres:{' '}
+                        <span className="cart-summary__item-period">{item.rentalPeriod}</span>
                       </span>
                     )}
                     {item.isRental && item.rentalDate && (
                       <span>
                         Data:{' '}
-                        <span className="text-white font-semibold">
+                        <span className="cart-summary__item-date">
                           {item.rentalDate instanceof Date
                             ? item.rentalDate.toLocaleDateString()
                             : String(item.rentalDate)}
@@ -102,22 +107,23 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
               ))}
             </ul>
           )}
-          <div className="flex justify-between items-center mt-4">
-            <span className="text-slate-300">Suma:</span>
-            <span className="text-white text-xl font-bold">{total} zł</span>
+          <div className="cart-summary__total-row">
+            <span className="cart-summary__total-label">Suma:</span>
+            <span className="cart-summary__total-value">{total} zł</span>
           </div>
         </div>
-        <div className="px-6 pb-6 flex flex-col gap-2">
+        <div className="cart-summary__actions">
           <button
-            className="w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-lg font-medium"
+            className="cart-summary__checkout-btn"
             disabled={items.length === 0}
             onClick={() => {
               /* przejście do kasy */
             }}
+            data-testid="cart-summary-checkout"
           >
             Przejdź do kasy
           </button>
-          <a href="/cart" className="w-full text-center text-rose-400 hover:underline text-sm">
+          <a href="/cart" className="cart-summary__full-link" data-testid="cart-summary-full-link">
             Zobacz pełny koszyk
           </a>
         </div>

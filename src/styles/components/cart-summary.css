@@ -1,0 +1,118 @@
+/* Cart Summary Drawer (BEM + apply) */
+
+.cart-summary__overlay {
+  @apply fixed inset-0 z-40 bg-black/40 transition-opacity;
+}
+
+.cart-summary {
+  @apply fixed top-0 right-0 z-50 h-full w-full max-w-[400px] bg-slate-800 shadow-2xl border-l border-slate-700 flex flex-col sm:w-[400px] sm:max-w-full;
+}
+
+.cart-summary--drawer {
+  /* for possible modifiers */
+}
+
+.cart-summary__close {
+  @apply absolute top-3 right-3 text-slate-400 hover:text-white;
+}
+
+.cart-summary__close-icon {
+  @apply w-6 h-6;
+}
+
+.cart-summary__title {
+  @apply text-2xl font-bold mb-4 text-white px-6 pt-6;
+}
+
+.cart-summary__content {
+  @apply flex-1 overflow-y-auto px-6 pb-6;
+}
+
+.cart-summary__empty {
+  @apply text-slate-300;
+}
+
+.cart-summary__list {
+  @apply divide-y divide-slate-700 mb-4;
+}
+
+.cart-summary__item {
+  @apply py-2 flex flex-col gap-1;
+}
+
+.cart-summary__item-row {
+  @apply flex justify-between items-center;
+}
+
+.cart-summary__item-name {
+  @apply text-white font-medium;
+}
+
+.cart-summary__item-price {
+  @apply text-rose-400 font-bold;
+}
+
+.cart-summary__item-details {
+  @apply flex flex-wrap gap-2 text-xs text-slate-400 mt-1;
+}
+
+.cart-summary__item-quantity,
+.cart-summary__item-type,
+.cart-summary__item-period,
+.cart-summary__item-date {
+  @apply text-white font-semibold;
+}
+
+.cart-summary__total-row {
+  @apply flex justify-between items-center mt-4;
+}
+
+.cart-summary__total-label {
+  @apply text-slate-300;
+}
+
+.cart-summary__total-value {
+  @apply text-white text-xl font-bold;
+}
+
+.cart-summary__actions {
+  @apply px-6 pb-6 flex flex-col gap-2;
+}
+
+.cart-summary__checkout-btn {
+  @apply w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-lg font-medium;
+}
+
+.cart-summary__full-link {
+  @apply w-full text-center text-rose-400 hover:underline text-sm;
+}
+
+/* FadeIn animation for cart summary overlay */
+@keyframes cartSummaryFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.cart-summary__overlay--fade-in {
+  animation: cartSummaryFadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Drawer slide-in animation for cart summary */
+@keyframes cartSummarySlideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.cart-summary--slide-in {
+  animation: cartSummarySlideIn 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
