@@ -122,7 +122,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </div>
       )}
 
-      <div className="mb-6">
+      <div className="product__quantity-container">
         <label className="product__rental-label">Ilość</label>
         <div className="product__quantity">
           <button
@@ -143,8 +143,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between mb-6">
-        <span className="text-slate-300">Suma:</span>
+      <div className="product__summary">
+        <span className="product__summary-label">Suma:</span>
         <span className="product__price">{getPrice()} zł</span>
       </div>
 
@@ -158,7 +158,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         Dodaj do koszyka
       </button>
 
-      <div className="mt-6 space-y-2">
+      <div className="product__info-bottom">
         <div className="flex items-center gap-2 text-slate-400">
           <span role="img" aria-label="delivery">
             🚚

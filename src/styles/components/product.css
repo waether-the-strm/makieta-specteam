@@ -147,7 +147,6 @@
   @apply bg-slate-800 p-6 rounded-lg shadow-lg;
   position: -webkit-sticky;
   position: sticky;
-  /* Używamy wartości liczbowej dla większej niezawodności */
   top: 78px;
   z-index: 10;
   width: 100%;
@@ -156,7 +155,8 @@
 
 /* Tabs wypożyczenie/zakup */
 .product__actions-tabs {
-  @apply flex gap-2 mb-6;
+  @apply flex gap-2;
+  margin-bottom: 1.5rem;
 }
 
 .product__actions-tab {
@@ -171,9 +171,10 @@
   @apply bg-slate-700 text-slate-300 hover:bg-slate-600;
 }
 
-/* Formularz wypożyczenia */
+/* Formularz wypożyczenia - ujednolicony rytm wizualny */
 .product__rental-form {
-  @apply grid grid-cols-1 gap-4 mb-6;
+  @apply grid grid-cols-1 gap-6;
+  margin-bottom: 1.5rem;
 }
 
 .product__rental-form--two-columns {
@@ -185,11 +186,13 @@
 }
 
 .product__rental-label {
-  @apply block text-slate-300 mb-2;
+  @apply block text-slate-300;
+  margin-bottom: 0.5rem;
 }
 
 .product__rental-select {
   @apply w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none;
+  height: 48px; /* Stała wysokość dla wszystkich kontrolek */
 }
 
 .product__rental-date-field {
@@ -198,6 +201,7 @@
 
 .product__rental-date-input {
   @apply w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none;
+  height: 48px; /* Stała wysokość dla wszystkich kontrolek */
 }
 
 .product__rental-date-icon {
@@ -212,6 +216,44 @@
 /* Dodajemy scroll-padding dla lepszego zachowania przy przewijaniu */
 html {
   scroll-padding-top: 80px;
+}
+
+/* Kontrolki ilości */
+.product__quantity-container {
+  margin-bottom: 1.5rem;
+}
+
+.product__quantity {
+  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg;
+  height: 48px; /* Stała wysokość dla wszystkich kontrolek */
+}
+
+.product__quantity-button {
+  @apply w-8 h-8 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 transition-colors;
+}
+
+.product__quantity-value {
+  @apply text-lg font-medium text-white;
+}
+
+/* Sekcja podsumowania */
+.product__summary {
+  @apply flex items-center justify-between;
+  margin-bottom: 1.5rem;
+}
+
+.product__summary-label {
+  @apply text-slate-300;
+}
+
+.product__price {
+  @apply text-2xl font-bold text-white;
+}
+
+/* Przycisk dodania do koszyka */
+.product__button {
+  @apply w-full py-3 px-6 rounded-lg font-medium transition-colors;
+  margin-bottom: 1.5rem;
 }
 
 /* Panel informacyjny - opis i zakładki */
@@ -314,10 +356,6 @@ select {
   @apply space-y-8;
 }
 
-.product__price {
-  @apply text-2xl font-bold text-white;
-}
-
 .product__price-rental {
   @apply text-sm text-slate-400;
 }
@@ -328,10 +366,6 @@ select {
 
 .product__buttons {
   @apply flex flex-col gap-4;
-}
-
-.product__button {
-  @apply w-full py-3 px-6 rounded-lg font-medium transition-colors;
 }
 
 .product__button--rental {
@@ -360,18 +394,6 @@ select {
 
 .product__rental-days {
   @apply w-full p-3 bg-slate-700 rounded-lg text-white;
-}
-
-.product__quantity {
-  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg;
-}
-
-.product__quantity-button {
-  @apply w-8 h-8 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 transition-colors;
-}
-
-.product__quantity-value {
-  @apply text-lg font-medium text-white;
 }
 
 .product__info-bottom {
