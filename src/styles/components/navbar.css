@@ -10,7 +10,13 @@
   @apply container mx-auto px-4;
 }
 .navbar__content {
-  @apply flex items-center justify-between h-16;
+  @apply flex items-center h-16 w-full;
+}
+@media (min-width: 768px) {
+  .navbar__content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 .navbar__logo {
   @apply w-20 block;
@@ -19,10 +25,22 @@
   @apply w-full h-auto;
 }
 .navbar__menu {
-  @apply hidden md:block;
+  @apply hidden md:flex flex-1 justify-center;
 }
 .navbar__links {
-  @apply flex items-center space-x-4 ml-10;
+  @apply flex flex-row gap-8;
+}
+.navbar__right {
+  @apply flex items-center gap-2 ml-auto;
+}
+.navbar__cart {
+  @apply relative;
+}
+.navbar__cart-badge {
+  @apply absolute -top-2 -right-2 bg-rose-600 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center;
+}
+.navbar__search {
+  /* dodatkowe style jeśli potrzeba */
 }
 .navbar__link {
   @apply hover:bg-slate-800 px-3 py-2 rounded-md text-gray-300 hover:text-white transition-colors;
