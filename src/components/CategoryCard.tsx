@@ -1,13 +1,13 @@
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 interface CategoryCardProps {
-  title: string;
-  subtitle: string;
-  price: string;
-  image: string;
-  imageWidth: number;
-  imageHeight: number;
+  title: string
+  subtitle: string
+  price: string
+  image: string
+  imageWidth: number
+  imageHeight: number
 }
 
 export default function CategoryCard({
@@ -18,16 +18,12 @@ export default function CategoryCard({
   imageWidth,
   imageHeight,
 }: CategoryCardProps) {
-  const titleId = `product-${title.toLowerCase().replace(/\s+/g, "-")}`;
-  const productId = title.toLowerCase().replace(/\s+/g, "-");
+  const titleId = `product-${title.toLowerCase().replace(/\s+/g, '-')}`
+  const productId = title.toLowerCase().replace(/\s+/g, '-')
 
   return (
     <article className="product-card group">
-      <Link
-        to={`/product/${productId}`}
-        className="block h-full"
-        aria-labelledby={titleId}
-      >
+      <Link to={`/product/${productId}`} className="product-card__link" aria-labelledby={titleId}>
         <figure className="product-card__image-container">
           <img
             src={image}
@@ -37,10 +33,7 @@ export default function CategoryCard({
             height={imageHeight}
             loading="lazy"
           />
-          <div
-            className="product-card__image-overlay"
-            role="presentation"
-          ></div>
+          <div className="product-card__image-overlay" role="presentation"></div>
         </figure>
         <div className="product-card__content">
           <header>
@@ -62,5 +55,5 @@ export default function CategoryCard({
         </div>
       </Link>
     </article>
-  );
+  )
 }

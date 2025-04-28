@@ -12,6 +12,8 @@
 @import './components/hero.css';
 @import './components/product.css';
 @import './components/cart-summary.css';
+@import './components/products.css';
+@import './components/cart-notification.css';
 
 /* Font Variables */
 :root {

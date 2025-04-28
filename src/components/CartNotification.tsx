@@ -28,27 +28,24 @@ const CartNotification: React.FC = () => {
     <AnimatePresence>
       {showNotification && (
         <motion.div
-          className="fixed bottom-4 right-4 max-w-xs w-full bg-slate-700 rounded-lg shadow-lg overflow-hidden z-50"
+          className="cart-notification"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
           transition={{ type: 'spring', stiffness: 500, damping: 40 }}
         >
-          <div className="px-4 py-3 bg-rose-600 flex items-center justify-between">
-            <div className="flex items-center">
-              <ShoppingCart size={18} className="mr-2" />
-              <span className="font-medium">Dodano do koszyka</span>
+          <div className="cart-notification__header">
+            <div className="cart-notification__header-content">
+              <ShoppingCart size={18} className="cart-notification__header-icon" />
+              <span className="cart-notification__header-title">Dodano do koszyka</span>
             </div>
-            <button
-              onClick={hideNotification}
-              className="text-white hover:text-slate-200 transition-colors"
-            >
+            <button onClick={hideNotification} className="cart-notification__close">
               <X size={18} />
             </button>
           </div>
-          <div className="p-4">
-            <div className="font-medium text-white mb-1">{lastAddedItem.name}</div>
-            <div className="text-sm text-slate-300 space-y-1">
+          <div className="cart-notification__body">
+            <div className="cart-notification__item-name">{lastAddedItem.name}</div>
+            <div className="cart-notification__item-details">
               <div>Ilość: {lastAddedItem.quantity}</div>
               {lastAddedItem.isRental && (
                 <>
@@ -58,7 +55,7 @@ const CartNotification: React.FC = () => {
                   )}
                 </>
               )}
-              <div className="font-medium text-white pt-1">Cena: {lastAddedItem.price} zł</div>
+              <div className="cart-notification__item-price">Cena: {lastAddedItem.price} zł</div>
             </div>
           </div>
         </motion.div>
