@@ -10,7 +10,7 @@ export function render(url: string): Promise<{ html: string }> {
     let html = ''
     const stream = renderToPipeableStream(
       <React.StrictMode>
-        <StaticRouter location={url}>
+        <StaticRouter location={url} basename={import.meta.env.BASE_URL || '/'}>
           <App />
         </StaticRouter>
       </React.StrictMode>,
