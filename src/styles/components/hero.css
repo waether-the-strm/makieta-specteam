@@ -63,3 +63,10 @@
 .group:hover .hero__feature-description {
   @apply md:opacity-100 md:translate-y-0;
 }
+
+.button.primary {
+  @apply bg-rose-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-rose-700 transition-colors w-full md:w-auto;
+}
+.button.secondary {
+  @apply bg-slate-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-slate-800 transition-colors w-full md:w-auto;
+}

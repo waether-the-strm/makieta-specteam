@@ -1,4 +1,4 @@
-import RentalFeatures from "./RentalFeatures";
+import RentalFeatures from './RentalFeatures'
 
 export default function Hero() {
   return (
@@ -17,23 +17,13 @@ export default function Hero() {
         <div className="hero-content">
           <div className="hero__content">
             <div className="hero__text">
-              <h1 className="hero__title">
-                Wypożyczalnia Sprzętu Detektywistycznego
-              </h1>
-              <p className="hero__subtitle">
-                Profesjonalny sprzęt dostępny od zaraz
-              </p>
+              <h1 className="hero__title">Wypożyczalnia Sprzętu Detektywistycznego</h1>
+              <p className="hero__subtitle">Profesjonalny sprzęt dostępny od zaraz</p>
               <div className="hero__buttons">
-                <a
-                  href="#categories"
-                  className="button primary w-full md:w-auto"
-                >
+                <a href="#categories" className="button primary">
                   Zobacz nasz sprzęt
                 </a>
-                <a
-                  href="#contact"
-                  className="button secondary w-full md:w-auto"
-                >
+                <a href="#contact" className="button secondary">
                   Skontaktuj się z nami
                 </a>
               </div>
@@ -45,5 +35,5 @@ export default function Hero() {
         </div>
       </div>
     </header>
-  );
+  )
 }
