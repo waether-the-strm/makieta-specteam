@@ -155,7 +155,7 @@
 
 /* Tabs wypożyczenie/zakup */
 .product__actions-tabs {
-  @apply flex gap-2;
+  @apply flex gap-3 -mx-3 -mt-3;
   margin-bottom: 1.5rem;
 }
 
@@ -202,10 +202,38 @@
 .product__rental-date-input {
   @apply w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none;
   height: 48px; /* Stała wysokość dla wszystkich kontrolek */
+  /* Ukrycie domyślnej ikony kalendarza w różnych przeglądarkach */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none; /* Usunięcie domyślnego tła */
+  padding-right: 48px; /* Zapewnienie miejsca na ikonę */
+  color-scheme: dark; /* Ciemny motyw dla kalendarza w Chrome */
+}
+
+/* Ukrycie ikony kalendarza w przeglądarkach */
+.product__rental-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0; /* Ukrycie w Chrome/Safari/Edge */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.product__rental-date-input::-webkit-inner-spin-button,
+.product__rental-date-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .product__rental-date-icon {
   @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400;
+  pointer-events: none; /* Pozwala na kliknięcie "przez" ikonę */
+  z-index: 1;
 }
 
 /* Usunięcie spacera, który nie jest potrzebny przy sticky */
