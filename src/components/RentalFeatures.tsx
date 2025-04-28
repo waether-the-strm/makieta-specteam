@@ -1,40 +1,40 @@
-import { HeartHandshake, Shield, Phone, Truck, Clock } from "lucide-react";
+import { HeartHandshake, Shield, Phone, Truck, Clock } from 'lucide-react'
 
 const features = [
   {
-    icon: <HeartHandshake className="icon feature-icon" />,
-    title: "BEZ UMOWY BEZ DOKUMENTÓW",
+    icon: <HeartHandshake className="hero__feature-icon" />,
+    title: 'BEZ UMOWY BEZ DOKUMENTÓW',
     description:
-      "Nie potrzebujemy pisemnej umowy ani kopii dokumentów. Naszego sprzętu i tak nie da się ukraść ;)",
+      'Nie potrzebujemy pisemnej umowy ani kopii dokumentów. Naszego sprzętu i tak nie da się ukraść ;)',
   },
   {
-    icon: <Shield className="icon feature-icon" />,
-    title: "UBEZPIECZENIE OD USZKODZEŃ",
-    description: "Nie martw się jeśli coś popsujesz - nic za to nie grozi :)",
+    icon: <Shield className="hero__feature-icon" />,
+    title: 'UBEZPIECZENIE OD USZKODZEŃ',
+    description: 'Nie martw się jeśli coś popsujesz - nic za to nie grozi :)',
   },
   {
-    icon: <Phone className="icon feature-icon" />,
-    title: "WSPARCIE SPECJALISTÓW",
-    description: "Zawsze służymy pomocą",
+    icon: <Phone className="hero__feature-icon" />,
+    title: 'WSPARCIE SPECJALISTÓW',
+    description: 'Zawsze służymy pomocą',
   },
   {
-    icon: <Truck className="icon feature-icon" />,
-    title: "PRZESYŁKA W 24H",
-    description: "Paczki wysyłamy codziennie około godziny 13:00",
+    icon: <Truck className="hero__feature-icon" />,
+    title: 'PRZESYŁKA W 24H',
+    description: 'Paczki wysyłamy codziennie około godziny 13:00',
   },
   {
-    icon: <Clock className="icon feature-icon" />,
-    title: "MINIMUM 3 DNI W CENIE",
+    icon: <Clock className="hero__feature-icon" />,
+    title: 'MINIMUM 3 DNI W CENIE',
     description:
       'Każdy sprzęt wypożyczamy na co najmniej 3 dni. Twoje dobre przygotowanie do "zadania" jest dla nas ważne',
   },
-];
+]
 
 export default function RentalFeatures() {
   return (
     <div className="hero__features-grid">
       <div className="hero__features-row">
-        {features.map((feature) => (
+        {features.map(feature => (
           <div key={feature.title} className="hero__feature group">
             <div className="hero__feature-header">
               <div className="hero__feature-icon">{feature.icon}</div>
@@ -45,5 +45,5 @@ export default function RentalFeatures() {
         ))}
       </div>
     </div>
-  );
+  )
 }
