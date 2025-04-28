@@ -1,8 +1,11 @@
 /* Cart Notification Component */
 
 .cart-notification {
-  @apply fixed bottom-6 left-1/2 bg-slate-800 rounded-xl shadow-2xl overflow-hidden z-50 border border-slate-700;
-  transform: translateX(-50%);
+  @apply fixed bottom-6 bg-slate-800 rounded-xl shadow-2xl overflow-hidden z-50 border border-slate-700;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   min-width: 320px;
   max-width: 420px;
   width: 100%;
