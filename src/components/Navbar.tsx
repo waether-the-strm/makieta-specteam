@@ -118,6 +118,7 @@ export default function Navbar() {
               </div>
             </div>
             <div className="navbar__right">
+              <Search className="navbar__icon navbar__search" />
               <button
                 ref={cartButtonRef}
                 className="navbar__cart"
@@ -133,7 +134,6 @@ export default function Navbar() {
               <button onClick={() => setIsOpen(!isOpen)} className="navbar__mobile-button">
                 {isOpen ? <X /> : <Menu />}
               </button>
-              <Search className="navbar__icon navbar__search" />
             </div>
           </div>
         </div>
