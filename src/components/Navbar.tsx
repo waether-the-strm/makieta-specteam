@@ -179,16 +179,14 @@ export default function Navbar() {
               <Search className="navbar__icon" />
               <button
                 ref={cartButtonRef}
-                className="relative"
+                className="navbar__cart"
                 aria-label="Pokaż koszyk"
                 data-testid="navbar-cart-icon-mobile"
                 onClick={() => setCartModalOpen(true)}
               >
                 <ShoppingCart className="navbar__icon" />
                 {totalItems > 0 && (
-                  <div className="absolute -top-2 -right-2 bg-rose-600 text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center">
-                    {totalItems > 9 ? '9+' : totalItems}
-                  </div>
+                  <div className="navbar__cart-badge">{totalItems > 9 ? '9+' : totalItems}</div>
                 )}
               </button>
             </motion.div>
