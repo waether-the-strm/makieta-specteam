@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { categories } from '../data/categories'
+import { getFaqsForCategory } from '../data/faqs'
 
 import ProductBreadcrumbs from '../components/product/ProductBreadcrumbs'
 import ProductGallery from '../components/product/ProductGallery'
@@ -49,7 +50,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
     },
     images: category.images || [],
     features: [`Główna cecha: ${category.subtitle}`],
-    faq: [],
+    faq: getFaqsForCategory(category.title),
     specs: category.specs || [],
     rating: 4.5,
     isAvailable: !category.price.includes('brak'),
@@ -116,7 +117,14 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                       aria-labelledby="tab-faq"
                       className={activeTab === ProductTab.FAQ ? '' : 'hidden'}
                     >
-                      <div className="product__faq">{/* Renderowanie FAQ, jeśli będą dane */}</div>
+                      <div className="product__faq">
+                        {productData.faq.map((faqItem, index) => (
+                          <div key={index} className="product__faq-item">
+                            <h3 className="product__faq-question">{faqItem.question}</h3>
+                            <p className="product__faq-answer">{faqItem.answer}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
                   <div
