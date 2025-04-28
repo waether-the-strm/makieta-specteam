@@ -74,19 +74,15 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   return (
     <div className="product__actions">
-      <div className="flex gap-2 mb-6">
+      <div className="product__actions-tabs">
         <button
-          className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-            isRental ? 'bg-rose-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-          }`}
+          className={`product__actions-tab ${isRental ? 'product__actions-tab--active' : 'product__actions-tab--inactive'}`}
           onClick={() => setIsRental(true)}
         >
           Wypożyczenie
         </button>
         <button
-          className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
-            !isRental ? 'bg-rose-600 text-white' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
-          }`}
+          className={`product__actions-tab ${!isRental ? 'product__actions-tab--active' : 'product__actions-tab--inactive'}`}
           onClick={() => setIsRental(false)}
         >
           Zakup
@@ -94,45 +90,40 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       </div>
 
       {isRental && (
-        <>
-          <div className="mb-6">
-            <label className="block text-slate-300 mb-2">Okres wypożyczenia</label>
-            <div className="flex flex-col md:flex-row gap-4">
-              <select
-                value={rentalPeriod}
-                onChange={e => setRentalPeriod(e.target.value)}
-                className="w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none"
-              >
-                {rentalOptions.map(option => (
-                  <option key={option.id} value={option.id}>
-                    {option.label} ({option.price} zł)
-                  </option>
-                ))}
-              </select>
+        <div className="product__rental-form product__rental-form--two-columns">
+          <div className="product__rental-field">
+            <label className="product__rental-label">Okres wypożyczenia</label>
+            <select
+              value={rentalPeriod}
+              onChange={e => setRentalPeriod(e.target.value)}
+              className="product__rental-select"
+            >
+              {rentalOptions.map(option => (
+                <option key={option.id} value={option.id}>
+                  {option.label} ({option.price} zł)
+                </option>
+              ))}
+            </select>
+          </div>
 
-              <div className="relative w-full">
-                <label className="block text-slate-300 mb-2">Data wypożyczenia</label>
-                <div className="relative">
-                  <input
-                    type="date"
-                    min={formatDateForInput(today)}
-                    value={formatDateForInput(rentalDate)}
-                    onChange={e => setRentalDate(new Date(e.target.value))}
-                    className="w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none"
-                  />
-                  <Calendar
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400"
-                    size={20}
-                  />
-                </div>
-              </div>
+          <div className="product__rental-field">
+            <label className="product__rental-label">Data wypożyczenia</label>
+            <div className="product__rental-date-field">
+              <input
+                type="date"
+                min={formatDateForInput(today)}
+                value={formatDateForInput(rentalDate)}
+                onChange={e => setRentalDate(new Date(e.target.value))}
+                className="product__rental-date-input"
+              />
+              <Calendar className="product__rental-date-icon" size={20} />
             </div>
           </div>
-        </>
+        </div>
       )}
 
       <div className="mb-6">
-        <label className="block text-slate-300 mb-2">Ilość</label>
+        <label className="product__rental-label">Ilość</label>
         <div className="product__quantity">
           <button
             className="product__quantity-button"
