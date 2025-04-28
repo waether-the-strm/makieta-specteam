@@ -1,7 +1,19 @@
 /* Cart Notification Component */
 
 .cart-notification {
-  @apply fixed bottom-4 right-4 max-w-xs w-full bg-slate-800 rounded-xl shadow-2xl overflow-hidden z-50 border border-slate-700;
+  @apply fixed bottom-6 left-1/2 bg-slate-800 rounded-xl shadow-2xl overflow-hidden z-50 border border-slate-700;
+  transform: translateX(-50%);
+  min-width: 320px;
+  max-width: 420px;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .cart-notification {
+    min-width: 0;
+    max-width: 95vw;
+    width: 95vw;
+  }
 }
 
 .cart-notification__header {
