@@ -159,13 +159,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       </button>
 
       <div className="product__info-bottom">
-        <div className="flex items-center gap-2 text-slate-400">
+        <div className="product__info-bottom-row">
           <span role="img" aria-label="delivery">
             🚚
           </span>
           <span>Dostawa od 1zł w 24h</span>
         </div>
-        <div className="flex items-center gap-2 text-slate-400">
+        <div className="product__info-bottom-row">
           <span role="img" aria-label="support">
             👨‍💻
           </span>

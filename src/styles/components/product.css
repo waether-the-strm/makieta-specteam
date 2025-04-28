@@ -17,6 +17,10 @@
   @apply hover:text-rose-400 transition-colors;
 }
 
+.product__breadcrumbs-current {
+  @apply font-semibold text-rose-500;
+}
+
 .product__content {
   @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-12;
 }
@@ -426,6 +430,10 @@ select {
 
 .product__info-bottom {
   @apply text-sm text-slate-400 space-y-2;
+}
+
+.product__info-bottom-row {
+  @apply flex items-center gap-2 text-slate-400;
 }
 
 /* Specyfikacje w tabeli - bardziej skompresowana struktura */
