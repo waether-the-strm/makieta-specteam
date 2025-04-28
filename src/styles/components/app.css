@@ -123,3 +123,48 @@
   @apply text-center border-t border-gray-800 mt-12 pt-6;
   @apply text-xs text-gray-500;
 }
+
+/* Animacja fadeIn dla modala koszyka */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animacja slide-down+fade dla popovera koszyka */
+@keyframes cartPopover {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-cartPopover {
+  animation: cartPopover 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Drawer slide-in animation */
+@keyframes cartDrawerDrawer {
+  from {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.animate-cartDrawerDrawer {
+  animation: cartDrawerDrawer 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
