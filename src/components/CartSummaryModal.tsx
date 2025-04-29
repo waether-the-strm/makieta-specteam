@@ -108,12 +108,6 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
           <motion.div
             ref={drawerRef}
             className="cart-summary cart-summary--drawer"
-            style={{
-              minWidth: 320,
-              display: 'flex',
-              flexDirection: 'column',
-              willChange: 'transform, opacity',
-            }}
             role="dialog"
             aria-modal="true"
             data-testid="cart-summary-modal"
@@ -131,7 +125,7 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
               <X className="cart-summary__close-icon" />
             </button>
             <h2 className="cart-summary__title">Twój koszyk</h2>
-            <div className="cart-summary__content" style={{ flex: 1, width: '100%' }}>
+            <div className="cart-summary__content">
               {items.length === 0 ? (
                 <div className="cart-summary__empty">
                   <div className="cart-summary__empty-icon" aria-hidden="true">
@@ -184,14 +178,9 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                               <span className="cart-summary__item-name">{item.name}</span>
                             </div>
                             {/* 2. Ilość + kontrolki */}
-                            <div
-                              className="cart-summary__item-row cart-summary__item-row--qty"
-                              style={{ display: 'flex', alignItems: 'center', gap: 12 }}
-                            >
-                              <div
-                                style={{ display: 'flex', alignItems: 'center', gap: 4, flex: 1 }}
-                              >
-                                <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                            <div className="cart-summary__item-row cart-summary__item-row--qty">
+                              <div className="cart-summary__item-row-qty-inner">
+                                <div className="cart-summary__item-row-qty-controls">
                                   <button
                                     className="cart-summary__quantity-btn"
                                     aria-label="Zmniejsz ilość"
@@ -275,53 +264,42 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                               <span className="cart-summary__item-name">{item.name}</span>
                             </div>
                             {/* 2. Ilość + kontrolki */}
-                            <div
-                              className="cart-summary__item-row cart-summary__item-row--qty"
-                              style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: 12,
-                                justifyContent: 'space-between',
-                              }}
-                            >
-                              <div
-                                style={{ display: 'flex', alignItems: 'center', gap: 4, flex: 1 }}
-                              >
-                                <button
-                                  className="cart-summary__quantity-btn"
-                                  aria-label="Zmniejsz ilość"
-                                  onClick={() =>
-                                    updateItemQuantity(
-                                      getCartItemKey(item),
-                                      Math.max(1, item.quantity - 1)
-                                    )
-                                  }
-                                  disabled={item.quantity <= 1}
-                                  data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
-                                >
-                                  -
-                                </button>
-                                <span className="cart-summary__quantity-value">
-                                  {item.quantity}
-                                </span>
-                                <button
-                                  className="cart-summary__quantity-btn"
-                                  aria-label="Zwiększ ilość"
-                                  onClick={() =>
-                                    updateItemQuantity(
-                                      getCartItemKey(item),
-                                      Math.min(10, item.quantity + 1)
-                                    )
-                                  }
-                                  disabled={item.quantity >= 10}
-                                  data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
-                                >
-                                  +
-                                </button>
-                                <span className="cart-summary__item-unit">szt.</span>
-                              </div>
-                              {/* 3. Cena */}
-                              <div className="cart-summary__item-row cart-summary__item-row--meta">
+                            <div className="cart-summary__item-row cart-summary__item-row--qty">
+                              <div className="cart-summary__item-row-qty-inner">
+                                <div className="cart-summary__item-row-qty-controls">
+                                  <button
+                                    className="cart-summary__quantity-btn"
+                                    aria-label="Zmniejsz ilość"
+                                    onClick={() =>
+                                      updateItemQuantity(
+                                        getCartItemKey(item),
+                                        Math.max(1, item.quantity - 1)
+                                      )
+                                    }
+                                    disabled={item.quantity <= 1}
+                                    data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
+                                  >
+                                    -
+                                  </button>
+                                  <span className="cart-summary__quantity-value">
+                                    {item.quantity}
+                                  </span>
+                                  <button
+                                    className="cart-summary__quantity-btn"
+                                    aria-label="Zwiększ ilość"
+                                    onClick={() =>
+                                      updateItemQuantity(
+                                        getCartItemKey(item),
+                                        Math.min(10, item.quantity + 1)
+                                      )
+                                    }
+                                    disabled={item.quantity >= 10}
+                                    data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
+                                  >
+                                    +
+                                  </button>
+                                  <span className="cart-summary__item-unit">szt.</span>
+                                </div>
                                 <div className="cart-summary__item-price">
                                   {item.price * item.quantity} zł
                                 </div>

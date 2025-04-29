@@ -236,3 +236,17 @@
 .cart-summary__quantity-value {
   @apply inline-block min-w-[2ch] text-center text-white font-semibold text-base mx-1;
 }
+
+.cart-summary__item-row-qty-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.cart-summary__item-row-qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
