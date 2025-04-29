@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
-interface CartItem {
+export interface CartItem {
   id: string
   name: string
   price: number
@@ -13,7 +13,8 @@ interface CartItem {
 interface CartContextType {
   items: CartItem[]
   addItem: (item: CartItem) => void
-  removeItem: (id: string) => void
+  removeItem: (key: string) => void
+  updateItemQuantity: (key: string, quantity: number) => void
   totalItems: number
   showNotification: boolean
   lastAddedItem: CartItem | null
@@ -58,12 +59,18 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }, 3000)
   }
 
-  const removeItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id))
+  const removeItem = (key: string) => {
+    setItems(items => items.filter(item => getCartItemKey(item) !== key))
   }
 
   const hideNotification = () => {
     setShowNotification(false)
+  }
+
+  const updateItemQuantity = (key: string, quantity: number) => {
+    setItems(items =>
+      items.map(item => (getCartItemKey(item) === key ? { ...item, quantity } : item))
+    )
   }
 
   // Calculate total items in cart
@@ -75,6 +82,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         items,
         addItem,
         removeItem,
+        updateItemQuantity,
         totalItems,
         showNotification,
         lastAddedItem,
@@ -92,4 +100,13 @@ export const useCart = () => {
     throw new Error('useCart must be used within a CartProvider')
   }
   return context
+}
+
+export const getCartItemKey = (item: CartItem): string => {
+  return [
+    item.id,
+    item.isRental,
+    item.rentalPeriod,
+    item.rentalDate instanceof Date ? item.rentalDate.toISOString() : item.rentalDate,
+  ].join('|')
 }

@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { useCart } from '../hooks/useCart'
 import { X, Trash2, Calendar, ShoppingBag } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import type { CartItem } from '../hooks/useCart'
+import { getCartItemKey } from '../hooks/useCart'
 
 interface CartSummaryDrawerProps {
   isOpen: boolean
@@ -33,7 +35,7 @@ const drawerVariants = {
 }
 
 const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }) => {
-  const { items, removeItem } = useCart()
+  const { items, removeItem, updateItemQuantity } = useCart()
   const drawerRef = useRef<HTMLDivElement>(null)
 
   // Zamknięcie ESC
@@ -83,6 +85,12 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
     if (period === 'weekly') return quantity === 1 ? '1 tydzień' : `${quantity} tygodni`
     if (period === 'monthly') return quantity === 1 ? '1 miesiąc' : `${quantity} miesięcy`
     return period
+  }
+
+  // 2. Popraw funkcję removeItem, aby przyjmowała pełny klucz pozycji
+  const handleRemoveItem = (item: CartItem) => {
+    // Usuwamy po wszystkich właściwościach, nie tylko id
+    removeItem(getCartItemKey(item))
   }
 
   return (
@@ -161,18 +169,51 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                       </div>
                       <ul className="cart-summary__items">
                         {rentalItems.map(item => (
-                          <li key={item.id} className="cart-summary__item">
+                          <li key={getCartItemKey(item)} className="cart-summary__item">
                             <div className="cart-summary__item-header">
                               <span className="cart-summary__item-name">
                                 {item.name}{' '}
                                 <span className="cart-summary__item-quantity">
-                                  {item.quantity} szt.
+                                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <button
+                                      className="cart-summary__quantity-btn"
+                                      aria-label="Zmniejsz ilość"
+                                      onClick={() =>
+                                        updateItemQuantity(
+                                          getCartItemKey(item),
+                                          Math.max(1, item.quantity - 1)
+                                        )
+                                      }
+                                      disabled={item.quantity <= 1}
+                                      data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
+                                    >
+                                      -
+                                    </button>
+                                    <span className="cart-summary__quantity-value">
+                                      {item.quantity}
+                                    </span>
+                                    <button
+                                      className="cart-summary__quantity-btn"
+                                      aria-label="Zwiększ ilość"
+                                      onClick={() =>
+                                        updateItemQuantity(
+                                          getCartItemKey(item),
+                                          Math.min(10, item.quantity + 1)
+                                        )
+                                      }
+                                      disabled={item.quantity >= 10}
+                                      data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                  szt.
                                 </span>
                               </span>
                               <button
                                 className="cart-summary__item-remove"
                                 title="Usuń z koszyka"
-                                onClick={() => removeItem(item.id)}
+                                onClick={() => handleRemoveItem(item)}
                               >
                                 <Trash2 size={16} />
                               </button>
@@ -208,18 +249,51 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                       </div>
                       <ul className="cart-summary__items">
                         {purchaseItems.map(item => (
-                          <li key={item.id} className="cart-summary__item">
+                          <li key={getCartItemKey(item)} className="cart-summary__item">
                             <div className="cart-summary__item-header">
                               <span className="cart-summary__item-name">
                                 {item.name}{' '}
                                 <span className="cart-summary__item-quantity">
-                                  {item.quantity} szt.
+                                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <button
+                                      className="cart-summary__quantity-btn"
+                                      aria-label="Zmniejsz ilość"
+                                      onClick={() =>
+                                        updateItemQuantity(
+                                          getCartItemKey(item),
+                                          Math.max(1, item.quantity - 1)
+                                        )
+                                      }
+                                      disabled={item.quantity <= 1}
+                                      data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
+                                    >
+                                      -
+                                    </button>
+                                    <span className="cart-summary__quantity-value">
+                                      {item.quantity}
+                                    </span>
+                                    <button
+                                      className="cart-summary__quantity-btn"
+                                      aria-label="Zwiększ ilość"
+                                      onClick={() =>
+                                        updateItemQuantity(
+                                          getCartItemKey(item),
+                                          Math.min(10, item.quantity + 1)
+                                        )
+                                      }
+                                      disabled={item.quantity >= 10}
+                                      data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
+                                    >
+                                      +
+                                    </button>
+                                  </div>
+                                  szt.
                                 </span>
                               </span>
                               <button
                                 className="cart-summary__item-remove"
                                 title="Usuń z koszyka"
-                                onClick={() => removeItem(item.id)}
+                                onClick={() => handleRemoveItem(item)}
                               >
                                 <Trash2 size={16} />
                               </button>

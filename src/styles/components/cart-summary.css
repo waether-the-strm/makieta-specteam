@@ -168,3 +168,15 @@
     @apply mx-auto top-5 bottom-5 left-0 right-0 border-none min-w-0 translate-x-0 translate-y-0 rounded-xl shadow-md;
   }
 }
+
+.cart-summary__quantity-btn {
+  @apply w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center mx-1 transition-colors;
+  @apply hover:bg-rose-600 hover:text-white disabled:bg-slate-800 disabled:text-slate-500;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.cart-summary__quantity-value {
+  @apply inline-block min-w-[2ch] text-center text-white font-semibold text-base mx-1;
+}
