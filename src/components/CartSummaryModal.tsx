@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useCart } from '../hooks/useCart'
-import { X, Trash2 } from 'lucide-react'
+import { X, Trash2, Calendar, ShoppingBag } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface CartSummaryDrawerProps {
@@ -60,7 +60,30 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
 
   if (!isOpen) return null
 
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  // Podział elementów na wypożyczenia i zakupy
+  const rentalItems = items.filter(item => item.isRental)
+  const purchaseItems = items.filter(item => !item.isRental)
+
+  // Obliczenie sum dla poszczególnych sekcji i sumy całkowitej
+  const rentalTotal = rentalItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const purchaseTotal = purchaseItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const total = rentalTotal + purchaseTotal
+
+  // Format daty w czytelny sposób
+  const formatDate = (date: Date | string) => {
+    if (date instanceof Date) {
+      return date.toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' })
+    }
+    return String(date)
+  }
+
+  // Funkcja pomocnicza do określenia odpowiedniego tekstu dla okresu wypożyczenia
+  const getRentalPeriodText = (period: string, quantity: number) => {
+    if (period === 'daily') return quantity === 1 ? '1 dzień' : `${quantity} dni`
+    if (period === 'weekly') return quantity === 1 ? '1 tydzień' : `${quantity} tygodni`
+    if (period === 'monthly') return quantity === 1 ? '1 miesiąc' : `${quantity} miesięcy`
+    return period
+  }
 
   return (
     <AnimatePresence>
@@ -128,65 +151,104 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                   </div>
                 </div>
               ) : (
-                <>
-                  <ul className="cart-summary__list">
-                    {items.map(item => (
-                      <li key={item.id} className="cart-summary__item">
-                        <div className="cart-summary__item-row">
-                          <span className="cart-summary__item-name">{item.name}</span>
-                          <span className="cart-summary__item-price">
-                            {item.price * item.quantity} zł
-                          </span>
-                          <button
-                            className="cart-summary__item-remove"
-                            title="Usuń z koszyka"
-                            onClick={() => removeItem(item.id)}
-                          >
-                            <Trash2 size={18} />
-                          </button>
-                        </div>
-                        <div className="cart-summary__item-table">
-                          <div className="cart-summary__item-table-row">
-                            <span className="cart-summary__item-table-label">Ilość:</span>
-                            <span className="cart-summary__item-table-value">{item.quantity}</span>
-                          </div>
-                          <div className="cart-summary__item-table-row">
-                            <span className="cart-summary__item-table-label">Typ:</span>
-                            <span className="cart-summary__item-table-value">
-                              {item.isRental ? 'Wypożyczenie' : 'Zakup'}
-                            </span>
-                          </div>
-                          {item.isRental && item.rentalPeriod && (
-                            <div className="cart-summary__item-table-row">
-                              <span className="cart-summary__item-table-label">Okres:</span>
-                              <span className="cart-summary__item-table-value">
-                                {item.rentalPeriod}
+                <div className="cart-summary__sections">
+                  {/* SEKCJA WYPOŻYCZENIA */}
+                  {rentalItems.length > 0 && (
+                    <div className="cart-summary__section">
+                      <div className="cart-summary__section-header">
+                        <Calendar size={16} className="cart-summary__section-icon" />
+                        <h3 className="cart-summary__section-title">Wypożyczenie</h3>
+                      </div>
+                      <ul className="cart-summary__items">
+                        {rentalItems.map(item => (
+                          <li key={item.id} className="cart-summary__item">
+                            <div className="cart-summary__item-header">
+                              <span className="cart-summary__item-name">
+                                {item.name}{' '}
+                                <span className="cart-summary__item-quantity">
+                                  {item.quantity} szt.
+                                </span>
                               </span>
+                              <button
+                                className="cart-summary__item-remove"
+                                title="Usuń z koszyka"
+                                onClick={() => removeItem(item.id)}
+                              >
+                                <Trash2 size={16} />
+                              </button>
                             </div>
-                          )}
-                          {item.isRental && item.rentalDate && (
-                            <div className="cart-summary__item-table-row">
-                              <span className="cart-summary__item-table-label">Data:</span>
-                              <span className="cart-summary__item-table-value">
-                                {item.rentalDate instanceof Date
-                                  ? item.rentalDate.toLocaleDateString()
-                                  : String(item.rentalDate)}
-                              </span>
+
+                            <div className="cart-summary__item-details">
+                              {item.rentalPeriod && (
+                                <div className="cart-summary__item-period">
+                                  {getRentalPeriodText(item.rentalPeriod, 1)}
+                                  {item.rentalDate && <> od {formatDate(item.rentalDate)}</>}
+                                </div>
+                              )}
+                              <div className="cart-summary__item-price">
+                                {item.price * item.quantity} zł
+                              </div>
                             </div>
-                          )}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  {items.length > 0 && (
-                    <div className="cart-summary__total-row cart-summary__total-row--footer">
-                      <span className="cart-summary__total-label">Suma:</span>
-                      <span className="cart-summary__total-value">{total} zł</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="cart-summary__section-total">
+                        <span>Razem wypożyczenia:</span>
+                        <span>{rentalTotal} zł</span>
+                      </div>
                     </div>
                   )}
-                </>
+
+                  {/* SEKCJA ZAKUPY */}
+                  {purchaseItems.length > 0 && (
+                    <div className="cart-summary__section">
+                      <div className="cart-summary__section-header">
+                        <ShoppingBag size={16} className="cart-summary__section-icon" />
+                        <h3 className="cart-summary__section-title">Zakup</h3>
+                      </div>
+                      <ul className="cart-summary__items">
+                        {purchaseItems.map(item => (
+                          <li key={item.id} className="cart-summary__item">
+                            <div className="cart-summary__item-header">
+                              <span className="cart-summary__item-name">
+                                {item.name}{' '}
+                                <span className="cart-summary__item-quantity">
+                                  {item.quantity} szt.
+                                </span>
+                              </span>
+                              <button
+                                className="cart-summary__item-remove"
+                                title="Usuń z koszyka"
+                                onClick={() => removeItem(item.id)}
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            </div>
+
+                            <div className="cart-summary__item-details">
+                              <div className="cart-summary__item-price">
+                                {item.price * item.quantity} zł
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="cart-summary__section-total">
+                        <span>Razem zakupy:</span>
+                        <span>{purchaseTotal} zł</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* SUMA CAŁKOWITA */}
+                  <div className="cart-summary__total">
+                    <span className="cart-summary__total-label">Suma:</span>
+                    <span className="cart-summary__total-value">{total} zł</span>
+                  </div>
+                </div>
               )}
             </div>
+
             <div className="cart-summary__actions">
               <button
                 className="cart-summary__checkout-btn"
