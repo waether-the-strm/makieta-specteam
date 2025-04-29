@@ -9,6 +9,10 @@
   min-width: 320px;
   max-width: 420px;
   width: 100%;
+  -webkit-transform: translateX(-50%) translateZ(0);
+  transform: translateX(-50%) translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @media (max-width: 480px) {

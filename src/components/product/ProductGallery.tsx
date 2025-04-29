@@ -69,6 +69,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
             animate="center"
             exit="exit"
             className="w-full h-full object-contain absolute inset-0"
+            style={{ willChange: 'opacity, transform' }}
           />
         </AnimatePresence>
       </div>

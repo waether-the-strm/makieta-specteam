@@ -32,7 +32,8 @@ const CartNotification: React.FC = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          style={{ willChange: 'transform, opacity' }}
         >
           <div className="cart-notification__header">
             <div className="cart-notification__header-content">

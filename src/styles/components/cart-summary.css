@@ -2,10 +2,18 @@
 
 .cart-summary__overlay {
   @apply fixed inset-0 z-40 bg-black/40 transition-opacity backdrop-blur-[1px];
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: opacity;
 }
 
 .cart-summary {
   @apply fixed top-5 bottom-5 right-5 h-auto left-auto z-50 max-w-[400px] w-full bg-slate-800 shadow-2xl border-l border-slate-700 flex flex-col rounded-xl gap-y-5;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .cart-summary--drawer {
@@ -151,29 +159,21 @@
 /* Drawer slide-in animation for cart summary */
 @keyframes cartSummarySlideIn {
   from {
-    transform: translateX(100%);
+    transform: translate3d(100%, 0, 0);
     opacity: 0.7;
   }
   to {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
 .cart-summary--slide-in {
   animation: cartSummarySlideIn 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 @media (max-width: 640px) {
   .cart-summary {
-    left: 50%;
-    right: auto;
-    top: 5vw;
-    bottom: 5vw;
-    transform: translate(-50%, 0);
-    max-width: 95vw;
-    min-width: 0;
-    border-radius: 1.25rem;
-    border: none;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    @apply mx-auto top-5 bottom-5 left-0 right-0 border-none min-w-0 translate-x-0 translate-y-0 rounded-xl shadow-md;
   }
 }
