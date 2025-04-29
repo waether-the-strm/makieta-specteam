@@ -170,64 +170,75 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                       <ul className="cart-summary__items">
                         {rentalItems.map(item => (
                           <li key={getCartItemKey(item)} className="cart-summary__item">
-                            <div className="cart-summary__item-header">
-                              <span className="cart-summary__item-name">
-                                {item.name}{' '}
-                                <span className="cart-summary__item-quantity">
-                                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <button
-                                      className="cart-summary__quantity-btn"
-                                      aria-label="Zmniejsz ilość"
-                                      onClick={() =>
-                                        updateItemQuantity(
-                                          getCartItemKey(item),
-                                          Math.max(1, item.quantity - 1)
-                                        )
-                                      }
-                                      disabled={item.quantity <= 1}
-                                      data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
-                                    >
-                                      -
-                                    </button>
-                                    <span className="cart-summary__quantity-value">
-                                      {item.quantity}
-                                    </span>
-                                    <button
-                                      className="cart-summary__quantity-btn"
-                                      aria-label="Zwiększ ilość"
-                                      onClick={() =>
-                                        updateItemQuantity(
-                                          getCartItemKey(item),
-                                          Math.min(10, item.quantity + 1)
-                                        )
-                                      }
-                                      disabled={item.quantity >= 10}
-                                      data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
-                                    >
-                                      +
-                                    </button>
-                                  </div>
-                                  szt.
-                                </span>
-                              </span>
-                              <button
-                                className="cart-summary__item-remove"
-                                title="Usuń z koszyka"
-                                onClick={() => handleRemoveItem(item)}
-                              >
-                                <Trash2 size={16} />
-                              </button>
+                            {/* Kosz w prawym górnym rogu */}
+                            <button
+                              className="cart-summary__item-remove cart-summary__item-remove--corner"
+                              title="Usuń z koszyka"
+                              onClick={() => handleRemoveItem(item)}
+                              tabIndex={0}
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                            {/* 1. Nazwa */}
+                            <div className="cart-summary__item-row cart-summary__item-row--name">
+                              <span className="cart-summary__item-name">{item.name}</span>
                             </div>
-
-                            <div className="cart-summary__item-details">
-                              {item.rentalPeriod && (
-                                <div className="cart-summary__item-period">
-                                  {getRentalPeriodText(item.rentalPeriod, 1)}
-                                  {item.rentalDate && <> od {formatDate(item.rentalDate)}</>}
+                            {/* 2. Ilość + kontrolki */}
+                            <div
+                              className="cart-summary__item-row cart-summary__item-row--qty"
+                              style={{ display: 'flex', alignItems: 'center', gap: 12 }}
+                            >
+                              <div
+                                style={{ display: 'flex', alignItems: 'center', gap: 4, flex: 1 }}
+                              >
+                                <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+                                  <button
+                                    className="cart-summary__quantity-btn"
+                                    aria-label="Zmniejsz ilość"
+                                    onClick={() =>
+                                      updateItemQuantity(
+                                        getCartItemKey(item),
+                                        Math.max(1, item.quantity - 1)
+                                      )
+                                    }
+                                    disabled={item.quantity <= 1}
+                                    data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
+                                  >
+                                    -
+                                  </button>
+                                  <span className="cart-summary__quantity-value">
+                                    {item.quantity}
+                                  </span>
+                                  <button
+                                    className="cart-summary__quantity-btn"
+                                    aria-label="Zwiększ ilość"
+                                    onClick={() =>
+                                      updateItemQuantity(
+                                        getCartItemKey(item),
+                                        Math.min(10, item.quantity + 1)
+                                      )
+                                    }
+                                    disabled={item.quantity >= 10}
+                                    data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
+                                  >
+                                    +
+                                  </button>
+                                  <span className="cart-summary__item-unit">szt.</span>
                                 </div>
-                              )}
-                              <div className="cart-summary__item-price">
-                                {item.price * item.quantity} zł
+                                <div className="cart-summary__item-price">
+                                  {item.price * item.quantity} zł
+                                </div>
+                              </div>
+                            </div>
+                            {/* 3. Okres */}
+                            <div className="cart-summary__item-row cart-summary__item-row--meta">
+                              <div className="cart-summary__item-period">
+                                {item.rentalPeriod && (
+                                  <>
+                                    {getRentalPeriodText(item.rentalPeriod, 1)}
+                                    {item.rentalDate && <> od {formatDate(item.rentalDate)}</>}
+                                  </>
+                                )}
                               </div>
                             </div>
                           </li>
@@ -250,58 +261,70 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                       <ul className="cart-summary__items">
                         {purchaseItems.map(item => (
                           <li key={getCartItemKey(item)} className="cart-summary__item">
-                            <div className="cart-summary__item-header">
-                              <span className="cart-summary__item-name">
-                                {item.name}{' '}
-                                <span className="cart-summary__item-quantity">
-                                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <button
-                                      className="cart-summary__quantity-btn"
-                                      aria-label="Zmniejsz ilość"
-                                      onClick={() =>
-                                        updateItemQuantity(
-                                          getCartItemKey(item),
-                                          Math.max(1, item.quantity - 1)
-                                        )
-                                      }
-                                      disabled={item.quantity <= 1}
-                                      data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
-                                    >
-                                      -
-                                    </button>
-                                    <span className="cart-summary__quantity-value">
-                                      {item.quantity}
-                                    </span>
-                                    <button
-                                      className="cart-summary__quantity-btn"
-                                      aria-label="Zwiększ ilość"
-                                      onClick={() =>
-                                        updateItemQuantity(
-                                          getCartItemKey(item),
-                                          Math.min(10, item.quantity + 1)
-                                        )
-                                      }
-                                      disabled={item.quantity >= 10}
-                                      data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
-                                    >
-                                      +
-                                    </button>
-                                  </div>
-                                  szt.
-                                </span>
-                              </span>
-                              <button
-                                className="cart-summary__item-remove"
-                                title="Usuń z koszyka"
-                                onClick={() => handleRemoveItem(item)}
-                              >
-                                <Trash2 size={16} />
-                              </button>
+                            {/* Kosz w prawym górnym rogu */}
+                            <button
+                              className="cart-summary__item-remove cart-summary__item-remove--corner"
+                              title="Usuń z koszyka"
+                              onClick={() => handleRemoveItem(item)}
+                              tabIndex={0}
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                            {/* 1. Nazwa */}
+                            <div className="cart-summary__item-row cart-summary__item-row--name">
+                              <span className="cart-summary__item-name">{item.name}</span>
                             </div>
-
-                            <div className="cart-summary__item-details">
-                              <div className="cart-summary__item-price">
-                                {item.price * item.quantity} zł
+                            {/* 2. Ilość + kontrolki */}
+                            <div
+                              className="cart-summary__item-row cart-summary__item-row--qty"
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 12,
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <div
+                                style={{ display: 'flex', alignItems: 'center', gap: 4, flex: 1 }}
+                              >
+                                <button
+                                  className="cart-summary__quantity-btn"
+                                  aria-label="Zmniejsz ilość"
+                                  onClick={() =>
+                                    updateItemQuantity(
+                                      getCartItemKey(item),
+                                      Math.max(1, item.quantity - 1)
+                                    )
+                                  }
+                                  disabled={item.quantity <= 1}
+                                  data-testid={`cart-item-qty-decrease-${getCartItemKey(item)}`}
+                                >
+                                  -
+                                </button>
+                                <span className="cart-summary__quantity-value">
+                                  {item.quantity}
+                                </span>
+                                <button
+                                  className="cart-summary__quantity-btn"
+                                  aria-label="Zwiększ ilość"
+                                  onClick={() =>
+                                    updateItemQuantity(
+                                      getCartItemKey(item),
+                                      Math.min(10, item.quantity + 1)
+                                    )
+                                  }
+                                  disabled={item.quantity >= 10}
+                                  data-testid={`cart-item-qty-increase-${getCartItemKey(item)}`}
+                                >
+                                  +
+                                </button>
+                                <span className="cart-summary__item-unit">szt.</span>
+                              </div>
+                              {/* 3. Cena */}
+                              <div className="cart-summary__item-row cart-summary__item-row--meta">
+                                <div className="cart-summary__item-price">
+                                  {item.price * item.quantity} zł
+                                </div>
                               </div>
                             </div>
                           </li>

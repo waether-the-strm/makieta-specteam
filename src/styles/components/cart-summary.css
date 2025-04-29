@@ -59,15 +59,83 @@
 }
 
 .cart-summary__item {
-  @apply bg-slate-900/80 rounded-lg p-3 flex flex-col gap-2;
+  @apply bg-slate-900/80 rounded-lg p-4 flex flex-col gap-0;
+  margin-bottom: 0.5rem;
+  position: relative;
 }
 
-.cart-summary__item-header {
-  @apply flex justify-between items-center gap-2;
+.cart-summary__item-row {
+  width: 100%;
+  margin-bottom: 0.25rem;
+}
+.cart-summary__item-row--name {
+  margin-bottom: 0.25rem;
+}
+.cart-summary__item-row--qty {
+  margin-bottom: 0.25rem;
+  min-height: 40px;
+}
+.cart-summary__item-row--meta {
+  margin-top: 0.25rem;
+  font-size: 0.97rem;
+  color: #bfc6d1;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 4;
+  text-align: right;
+}
+.cart-summary__item-unit {
+  @apply ml-2 text-slate-400 text-base font-normal;
+  display: inline-block;
+  min-width: 2.5ch;
+  text-align: left;
+}
+
+.cart-summary__item-remove {
+  margin-left: auto;
+  margin-right: 0;
+  align-self: center;
+}
+
+.cart-summary__item-remove--corner {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cart-summary__item:hover .cart-summary__item-remove--corner {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cart-summary__item-remove--corner {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.cart-summary__item-price {
+  @apply text-rose-400 font-bold text-base;
+  font-size: 1.25rem;
+  margin-left: 1rem;
+  text-align: right;
 }
 
 .cart-summary__item-name {
-  @apply text-white font-medium;
+  @apply text-white font-medium text-lg;
+}
+
+.cart-summary__item-period {
+  @apply text-sm text-slate-300;
+  font-size: 1rem;
 }
 
 .cart-summary__item-quantity {
@@ -76,18 +144,6 @@
 
 .cart-summary__item-details {
   @apply flex justify-between items-center gap-2;
-}
-
-.cart-summary__item-period {
-  @apply text-sm text-slate-300;
-}
-
-.cart-summary__item-price {
-  @apply text-rose-400 font-bold text-base;
-}
-
-.cart-summary__item-remove {
-  @apply p-1 rounded hover:bg-slate-700 text-slate-400 hover:text-rose-500 transition-colors;
 }
 
 .cart-summary__section-total {
