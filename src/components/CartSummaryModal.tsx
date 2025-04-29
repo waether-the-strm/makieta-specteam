@@ -313,17 +313,15 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
                       </div>
                     </div>
                   )}
-
-                  {/* SUMA CAŁKOWITA */}
-                  <div className="cart-summary__total">
-                    <span className="cart-summary__total-label">Suma:</span>
-                    <span className="cart-summary__total-value">{total} zł</span>
-                  </div>
                 </div>
               )}
             </div>
 
             <div className="cart-summary__actions">
+              <div className="cart-summary__total">
+                <span className="cart-summary__total-label">Suma:</span>
+                <span className="cart-summary__total-value">{total} zł</span>
+              </div>
               <button
                 className="cart-summary__checkout-btn"
                 disabled={items.length === 0}
