@@ -47,8 +47,9 @@ const CartSummarySection: React.FC<CartSummarySectionProps> = ({
           />
         ))}
       </ul>
-      <div className="cart-summary__section-total">
-        <span>{isRentalSection ? 'Razem wypożyczenia:' : 'Razem zakupy:'}</span>
+      <div className="cart-summary__section-total text-slate-500">
+        {/* <span>{isRentalSection ? 'Razem wypożyczenia:' : 'Razem zakupy:'}</span> */}
+        <hr className="border-slate-700 flex-1 border-t mr-5 " /> {/* TODO: tailwind hr */}
         <span>{sectionTotal} zł</span>
       </div>
     </div>
