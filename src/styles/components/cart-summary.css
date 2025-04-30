@@ -59,64 +59,51 @@
 }
 
 .cart-summary__item {
-  @apply bg-slate-900/80 rounded-lg p-3 flex flex-col gap-0;
-  margin-bottom: 0.5rem;
-  position: relative;
+  @apply bg-slate-900/80 rounded-lg p-3 flex flex-col gap-0 mb-2 relative;
 }
 
 .cart-summary__item-row {
-  width: 100%;
-  margin-bottom: 0.25rem;
+  @apply w-full mb-1;
 }
+
 .cart-summary__item-row--name {
-  margin-bottom: 0.25rem;
-  display: flex;
+  @apply mb-1 flex;
 }
+
 .cart-summary__item-row--qty {
-  margin-bottom: 0.25rem;
+  @apply mb-1;
 }
+
 .cart-summary__item-row--meta {
-  margin-top: 0.25rem;
-  font-size: 0.97rem;
-  color: #bfc6d1;
-  justify-content: start;
+  @apply text-slate-300 flex justify-start;
+  margin-top: -0.25rem;
+  margin-bottom: 0.7rem;
 }
+
 .cart-summary__item-unit {
-  @apply ml-2 text-slate-400 text-base font-normal;
-  display: inline-block;
-  min-width: 2.5ch;
-  text-align: left;
+  @apply ml-2 text-slate-400 text-base font-normal inline-block min-w-[2.5ch] text-left;
 }
 
 .cart-summary__item-remove {
-  margin-left: auto;
-  margin-right: 0;
-  align-self: center;
+  @apply ml-auto mr-0 self-center;
 }
 
 .cart-summary__item-row-qty-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: auto;
+  @apply flex items-center gap-2 ml-auto;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .cart-summary__item-remove {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
+    @apply opacity-0 pointer-events-none transition-opacity;
   }
   .cart-summary__item:hover .cart-summary__item-remove {
-    opacity: 1;
-    pointer-events: auto;
+    @apply opacity-100 pointer-events-auto;
   }
 }
 
 @media (hover: none), (pointer: coarse) {
   .cart-summary__item-remove {
-    opacity: 1;
-    pointer-events: auto;
+    @apply opacity-100 pointer-events-auto;
   }
 }
 
@@ -130,7 +117,6 @@
 
 .cart-summary__item-period {
   @apply text-sm text-slate-300;
-  font-size: 1rem;
 }
 
 .cart-summary__item-quantity {
@@ -221,12 +207,7 @@
 }
 
 .cart-summary__quantity-btn {
-  @apply w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center mx-1 transition-colors;
-  @apply hover:bg-rose-600 hover:text-white disabled:bg-slate-800 disabled:text-slate-500;
-  padding-bottom: 0.1rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
+  @apply w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center mx-1 transition-colors hover:bg-rose-600 hover:text-white disabled:bg-slate-800 disabled:text-slate-500 pb-[0.1rem] border-none outline-none cursor-pointer;
 }
 
 .cart-summary__quantity-value {
@@ -234,15 +215,9 @@
 }
 
 .cart-summary__item-row-qty-inner {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
+  @apply flex items-center gap-3 w-full;
 }
 
 .cart-summary__item-row-qty-controls {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex: 1;
+  @apply flex items-center gap-1 flex-1;
 }

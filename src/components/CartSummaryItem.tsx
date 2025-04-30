@@ -35,7 +35,20 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
           <Trash2 size={18} />
         </button>
       </div>
-      {/* 2. Ilość + kontrolki + cena  */}
+      {/* 2. Okres/metadane */}
+      {isRentalSection ? (
+        <div className="cart-summary__item-row cart-summary__item-row--meta">
+          <div className="cart-summary__item-period">
+            {item.rentalPeriod && (
+              <>
+                {getRentalPeriodText(item.rentalPeriod, 1)}
+                {item.rentalDate && <> od {formatDate(item.rentalDate)}</>}
+              </>
+            )}
+          </div>
+        </div>
+      ) : null}
+      {/* 3. Ilość + kontrolki + cena  */}
       <div className="cart-summary__item-row cart-summary__item-row--qty">
         <div className="cart-summary__item-row-qty-inner">
           <div className="cart-summary__item-row-qty-controls">
@@ -67,19 +80,6 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
           </div>
         </div>
       </div>
-      {/* 3. Okres/metadane */}
-      {isRentalSection ? (
-        <div className="cart-summary__item-row cart-summary__item-row--meta">
-          <div className="cart-summary__item-period">
-            {item.rentalPeriod && (
-              <>
-                {getRentalPeriodText(item.rentalPeriod, 1)}
-                {item.rentalDate && <> od {formatDate(item.rentalDate)}</>}
-              </>
-            )}
-          </div>
-        </div>
-      ) : null}
     </li>
   )
 }
