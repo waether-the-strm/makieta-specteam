@@ -31,7 +31,7 @@ export default function RentalPage() {
         </div>
       </section>
 
-      <section className="about">
+      <section className="about section">
         <div className="container">
           <h2 className="section-title ml-60 text-slate-100">O nas</h2>
           <div className="about__content">

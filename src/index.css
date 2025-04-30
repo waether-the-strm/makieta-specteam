@@ -1,11 +1,11 @@
-@import "./styles/components/navbar.css";
-@import "./styles/components/hero.css";
-@import "./styles/components/products.css";
-@import "./styles/components/about.css";
-@import "./styles/components/faq.css";
-@import "./styles/components/contact.css";
-@import "./styles/components/footer.css";
-@import "./styles/components/search.css";
+@import './styles/components/navbar.css';
+@import './styles/components/hero.css';
+@import './styles/components/products.css';
+@import './styles/components/about.css';
+@import './styles/components/faq.css';
+@import './styles/components/contact.css';
+@import './styles/components/footer.css';
+@import './styles/components/search.css';
 
 @tailwind base;
 @tailwind components;
@@ -78,6 +78,52 @@
 
   .section {
     @apply py-12;
+  }
+
+  .panel-dark {
+    @apply bg-slate-800 rounded-lg shadow-lg p-6;
+  }
+  .list-item-dark {
+    @apply bg-slate-900/80 rounded-lg p-3;
+  }
+
+  .btn-action-primary {
+    @apply w-full bg-rose-600 hover:bg-rose-700 text-white py-3 rounded-lg font-medium transition-colors;
+  }
+  .btn-icon-control {
+    @apply w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center transition-colors hover:bg-rose-600 disabled:bg-slate-800 disabled:text-slate-500;
+  }
+  .tab-button {
+    @apply py-4 px-6 transition-colors text-center flex-1 font-bold text-base tracking-wide uppercase;
+  }
+  .tab-button--inactive {
+    @apply bg-slate-700 text-slate-300 hover:bg-slate-600;
+  }
+  .tab-button--active {
+    @apply text-white bg-transparent;
+  }
+
+  .text-label-lg {
+    @apply text-white text-lg font-medium;
+  }
+  .text-value-xl-bold {
+    @apply text-white text-xl font-bold;
+  }
+  .text-meta {
+    @apply text-sm text-slate-300;
+  }
+  .text-meta-light {
+    @apply text-sm text-slate-400;
+  }
+  .text-price-highlight {
+    @apply text-rose-400 font-bold text-xl;
+  }
+  .text-title-section {
+    @apply text-base font-semibold text-white;
+  }
+
+  .flex-between-center {
+    @apply flex justify-between items-center;
   }
 }
 

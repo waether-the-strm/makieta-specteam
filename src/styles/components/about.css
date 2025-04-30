@@ -1,6 +1,6 @@
 /* About Component */
 .about {
-  @apply section bg-slate-900/95 md:py-28 md:mt-28 mb-16 shadow-md w-full mx-auto;
+  @apply /*section*/ bg-slate-900/95 md:py-28 md:mt-28 mb-16 shadow-md w-full mx-auto;
 }
 
 .about__content {

@@ -25,7 +25,7 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
     <li key={getCartItemKey(item)} className="cart-summary__item">
       {/* 1. Nazwa */}
       <div className="cart-summary__item-row cart-summary__item-row--name">
-        <span className="cart-summary__item-name">{item.name}</span>
+        <span className="text-label-lg">{item.name}</span>
         <button
           className="cart-summary__item-remove"
           title="Usuń z koszyka"
@@ -38,7 +38,7 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
       {/* 2. Okres/metadane */}
       {isRentalSection ? (
         <div className="cart-summary__item-row cart-summary__item-row--meta">
-          <div className="cart-summary__item-period">
+          <div className="text-meta">
             {item.rentalPeriod && (
               <>
                 {getRentalPeriodText(item.rentalPeriod, 1)}
