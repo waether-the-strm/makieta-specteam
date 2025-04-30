@@ -23,20 +23,19 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
 }) => {
   return (
     <li key={getCartItemKey(item)} className="cart-summary__item">
-      {/* Kosz w prawym górnym rogu */}
-      <button
-        className="cart-summary__item-remove cart-summary__item-remove--corner"
-        title="Usuń z koszyka"
-        onClick={() => onRemove(item)}
-        tabIndex={0}
-      >
-        <Trash2 size={18} />
-      </button>
       {/* 1. Nazwa */}
       <div className="cart-summary__item-row cart-summary__item-row--name">
         <span className="cart-summary__item-name">{item.name}</span>
+        <button
+          className="cart-summary__item-remove"
+          title="Usuń z koszyka"
+          onClick={() => onRemove(item)}
+          tabIndex={0}
+        >
+          <Trash2 size={18} />
+        </button>
       </div>
-      {/* 2. Ilość + kontrolki + cena */}
+      {/* 2. Ilość + kontrolki + cena  */}
       <div className="cart-summary__item-row cart-summary__item-row--qty">
         <div className="cart-summary__item-row-qty-inner">
           <div className="cart-summary__item-row-qty-controls">
@@ -63,7 +62,9 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
             </button>
             <span className="cart-summary__item-unit">szt.</span>
           </div>
-          <div className="cart-summary__item-price">{item.price * item.quantity} zł</div>
+          <div className="cart-summary__item-row-qty-right">
+            <div className="cart-summary__item-price">{item.price * item.quantity} zł</div>
+          </div>
         </div>
       </div>
       {/* 3. Okres/metadane */}
