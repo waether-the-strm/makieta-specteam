@@ -1,10 +1,10 @@
 /* About Component */
 .about {
-  @apply section bg-slate-900/95 shadow-lg md:py-28 md:mt-28 mb-16 shadow-md w-full mx-auto;
+  @apply section bg-slate-900/95 md:py-28 md:mt-28 mb-16 shadow-md w-full mx-auto;
 }
 
 .about__content {
-  @apply grid grid-cols-[auto_1fr] gap-8;
+  @apply grid grid-cols-2 gap-8;
 }
 
 .about__text {
