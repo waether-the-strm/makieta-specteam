@@ -8,7 +8,7 @@
 }
 
 .about__logo {
-  @apply w-full max-w-40 lg:mx-14 mb-6 md:mb-0 flex items-center lg:justify-center h-full mx-auto md:col-span-1 md:row-span-2;
+  @apply w-full max-w-40 mb-6 md:mb-0 flex items-center lg:justify-center h-full mx-auto md:col-span-1 md:row-span-2;
 }
 
 .about__text {

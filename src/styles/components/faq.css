@@ -1,15 +1,35 @@
 /* FAQ Component */
 .faq {
-  @apply  section space-y-6;
+  @apply section space-y-6;
 }
 .faq__title {
   @apply section-title;
 }
 .faq__list {
-  @apply gap-5 grid grid-cols-1 md:grid-cols-3;
+  @apply gap-5 flex flex-row overflow-x-auto px-4 touch-pan-x md:grid md:grid-cols-3 md:px-0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+@media (min-width: 768px) {
+  .faq__list {
+    overflow-x: unset;
+    scroll-snap-type: none;
+  }
 }
 .faq__item {
-  @apply bg-white rounded-lg shadow p-8;
+  @apply bg-white rounded-lg shadow p-8 flex-shrink-0 min-w-[60vw] max-w-[65vw] mr-5 md:min-w-0 md:max-w-none md:mr-0;
+  scroll-snap-align: start;
+}
+.faq__item:last-child {
+  @apply mr-0;
+}
+.faq__spacer {
+  @apply block md:hidden;
+  width: 1rem;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  pointer-events: none;
+  user-select: none;
 }
 .faq__question {
   @apply font-heading text-xl font-semibold text-rose-600 mb-2;

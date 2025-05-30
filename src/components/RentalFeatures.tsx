@@ -34,6 +34,7 @@ export default function RentalFeatures() {
   return (
     <div className="hero__features-grid">
       <div className="hero__features-row">
+        <div className="hero__feature-spacer" aria-hidden="true"></div>
         {features.map(feature => (
           <div key={feature.title} className="hero__feature group">
             <div className="hero__feature-header">
