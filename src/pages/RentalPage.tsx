@@ -33,9 +33,9 @@ export default function RentalPage() {
 
       <section className="about section">
         <div className="container">
-          <h2 className="section-title ml-60 text-slate-100">O nas</h2>
+          <h2 className="section-title ml-60 text-slate-100 sr-only">O nas</h2>
           <div className="about__content">
-            <LogoVertical fill="#fff" className="about__logo" />
+            <LogoVertical fill="#c5cbd6" className="about__logo" />
             <p className="about__text">
               Musimy przyznać – działamy w sposób nietypowy. I nie chodzi tu tylko o to, że
               wypożyczamy i budujemy zaawansowane, kosztowne urządzenia szpiegowskie, ale o to, że w
