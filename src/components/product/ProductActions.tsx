@@ -73,16 +73,16 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   }
 
   return (
-    <div className="product__actions">
+    <div className="panel-dark product__actions">
       <div className="product__actions-tabs">
         <button
-          className={`product__actions-tab ${isRental ? 'product__actions-tab--active' : 'product__actions-tab--inactive'}`}
+          className={`product__actions-tab ${isRental ? 'product__actions-tab--active' : 'tab-button--inactive'}`}
           onClick={() => setIsRental(true)}
         >
           Wypożyczenie
         </button>
         <button
-          className={`product__actions-tab ${!isRental ? 'product__actions-tab--active' : 'product__actions-tab--inactive'}`}
+          className={`product__actions-tab ${!isRental ? 'product__actions-tab--active' : 'tab-button--inactive'}`}
           onClick={() => setIsRental(false)}
         >
           Zakup
@@ -92,7 +92,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       {isRental && (
         <div className="product__rental-form product__rental-form--two-columns">
           <div className="product__rental-field">
-            <label className="product__rental-label">Okres wypożyczenia</label>
+            <label className="block text-meta mb-2">Okres wypożyczenia</label>
             <select
               value={rentalPeriod}
               onChange={e => setRentalPeriod(e.target.value)}
@@ -107,7 +107,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           </div>
 
           <div className="product__rental-field">
-            <label className="product__rental-label">Data wypożyczenia</label>
+            <label className="block text-meta mb-2">Data wypożyczenia</label>
             <div className="product__rental-date-field">
               <input
                 type="date"
@@ -123,7 +123,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       )}
 
       <div className="product__quantity-container">
-        <label className="product__rental-label">Ilość</label>
+        <label className="block text-meta mb-2">Ilość</label>
         <div className="product__quantity">
           <button
             className="product__quantity-button"
@@ -132,7 +132,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           >
             -
           </button>
-          <span className="product__quantity-value">{quantity}</span>
+          <span className="text-label-lg">{quantity}</span>
           <button
             className="product__quantity-button"
             onClick={() => handleQuantityChange(1)}
@@ -144,8 +144,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       </div>
 
       <div className="product__summary">
-        <span className="product__summary-label">Suma:</span>
-        <span className="product__price">{getPrice()} zł</span>
+        <span className="text-meta">Suma:</span>
+        <span className="text-value-xl-bold text-2xl">{getPrice()} zł</span>
       </div>
 
       <button
@@ -158,16 +158,16 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         Dodaj do koszyka
       </button>
 
-      <div className="product__info-bottom">
-        <div className="product__info-bottom-row">
+      <div className="text-meta-light space-y-2">
+        <div className="text-meta-light flex items-center gap-2">
           <span role="img" aria-label="delivery">
             🚚
           </span>
           <span>Dostawa od 1zł w 24h</span>
         </div>
-        <div className="product__info-bottom-row">
+        <div className="text-meta-light flex items-center gap-2">
           <span role="img" aria-label="support">
-            👨‍💻
+            👨‍��
           </span>
           <span>Pomoc techniczna 24/7</span>
         </div>

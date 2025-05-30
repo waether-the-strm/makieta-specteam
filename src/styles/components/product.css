@@ -9,9 +9,12 @@
   @apply py-8;
 }
 
+/* Ścieżka powrotu (breadcrumbs) - zastąpione przez .text-meta-light + mb-8 w TSX */
+/*
 .product__breadcrumbs {
   @apply text-sm text-slate-400 mb-8;
 }
+*/
 
 .product__breadcrumbs-link {
   @apply hover:text-rose-400 transition-colors;
@@ -121,10 +124,12 @@
   object-position: center;
 }
 
-/* Informacje o produkcie */
+/* Informacje o produkcie - zastąpione przez .panel-dark + space-y-4 w TSX */
+/*
 .product__info {
   @apply space-y-4 bg-slate-800 p-6 rounded-lg shadow-lg;
 }
+*/
 
 .product__title {
   @apply text-3xl font-bold text-white;
@@ -152,7 +157,6 @@
 
 /* Panel akcji - sticky */
 .product__actions {
-  @apply bg-slate-800 p-6 rounded-lg shadow-lg;
   position: -webkit-sticky;
   position: sticky;
   top: 78px;
@@ -175,9 +179,12 @@
   @apply bg-rose-600 text-white;
 }
 
+/* Styl nieaktywnego taba - zastąpione przez .tab-button--inactive w TSX */
+/*
 .product__actions-tab--inactive {
   @apply bg-slate-700 text-slate-300 hover:bg-slate-600;
 }
+*/
 
 /* Formularz wypożyczenia - ujednolicony rytm wizualny */
 .product__rental-form {
@@ -193,10 +200,13 @@
   @apply w-full;
 }
 
+/* Etykieta pola formularza - zastąpione przez block text-meta mb-2 w TSX */
+/*
 .product__rental-label {
   @apply block text-slate-300;
   margin-bottom: 0.5rem;
 }
+*/
 
 .product__rental-select {
   @apply w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none;
@@ -268,9 +278,12 @@ html {
   @apply w-8 h-8 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 transition-colors;
 }
 
+/* Wartość ilości - zastąpione przez .text-label-lg w TSX */
+/*
 .product__quantity-value {
   @apply text-lg font-medium text-white;
 }
+*/
 
 /* Sekcja podsumowania */
 .product__summary {
@@ -278,13 +291,19 @@ html {
   margin-bottom: 1.5rem;
 }
 
+/* Etykieta podsumowania - zastąpione przez .text-meta w TSX */
+/*
 .product__summary-label {
   @apply text-slate-300;
 }
+*/
 
+/* Cena produktu - zastąpione przez .text-value-xl-bold + text-2xl w TSX */
+/*
 .product__price {
   @apply text-2xl font-bold text-white;
 }
+*/
 
 /* Przycisk dodania do koszyka */
 .product__button {
@@ -339,25 +358,29 @@ html {
   @apply bg-slate-700;
 }
 
+/* Styl przycisku taba - zastąpione przez .tab-button + utility classes w TSX */
+/*
 .product__tab-button {
-  @apply py-4 px-6 transition-colors text-center flex-1;
   position: relative;
-  @apply font-bold text-base tracking-wide;
   z-index: 1;
   width: 50%;
   text-transform: uppercase;
 }
+*/
 
-.product__tab-button:hover {
+/* Używamy .tab-button w selektorze */
+.tab-button:hover {
   @apply text-white bg-slate-700 bg-opacity-40;
 }
 
-.product__tab-button.active {
+/* Używamy .tab-button w selektorze */
+.tab-button.active {
   @apply text-white;
   background-color: transparent;
 }
 
-.product__tab-button.active::after {
+/* Używamy .tab-button w selektorze */
+.tab-button.active::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -392,9 +415,12 @@ select {
   @apply space-y-8;
 }
 
+/* Cena wynajmu - zastąpione przez .text-meta-light w TSX */
+/*
 .product__price-rental {
   @apply text-sm text-slate-400;
 }
+*/
 
 .product__price-purchase {
   @apply text-lg text-rose-400;
@@ -432,13 +458,19 @@ select {
   @apply w-full p-3 bg-slate-700 rounded-lg text-white;
 }
 
+/* Dolna sekcja informacji - zastąpione przez .text-meta-light + space-y-2 w TSX */
+/*
 .product__info-bottom {
   @apply text-sm text-slate-400 space-y-2;
 }
+*/
 
+/* Wiersz w dolnej sekcji informacji - zastąpione przez .text-meta-light + flex items-center gap-2 w TSX */
+/*
 .product__info-bottom-row {
   @apply flex items-center gap-2 text-slate-400;
 }
+*/
 
 /* Specyfikacje w tabeli - bardziej skompresowana struktura */
 .product__specs {
@@ -483,7 +515,6 @@ select {
 }
 
 .product__specs-label {
-  @apply text-slate-400 font-normal;
   width: 50%;
   position: relative;
   letter-spacing: -0.01em;

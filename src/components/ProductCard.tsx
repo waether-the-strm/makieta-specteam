@@ -1,18 +1,13 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from 'lucide-react'
 
 interface ProductCardProps {
-  title: string;
-  description: string;
-  price: string;
-  image: string;
+  title: string
+  description: string
+  price: string
+  image: string
 }
 
-export default function ProductCard({
-  title,
-  description,
-  price,
-  image,
-}: ProductCardProps) {
+export default function ProductCard({ title, description, price, image }: ProductCardProps) {
   return (
     <div className="product-card">
       <div className="product-card__image-container">
@@ -30,5 +25,5 @@ export default function ProductCard({
         </div>
       </div>
     </div>
-  );
+  )
 }

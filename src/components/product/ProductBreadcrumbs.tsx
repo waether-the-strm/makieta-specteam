@@ -8,7 +8,7 @@ interface ProductBreadcrumbsProps {
 
 const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({ category, name }) => {
   return (
-    <div className="product__breadcrumbs">
+    <div className="text-meta-light mb-8">
       <Link to="/" className="product__breadcrumbs-link">
         Oferta
       </Link>
