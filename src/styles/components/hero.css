@@ -33,7 +33,7 @@
   @apply py-12 px-0 relative;
 }
 .hero__features-row {
-  @apply flex gap-2 justify-start overflow-x-auto px-0;
+  @apply flex gap-2 justify-start overflow-x-auto overflow-y-hidden px-0;
   flex-wrap: nowrap;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
@@ -57,19 +57,20 @@
   }
 }
 .hero__feature {
-  @apply relative bg-slate-600/10 hover:bg-slate-700 border border-slate-500/20 backdrop-blur-md p-6 rounded-lg shadow-lg hover:shadow-xl transition-all flex-shrink-0;
-  @apply w-full min-w-60 max-w-xs;
+  @apply relative bg-slate-600/10 hover:bg-slate-700 border border-slate-500/20 backdrop-blur-md p-6 rounded-lg shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-full min-w-60 max-w-xs;
   scroll-snap-align: start;
   margin-right: 2rem;
+  max-height: 9rem;
+  overflow-y: auto;
 }
 .hero__feature:last-child {
   margin-right: 0;
 }
 @media (min-width: 1024px) {
   .hero__feature {
-    min-width: 18rem;
-    max-width: 24rem;
-    margin-right: 0;
+    min-height: 9rem;
+    max-height: none;
+    overflow-y: visible;
   }
 }
 .hero__feature-header {
