@@ -32,18 +32,19 @@ const features = [
 
 export default function RentalFeatures() {
   return (
-    <div className="hero__features-grid">
-      <div className="hero__features-row">
-        <div className="hero__feature-spacer" aria-hidden="true"></div>
-        {features.map(feature => (
-          <div key={feature.title} className="hero__feature group">
-            <div className="hero__feature-header">
-              <div className="hero__feature-icon">{feature.icon}</div>
+    <div className="hero__features-root">
+      <div className="hero__features-background" aria-hidden="true" />
+      <div className="hero__features-grid">
+        <div className="hero__features-row">
+          {features.map((feature, i) => (
+            <div key={feature.title} className="hero__feature group">
+              {i > 0 && <div className="hero__feature-separator" aria-hidden="true" />}
+              <div className="hero__feature-icon-wrapper">{feature.icon}</div>
               <h3 className="hero__feature-title">{feature.title}</h3>
+              <p className="hero__feature-description">{feature.description}</p>
             </div>
-            <p className="hero__feature-description">{feature.description}</p>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   )

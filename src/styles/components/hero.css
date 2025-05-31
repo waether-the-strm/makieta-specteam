@@ -29,66 +29,95 @@
 .hero__features {
   @apply mt-14;
 }
+/* --- HERO FEATURES STATIC GRID --- */
+.hero__features-root {
+  @apply relative w-full flex justify-center;
+}
+.hero__features-background {
+  @apply absolute inset-0 z-0 pointer-events-none;
+}
+.hero__features-background::after {
+  content: '';
+  @apply w-full h-full block bg-gradient-to-t from-slate-900/90 to-transparent backdrop-blur-lg;
+  -webkit-mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  mask-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
 .hero__features-grid {
-  @apply py-12 px-0 relative;
+  @apply z-10 w-full max-w-7xl px-0 py-12 relative md:px-6;
 }
 .hero__features-row {
-  @apply flex gap-2 justify-start overflow-x-auto overflow-y-hidden px-0;
-  flex-wrap: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+  @apply grid bg-transparent relative;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.hero__feature:first-child {
-  margin-left: 1.25rem;
+@media (min-width: 640px) {
+  .hero__features-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
-.hero__feature:last-child {
-  margin-right: 1.25rem;
+@media (min-width: 768px) {
+  .hero__features-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 @media (min-width: 1024px) {
   .hero__features-row {
-    @apply flex-wrap justify-center overflow-x-visible px-0;
-    scroll-snap-type: none;
-  }
-  .hero__feature:first-child {
-    margin-left: 0;
-  }
-  .hero__feature:last-child {
-    margin-right: 0;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 .hero__feature {
-  @apply relative bg-slate-600/10 hover:bg-slate-700 border border-slate-500/20 backdrop-blur-md p-6 rounded-lg shadow-lg hover:shadow-xl transition-all flex-shrink-0 w-full min-w-60 max-w-xs;
-  scroll-snap-align: start;
-  margin-right: 2rem;
-  max-height: 9rem;
-  overflow-y: auto;
+  @apply flex flex-col items-center justify-center text-center px-4 py-8 md:py-10 min-h-[220px] relative cursor-pointer transition-all duration-300;
+  opacity: 0.8;
 }
-.hero__feature:last-child {
-  margin-right: 0;
+.hero__feature:hover {
+  opacity: 1;
 }
-@media (min-width: 1024px) {
-  .hero__feature {
-    min-height: 9rem;
-    max-height: none;
-    overflow-y: visible;
-  }
+.hero__feature-separator {
+  width: 1px;
+  min-width: 1px;
+  max-width: 1px;
+  background: linear-gradient(to top, rgba(148, 163, 184, 0.3) 70%, rgba(148, 163, 184, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
 }
-.hero__feature-header {
-  @apply flex items-center gap-4;
-  @apply md:transition-all md:duration-500;
-  @apply md:transform md:translate-y-0 md:opacity-100;
+.hero__feature-icon-wrapper {
+  @apply flex items-center justify-center mb-4;
+}
+.hero__feature-icon-wrapper > .hero__feature-icon {
+  @applyflex items-center justify-center w-14 h-14 md:w-16 md:h-16;
 }
 .hero__feature-icon {
-  @apply text-slate-300;
+  @apply size-8 md:w-10 md:h-10 text-white;
 }
 .hero__feature-title {
-  @apply font-body font-bold text-lg;
+  @apply font-heading font-bold text-base md:text-lg lg:text-xl text-white mb-2 leading-tight;
 }
 .hero__feature-description {
-  @apply font-body text-slate-300 px-6 md:bg-slate-700 pb-5 rounded-b-lg;
-  @apply mt-4;
-  @apply md:mt-0 md:absolute md:top-6 md:left-0 md:right-0 md:opacity-0 md:transition-all md:duration-500;
-  @apply md:transform md:translate-y-6;
+  @apply text-slate-300 text-sm md:text-base mt-1 transition-all duration-300;
+  opacity: 0;
+  transform: translateY(1rem);
+}
+.hero__feature:hover .hero__feature-description {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .group:hover .hero__feature-header {
@@ -111,4 +140,13 @@
   scroll-snap-align: start;
   pointer-events: none;
   user-select: none;
+}
+
+.feature-separator {
+  width: 1px;
+  min-width: 1px;
+  max-width: 1px;
+  background: linear-gradient(to top, rgba(148, 163, 184, 0.3) 70%, rgba(148, 163, 184, 0) 100%);
+  pointer-events: none;
+  z-index: 1;
 }

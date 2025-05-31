@@ -1,6 +1,7 @@
 /* App Component */
 .app {
-  @apply flex flex-col min-h-screen;
+  @apply flex flex-col min-h-screen bg-slate-900 text-white;
+  font-family: var(--font-body);
 }
 
 .app__main {
