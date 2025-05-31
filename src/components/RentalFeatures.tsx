@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { HeartHandshake, Shield, Phone, Truck, Clock } from 'lucide-react'
 
 const features = [
@@ -31,20 +32,37 @@ const features = [
 ]
 
 export default function RentalFeatures() {
+  const [activeIdx, setActiveIdx] = useState<number | null>(null)
+
   return (
     <div className="hero__features-root">
       <div className="hero__features-background" aria-hidden="true" />
       <div className="hero__features-grid">
         <div className="hero__features-row">
           {features.map((feature, i) => (
-            <div key={feature.title} className="hero__feature group">
-              {i > 0 && <div className="hero__feature-separator" aria-hidden="true" />}
-              <div className="hero__feature-icon-wrapper">{feature.icon}</div>
-              <h3 className="hero__feature-title">{feature.title}</h3>
-              <p className="hero__feature-description">{feature.description}</p>
+            <div
+              key={feature.title}
+              className="hero__feature group"
+              tabIndex={0}
+              onMouseEnter={() => setActiveIdx(i)}
+              onFocus={() => setActiveIdx(i)}
+              onMouseLeave={() => setActiveIdx(null)}
+              onBlur={() => setActiveIdx(null)}
+            >
+              <div className="hero__feature-inner">
+                <div className="hero__feature-icon-wrapper">{feature.icon}</div>
+                <h3 className="hero__feature-title">{feature.title}</h3>
+              </div>
             </div>
           ))}
         </div>
+      </div>
+      <div className="hero__feature-description-central">
+        {activeIdx !== null && (
+          <div className="hero__feature-description-central-item">
+            {features[activeIdx].description}
+          </div>
+        )}
       </div>
     </div>
   )
