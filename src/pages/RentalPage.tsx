@@ -11,9 +11,19 @@ export default function RentalPage() {
       <Hero />
 
       <section className="container" id="categories">
-        <div className="search">
-          <Search className="icon search__icon" />
-          <input type="text" placeholder="Szukaj produktu..." className="search__input" />
+        <div className="category-header flex flex-col items-center text-center mb-6 mt-16">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Nasz sprzęt</h2>
+          <div className="flex flex-wrap items-center justify-center gap-2 text-base text-slate-300 mb-8">
+            <span>Wybierz kategorię poniżej lub</span>
+            <span className="inline-search relative align-middle">
+              <Search className="icon search__icon !left-2 !top-1/2 !-translate-y-1/2 !w-4 !h-4" />
+              <input
+                type="text"
+                placeholder="skorzystaj z wyszukiwarki…"
+                className="inline-search__input"
+              />
+            </span>
+          </div>
         </div>
 
         <div className="products">

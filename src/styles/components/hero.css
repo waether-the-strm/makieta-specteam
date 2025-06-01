@@ -58,7 +58,7 @@
   z-index: 0;
 }
 .hero__features-grid {
-  @apply z-10 w-full max-w-7xl px-0 pt-12 pb-4 relative md:px-6 overflow-x-hidden;
+  @apply z-10 w-full max-w-7xl px-0 pt-12 pb-4  relative md:px-6 overflow-x-hidden;
 }
 .hero__features-row {
   @apply relative w-full overflow-x-auto flex flex-row snap-x snap-mandatory pr-4;
