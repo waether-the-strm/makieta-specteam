@@ -1,14 +1,22 @@
 /* FAQ Component */
 .faq {
   @apply section space-y-6;
+  touch-action: pan-y pinch-zoom;
 }
 .faq__title {
   @apply section-title;
 }
 .faq__list {
-  @apply gap-5 flex flex-row overflow-x-auto px-4 touch-pan-x md:grid md:grid-cols-3 md:px-0;
+  @apply gap-5 flex flex-row overflow-x-auto px-4 md:grid md:grid-cols-3 md:px-0;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+}
+.faq__list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 @media (min-width: 768px) {
   .faq__list {
