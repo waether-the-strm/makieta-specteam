@@ -31,7 +31,7 @@
 }
 /* --- HERO FEATURES STATIC GRID --- */
 .hero__features-root {
-  @apply relative w-full flex justify-center;
+  @apply relative w-full flex justify-center flex-col;
 }
 .hero__features-background {
   @apply absolute inset-0 z-0 pointer-events-none;
@@ -58,7 +58,7 @@
   z-index: 0;
 }
 .hero__features-grid {
-  @apply z-10 w-full max-w-7xl px-0 py-12 relative md:px-6 overflow-x-hidden;
+  @apply z-10 w-full max-w-7xl px-0 pt-12 pb-4 relative md:px-6 overflow-x-hidden;
 }
 .hero__features-row {
   @apply relative w-full overflow-x-auto flex flex-row snap-x snap-mandatory pr-4;
@@ -159,14 +159,10 @@
 }
 
 .hero__feature-description-central {
-  @apply absolute left-1/2 top-0 w-full flex justify-center pointer-events-none z-20 px-4;
-  transform: translateX(-50%) translateY(-60%);
-  min-height: 2.5rem;
-  padding-top: 2.5rem;
-  padding-bottom: 1.5rem;
+  @apply w-full h-36 flex justify-center pointer-events-none z-20 px-4 mb-4 col-span-full;
 }
 .hero__feature-description-central-item {
-  @apply text-slate-200 text-lg md:text-xl font-medium text-center w-full flex justify-center items-center max-w-2xl mx-auto pointer-events-none select-none;
+  @apply text-slate-100 text-lg font-semibold tracking-wide text-center w-full flex justify-center items-center max-w-2xl mx-auto pointer-events-none select-none bg-slate-900/80 border border-slate-700 rounded-xl px-6 py-4 shadow-lg mt-4;
 }
 
 .fade-in {
