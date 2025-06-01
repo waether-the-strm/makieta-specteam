@@ -31,7 +31,7 @@
 }
 /* --- HERO FEATURES STATIC GRID --- */
 .hero__features-root {
-  @apply relative w-full flex justify-center flex-col;
+  @apply relative w-full flex justify-center flex-col items-center;
 }
 .hero__features-background {
   @apply absolute inset-0 z-0 pointer-events-none;
