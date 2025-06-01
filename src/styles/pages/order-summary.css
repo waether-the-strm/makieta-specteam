@@ -1,0 +1,14 @@
+.order-summary {
+  @apply py-8;
+}
+
+.order-summary__content {
+  @apply mt-8;
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+  .order-summary {
+    @apply py-12;
+  }
+}

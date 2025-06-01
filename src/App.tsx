@@ -12,6 +12,7 @@ const RentalPage = lazy(() => import('./pages/RentalPage'))
 const ProductPage = lazy(() => import('./pages/ProductPage'))
 const StorePage = lazy(() => import('./pages/StorePage'))
 const SupportPage = lazy(() => import('./pages/SupportPage'))
+const OrderSummaryPage = lazy(() => import('./pages/OrderSummaryPage'))
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                   <Route path="/store" element={<StorePage />} />
                   <Route path="/support" element={<SupportPage />} />
                   <Route path="/product/:categoryId" element={<ProductPage />} />
+                  <Route path="/order-summary" element={<OrderSummaryPage />} />
                 </Routes>
               </Suspense>
               <footer id="contact-footer" className="footer">

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import type { CartItem } from '../hooks/useCart'
 import { getCartItemKey } from '../hooks/useCart'
 import CartSummarySection from './CartSummarySection'
+import { useNavigate } from 'react-router-dom'
 
 interface CartSummaryDrawerProps {
   isOpen: boolean
@@ -38,6 +39,7 @@ const drawerVariants = {
 const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }) => {
   const { items, removeItem, updateItemQuantity } = useCart()
   const drawerRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
 
   // Zamknięcie ESC
   useEffect(() => {
@@ -92,6 +94,11 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
   const handleRemoveItem = (item: CartItem) => {
     // Usuwamy po wszystkich właściwościach, nie tylko id
     removeItem(getCartItemKey(item))
+  }
+
+  const handleCheckout = () => {
+    onClose()
+    navigate('/order-summary')
   }
 
   return (
@@ -195,9 +202,7 @@ const CartSummaryDrawer: React.FC<CartSummaryDrawerProps> = ({ isOpen, onClose }
               <button
                 className="btn-action-primary"
                 disabled={items.length === 0}
-                onClick={() => {
-                  /* przejście do kasy */
-                }}
+                onClick={handleCheckout}
                 data-testid="cart-summary-checkout"
               >
                 Przejdź do kasy
