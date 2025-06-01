@@ -15,6 +15,7 @@ interface Product {
     purchase: number
   }
   isAvailable: boolean
+  images: string[]
 }
 
 interface ProductActionsProps {
@@ -56,6 +57,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
       price: getPrice(),
       quantity,
       isRental,
+      imageUrl: product.images[0],
       ...(isRental && {
         rentalPeriod,
         rentalDate,

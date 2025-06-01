@@ -1,9 +1,25 @@
 .order-summary {
-  @apply py-8;
+  @apply py-8 px-4;
 }
 
 .order-summary__content {
-  @apply mt-8;
+  @apply max-w-4xl mx-auto;
+}
+
+.order-summary__section {
+  @apply mb-8 bg-slate-800 rounded-xl p-6;
+}
+
+.order-summary__sections {
+  @apply space-y-6;
+}
+
+.order-summary__content-placeholder {
+  @apply text-slate-400 text-center py-8;
+}
+
+.order-summary__actions {
+  @apply flex justify-end mt-8;
 }
 
 /* Responsive styles */

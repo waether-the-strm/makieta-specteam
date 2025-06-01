@@ -8,6 +8,7 @@ export interface CartItem {
   rentalPeriod?: string
   rentalDate?: Date
   isRental: boolean
+  imageUrl?: string
 }
 
 interface CartContextType {
