@@ -10,6 +10,7 @@ interface CartSummaryItemProps {
   getRentalPeriodText: (period: string, quantity: number) => string
   formatDate: (date: Date | string) => string
   isRentalSection?: boolean
+  showRemoveInline?: boolean
 }
 
 const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
@@ -20,6 +21,7 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
   getRentalPeriodText,
   formatDate,
   isRentalSection = false,
+  showRemoveInline = false,
 }) => {
   return (
     <li key={getCartItemKey(item)} className="cart-summary__item">
@@ -45,14 +47,17 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
             )}
           </div>
         </div>
-        <button
-          className="cart-summary__item-remove"
-          title="Usuń z koszyka"
-          onClick={() => onRemove(item)}
-          tabIndex={0}
-        >
-          <Trash2 size={18} />
-        </button>
+        {/* Ikona kosza w prawym górnym rogu, jeśli showRemoveInline === false */}
+        {!showRemoveInline && (
+          <button
+            className="cart-summary__item-remove cart-summary__item-remove--absolute"
+            title="Usuń z koszyka"
+            onClick={() => onRemove(item)}
+            tabIndex={0}
+          >
+            <Trash2 size={18} />
+          </button>
+        )}
       </div>
       {/* 3. Ilość + kontrolki + cena  */}
       <div className="cart-summary__item-row cart-summary__item-row--qty">
@@ -83,6 +88,17 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
           </div>
           <div className="cart-summary__item-row-qty-right">
             <div className="cart-summary__item-price">{item.price * item.quantity} zł</div>
+            {/* Ikona kosza inline, jeśli showRemoveInline === true */}
+            {showRemoveInline && (
+              <button
+                className="cart-summary__item-remove cart-summary__item-remove--inline"
+                title="Usuń z koszyka"
+                onClick={() => onRemove(item)}
+                tabIndex={0}
+              >
+                <Trash2 size={18} />
+              </button>
+            )}
           </div>
         </div>
       </div>

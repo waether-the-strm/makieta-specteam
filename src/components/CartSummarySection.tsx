@@ -13,6 +13,7 @@ interface CartSummarySectionProps {
   getCartItemKey: (item: CartItem) => string
   getRentalPeriodText: (period: string, quantity: number) => string
   formatDate: (date: Date | string) => string
+  showRemoveInline?: boolean
 }
 
 const CartSummarySection: React.FC<CartSummarySectionProps> = ({
@@ -26,6 +27,7 @@ const CartSummarySection: React.FC<CartSummarySectionProps> = ({
   getCartItemKey,
   getRentalPeriodText,
   formatDate,
+  showRemoveInline = false,
 }) => {
   return (
     <div className="cart-summary__section">
@@ -44,6 +46,7 @@ const CartSummarySection: React.FC<CartSummarySectionProps> = ({
             getRentalPeriodText={getRentalPeriodText}
             formatDate={formatDate}
             isRentalSection={isRentalSection}
+            showRemoveInline={showRemoveInline}
           />
         ))}
       </ul>

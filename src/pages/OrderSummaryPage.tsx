@@ -61,6 +61,7 @@ export default function OrderSummaryPage() {
                     getCartItemKey={item => item.id}
                     getRentalPeriodText={getRentalPeriodText}
                     formatDate={formatDate}
+                    showRemoveInline={true}
                   />
                 )}
                 {purchaseItems.length > 0 && (
@@ -75,6 +76,7 @@ export default function OrderSummaryPage() {
                     getCartItemKey={item => item.id}
                     getRentalPeriodText={getRentalPeriodText}
                     formatDate={formatDate}
+                    showRemoveInline={true}
                   />
                 )}
               </div>
