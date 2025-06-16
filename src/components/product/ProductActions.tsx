@@ -241,7 +241,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
                     `(za ${rentalPeriod === 'daily' ? '1 dzień' : rentalPeriod === 'weekly' ? '7 dni' : '30 dni'})`}
                   :
                 </span>
-                <div className="flex items-baseline gap-2">
+                <div className="product__summary-prices">
                   {totalDiscount > 0 && (
                     <span className="product__summary-price-original">
                       {formatPrice(originalPrice)}

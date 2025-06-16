@@ -83,8 +83,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                 >
                   {productData.faq.length > 0 && (
                     <button
-                      className={`tab-button relative z-10 w-1/2 uppercase ${
-                        activeTab === ProductTab.FAQ ? 'active' : ''
+                      className={`tab-button relative z-10 w-1/2 ${
+                        activeTab === ProductTab.FAQ ? 'tab-button--active' : 'tab-button--inactive'
                       }`}
                       onClick={() => setActiveTab(ProductTab.FAQ)}
                       role="tab"
@@ -96,8 +96,8 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                     </button>
                   )}
                   <button
-                    className={`tab-button relative z-10 w-1/2 uppercase ${
-                      activeTab === ProductTab.SPECS ? 'active' : ''
+                    className={`tab-button relative z-10 w-1/2 ${
+                      activeTab === ProductTab.SPECS ? 'tab-button--active' : 'tab-button--inactive'
                     }`}
                     onClick={() => setActiveTab(ProductTab.SPECS)}
                     role="tab"
@@ -138,7 +138,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                         <tbody>
                           {productData.specs.map((spec, index) => (
                             <tr key={index} className="product__specs-row">
-                              <td className="product__specs-cell product__specs-label text-meta-light">
+                              <td className="product__specs-cell product__specs-label product__specs-label--light">
                                 {spec.label}
                               </td>
                               <td className="product__specs-cell product__specs-value">

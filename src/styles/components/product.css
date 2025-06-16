@@ -215,6 +215,10 @@
   @apply font-medium text-slate-400 w-1/3;
 }
 
+.product__specs-label--light {
+  @apply text-sm text-slate-400;
+}
+
 .product__specs-value {
   @apply text-white;
 }
@@ -520,4 +524,8 @@ select.product__form-input {
 /* POPRAWKA: Przywracam style nieaktywnego taba */
 .product__actions-tab:not(.product__actions-tab--active) {
   @apply bg-slate-700 text-slate-300 hover:bg-slate-600;
+}
+
+.product__summary-prices {
+  @apply flex items-baseline gap-2;
 }
