@@ -94,13 +94,22 @@
     @apply w-7 h-7 rounded bg-slate-700 text-white font-bold flex items-center justify-center transition-colors hover:bg-rose-600 disabled:bg-slate-800 disabled:text-slate-500;
   }
   .tab-button {
-    @apply py-4 px-6 transition-colors text-center flex-1 font-bold text-base tracking-wide uppercase;
+    @apply py-4 px-6 transition-colors text-center flex-1 font-bold text-base tracking-wide uppercase relative;
   }
   .tab-button--inactive {
     @apply bg-slate-700 text-slate-300 hover:bg-slate-600;
   }
   .tab-button--active {
-    @apply text-white bg-transparent;
+    @apply text-white bg-slate-800;
+  }
+  .tab-button--active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #f43f5e; /* rose-500 */
   }
 
   .text-label-lg {
