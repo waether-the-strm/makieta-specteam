@@ -131,6 +131,94 @@
 }
 */
 
+/* Panel z opisem produktu */
+.product__info-panel {
+  @apply bg-slate-800 rounded-lg shadow-lg overflow-hidden;
+}
+
+.product__description {
+  @apply p-6;
+}
+
+.product__description-title {
+  @apply text-xl font-bold text-white mb-4;
+}
+
+.product__description-content {
+  @apply text-slate-300 leading-relaxed;
+}
+
+/* Taby informacji o produkcie */
+.product__tabs {
+  /* No styles here - it's a container now */
+}
+
+.product__tabs-header {
+  @apply flex bg-slate-800 relative;
+}
+
+.product__tabs-content {
+  @apply p-6;
+}
+
+/* FAQ */
+.product__faq {
+  @apply space-y-4;
+}
+
+.product__faq-item {
+  @apply border-b border-slate-700 pb-4 -mx-6 px-6 transition-colors duration-200;
+}
+
+.product__faq-item:hover {
+  @apply bg-slate-700/50;
+}
+
+.product__faq-item:last-child {
+  @apply border-b-0 pb-0;
+}
+
+.product__faq-question {
+  @apply font-semibold text-white mb-2;
+}
+
+.product__faq-answer {
+  @apply text-slate-300 leading-relaxed;
+}
+
+/* Specyfikacje */
+.product__specs {
+  @apply overflow-x-auto;
+}
+
+.product__specs-table {
+  @apply w-full;
+}
+
+.product__specs-row {
+  @apply border-b border-slate-700 transition-colors duration-200 -mx-6 px-6;
+}
+
+.product__specs-row:hover {
+  @apply bg-slate-700/50;
+}
+
+.product__specs-row:last-child {
+  @apply border-b-0;
+}
+
+.product__specs-cell {
+  @apply py-3;
+}
+
+.product__specs-label {
+  @apply font-medium text-slate-400 w-1/3;
+}
+
+.product__specs-value {
+  @apply text-white;
+}
+
 .product__title {
   @apply text-3xl font-bold text-white;
 }
@@ -153,6 +241,256 @@
 
 .product__feature-icon {
   @apply text-rose-400;
+}
+
+/* --- PRZEPROJEKTOWANE: Panel akcji produktu --- */
+
+.product__form {
+  @apply flex flex-col;
+  gap: 1.5rem; /* POPRAWKA: Przywracam większy spacing między sekcjami */
+}
+
+.product__form-row {
+  @apply flex flex-col;
+}
+
+.product__form-row--dates {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.product__form-row--quantity {
+  @apply flex flex-col;
+  gap: 0.75rem;
+}
+
+.product__form-row--discounts {
+  @apply flex flex-col;
+  gap: 0.75rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  margin: 0.5rem 0;
+}
+
+.product__form-row--summary {
+  @apply flex flex-col;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.product__form-field {
+  @apply flex-1;
+}
+
+.product__form-label {
+  @apply block text-sm text-slate-300 mb-2 font-medium;
+}
+
+.product__form-input {
+  @apply w-full rounded-lg bg-slate-700/80 text-white p-3 border border-slate-600/50 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 outline-none transition-all;
+  height: 48px;
+  backdrop-filter: blur(8px);
+}
+
+/* POPRAWKA: Przywracam style dla select (okres wypożyczenia) */
+.product__form-input[type='date'] {
+  text-align: center;
+}
+
+/* POPRAWKA: Przywracam style dla date input z ikoną */
+.product__rental-date-field {
+  @apply relative;
+}
+
+.product__rental-date-input {
+  @apply w-full bg-slate-700/80 text-white rounded-lg p-3 border border-slate-600/50 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 outline-none transition-all;
+  height: 48px;
+  backdrop-filter: blur(8px);
+  /* Ukrycie domyślnej ikony kalendarza w różnych przeglądarkach */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+  padding-right: 48px; /* Zapewnienie miejsca na ikonę */
+  color-scheme: dark;
+  text-align: center;
+}
+
+/* Ukrycie ikony kalendarza w przeglądarkach */
+.product__rental-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.product__rental-date-input::-webkit-inner-spin-button,
+.product__rental-date-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.product__rental-date-icon {
+  @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* POPRAWKA: Style dla select dropdown z ikoną */
+select.product__form-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 42px !important;
+  text-align: left;
+}
+
+/* Quantity section - POPRAWKA: Lepsze wyświetlanie zniżek */
+.product__quantity {
+  @apply flex items-center bg-slate-700/60 rounded-lg p-1;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.product__quantity-button {
+  @apply w-10 h-10 flex items-center justify-center rounded-md bg-slate-600/80 hover:bg-rose-600 transition-all text-white font-semibold;
+  border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.product__quantity-value {
+  @apply flex-1 text-center text-lg font-semibold text-white py-2;
+}
+
+/* POPRAWKA: Przeprojektowane wyświetlanie zniżki ilościowej */
+.product__quantity-discount {
+  @apply text-rose-400 text-xs font-bold px-2 py-1 bg-gradient-to-r from-rose-500/20 to-pink-500/20 rounded-full border border-rose-400/30;
+  margin-left: 0.5rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(244, 63, 94, 0.1);
+}
+
+/* Discounts section - lepsze grupowanie */
+.product__discounts {
+  @apply flex flex-col;
+  gap: 0.5rem;
+}
+
+.product__discount {
+  @apply flex items-center gap-3 text-slate-200 text-sm p-2 rounded-md hover:bg-slate-700/30 transition-colors;
+}
+
+.product__discount-checkbox {
+  @apply accent-rose-600 w-4 h-4 rounded;
+}
+
+.product__discount-info {
+  @apply ml-auto text-slate-400 hover:text-rose-400 cursor-help transition-colors;
+}
+
+.product__discount-code {
+  @apply w-full rounded-lg bg-slate-700/60 text-white p-3 border border-slate-600/50 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 outline-none transition-all placeholder-slate-400;
+  margin-top: 0.25rem;
+  backdrop-filter: blur(8px);
+}
+
+.product__discount-code-info {
+  @apply text-emerald-400 text-sm font-medium mt-1 px-2;
+}
+
+/* Podsumowanie w panelu akcji */
+.product__summary-group {
+  @apply w-full flex flex-col overflow-hidden shadow-lg;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.75rem;
+  background: #1e293b;
+}
+
+.product__summary {
+  @apply bg-transparent rounded-none border-none shadow-none flex justify-between;
+}
+
+.product__summary-main {
+  @apply p-4 flex gap-4 items-center;
+}
+
+.product__summary-price {
+  @apply text-2xl font-bold text-white;
+  font-family: var(--font-heading);
+}
+
+.product__summary-footer {
+  @apply bg-slate-300/10 py-1 px-6 content-center backdrop-blur-sm;
+}
+
+.product__summary-price-original {
+  @apply text-lg line-through text-slate-400 decoration-rose-500 decoration-2;
+}
+
+.product__button {
+  @apply w-full py-4 text-white font-bold text-lg transition-all;
+  background: linear-gradient(135deg, #e11d48 0%, #be185d 100%);
+  border: none;
+  border-bottom-left-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+  margin: 0;
+  box-shadow: none;
+}
+
+.product__button:hover:not(:disabled) {
+  @apply shadow-xl;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+.product__button:disabled {
+  @apply bg-slate-600 cursor-not-allowed transform-none shadow-none;
+  background: #64748b;
+}
+
+/* Info bottom - subtelniejsze */
+.product__info-bottom {
+  @apply mt-5 pt-4;
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.product__info-bottom-row {
+  @apply flex items-center gap-3 py-1 text-slate-300 text-sm;
+}
+
+.product__info-bottom-row-icon {
+  @apply text-base opacity-80;
+}
+
+.product__info-bottom-row-text {
+  @apply opacity-90;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .product__form {
+    gap: 1.25rem; /* POPRAWKA: Zachowujemy spacing na mobile */
+  }
+
+  .product__form-row--dates {
+    @apply grid-cols-1 gap-3;
+  }
+
+  .product__summary {
+    @apply p-3;
+  }
+
+  .product__summary-price {
+    @apply text-xl;
+  }
+
+  .product__button {
+    @apply py-3 text-base;
+  }
 }
 
 /* Panel akcji - sticky */
@@ -179,377 +517,7 @@
   @apply bg-rose-600 text-white;
 }
 
-/* Styl nieaktywnego taba - zastąpione przez .tab-button--inactive w TSX */
-/*
-.product__actions-tab--inactive {
+/* POPRAWKA: Przywracam style nieaktywnego taba */
+.product__actions-tab:not(.product__actions-tab--active) {
   @apply bg-slate-700 text-slate-300 hover:bg-slate-600;
-}
-*/
-
-/* Formularz wypożyczenia - ujednolicony rytm wizualny */
-.product__rental-form {
-  @apply grid grid-cols-1 gap-6;
-  margin-bottom: 1.5rem;
-}
-
-.product__rental-form--two-columns {
-  @apply md:grid-cols-2;
-}
-
-.product__rental-field {
-  @apply w-full;
-}
-
-/* Etykieta pola formularza - zastąpione przez block text-meta mb-2 w TSX */
-/*
-.product__rental-label {
-  @apply block text-slate-300;
-  margin-bottom: 0.5rem;
-}
-*/
-
-.product__rental-select {
-  @apply w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none;
-  height: 48px; /* Stała wysokość dla wszystkich kontrolek */
-}
-
-.product__rental-date-field {
-  @apply relative;
-}
-
-.product__rental-date-input {
-  @apply w-full bg-slate-700 text-white rounded-lg p-3 border border-slate-600 focus:border-rose-500 focus:ring-1 focus:ring-rose-500 outline-none;
-  height: 48px; /* Stała wysokość dla wszystkich kontrolek */
-  /* Ukrycie domyślnej ikony kalendarza w różnych przeglądarkach */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-image: none; /* Usunięcie domyślnego tła */
-  padding-right: 48px; /* Zapewnienie miejsca na ikonę */
-  color-scheme: dark; /* Ciemny motyw dla kalendarza w Chrome */
-}
-
-/* Ukrycie ikony kalendarza w przeglądarkach */
-.product__rental-date-input::-webkit-calendar-picker-indicator {
-  opacity: 0; /* Ukrycie w Chrome/Safari/Edge */
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  cursor: pointer;
-}
-
-.product__rental-date-input::-webkit-inner-spin-button,
-.product__rental-date-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.product__rental-date-icon {
-  @apply absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400;
-  pointer-events: none; /* Pozwala na kliknięcie "przez" ikonę */
-  z-index: 1;
-}
-
-/* Usunięcie spacera, który nie jest potrzebny przy sticky */
-.product__actions-spacer {
-  display: none;
-}
-
-/* Dodajemy scroll-padding dla lepszego zachowania przy przewijaniu */
-html {
-  scroll-padding-top: 80px;
-}
-
-/* Kontrolki ilości */
-.product__quantity-container {
-  margin-bottom: 1.5rem;
-}
-
-.product__quantity {
-  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg;
-  height: 48px; /* Stała wysokość dla wszystkich kontrolek */
-}
-
-.product__quantity-button {
-  @apply w-8 h-8 flex items-center justify-center rounded-full bg-slate-600 hover:bg-slate-500 transition-colors;
-}
-
-/* Wartość ilości - zastąpione przez .text-label-lg w TSX */
-/*
-.product__quantity-value {
-  @apply text-lg font-medium text-white;
-}
-*/
-
-/* Sekcja podsumowania */
-.product__summary {
-  @apply flex items-center justify-between;
-  margin-bottom: 1.5rem;
-}
-
-/* Etykieta podsumowania - zastąpione przez .text-meta w TSX */
-/*
-.product__summary-label {
-  @apply text-slate-300;
-}
-*/
-
-/* Cena produktu - zastąpione przez .text-value-xl-bold + text-2xl w TSX */
-/*
-.product__price {
-  @apply text-2xl font-bold text-white;
-}
-*/
-
-/* Przycisk dodania do koszyka */
-.product__button {
-  @apply w-full py-3 px-6 rounded-lg font-medium transition-colors;
-  margin-bottom: 1.5rem;
-}
-
-/* Panel informacyjny - opis i zakładki */
-.product__info-panel {
-  @apply bg-slate-800 rounded-lg shadow-lg overflow-hidden;
-}
-
-/* Opis produktu */
-.product__description {
-  @apply p-6 pb-5;
-}
-
-.product__description-title {
-  @apply text-2xl font-bold mb-4 text-white;
-  font-family: var(--font-heading);
-}
-
-.product__description-content {
-  @apply text-slate-200 leading-relaxed;
-}
-
-/* Style dla zakładek - poprawiona wersja */
-.product__tabs {
-  @apply p-0;
-  position: relative;
-  width: 100%;
-}
-
-.product__tabs-header {
-  @apply flex w-full;
-  position: relative;
-  background-color: rgba(15, 23, 42, 0.3);
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-/* Linia pod całym nagłówkiem tabów */
-.product__tabs-header::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  width: 100%;
-  @apply bg-slate-700;
-}
-
-/* Styl przycisku taba - zastąpione przez .tab-button + utility classes w TSX */
-/*
-.product__tab-button {
-  position: relative;
-  z-index: 1;
-  width: 50%;
-  text-transform: uppercase;
-}
-*/
-
-/* Używamy .tab-button w selektorze */
-.tab-button:hover {
-  @apply text-white bg-slate-700 bg-opacity-40;
-}
-
-/* Używamy .tab-button w selektorze */
-.tab-button.active {
-  @apply text-white;
-  background-color: transparent;
-}
-
-/* Używamy .tab-button w selektorze */
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  width: 100%;
-  @apply bg-rose-500;
-  z-index: 2;
-}
-
-.product__tabs-content {
-  @apply p-6;
-  width: 100%;
-  /* Jaśniejsze tło dla zawartości tabów */
-  background-color: rgba(30, 41, 59, 0.5);
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-/* Poprawienie dropdowna */
-select {
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23cbd5e1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-  padding-right: 42px !important;
-}
-
-/* Zawartość tekstowa */
-.product__text-content {
-  @apply space-y-8;
-}
-
-/* Cena wynajmu - zastąpione przez .text-meta-light w TSX */
-/*
-.product__price-rental {
-  @apply text-sm text-slate-400;
-}
-*/
-
-.product__price-purchase {
-  @apply text-lg text-rose-400;
-}
-
-.product__buttons {
-  @apply flex flex-col gap-4;
-}
-
-.product__button--rental {
-  @apply bg-rose-600 hover:bg-rose-700 text-white;
-}
-
-.product__button--purchase {
-  @apply bg-indigo-600 hover:bg-indigo-700 text-white;
-}
-
-.product__button--disabled {
-  @apply bg-slate-600 cursor-not-allowed;
-}
-
-.product__rental-options {
-  @apply space-y-4;
-}
-
-.product__rental-option {
-  @apply flex items-center justify-between p-3 bg-slate-700 rounded-lg hover:bg-slate-600 transition-colors cursor-pointer;
-}
-
-.product__rental-option.active {
-  @apply bg-rose-600;
-}
-
-.product__rental-days {
-  @apply w-full p-3 bg-slate-700 rounded-lg text-white;
-}
-
-/* Dolna sekcja informacji - zastąpione przez .text-meta-light + space-y-2 w TSX */
-/*
-.product__info-bottom {
-  @apply text-sm text-slate-400 space-y-2;
-}
-*/
-
-/* Wiersz w dolnej sekcji informacji - zastąpione przez .text-meta-light + flex items-center gap-2 w TSX */
-/*
-.product__info-bottom-row {
-  @apply flex items-center gap-2 text-slate-400;
-}
-*/
-
-/* Specyfikacje w tabeli - bardziej skompresowana struktura */
-.product__specs {
-  width: 100%;
-  @apply space-y-0 rounded-md overflow-hidden;
-}
-
-.product__specs-table {
-  @apply w-full border-collapse;
-  border-spacing: 0;
-  font-size: 0.95rem;
-}
-
-.product__specs-row {
-  @apply border-b border-slate-700/20 last:border-0;
-  transition: background-color 0.15s ease;
-}
-
-/* Delikatniejsze naprzemienne tła dla wierszy */
-.product__specs-row:nth-child(odd) {
-  background-color: rgba(30, 41, 59, 0.2);
-}
-
-.product__specs-row:nth-child(even) {
-  background-color: rgba(30, 41, 59, 0.05);
-}
-
-.product__specs-row:hover {
-  background-color: rgba(51, 65, 85, 0.3);
-}
-
-.product__specs-cell {
-  @apply py-3;
-}
-
-.product__specs-cell:first-child {
-  @apply pl-3;
-}
-
-.product__specs-cell:last-child {
-  @apply pr-3;
-}
-
-.product__specs-label {
-  width: 50%;
-  position: relative;
-  letter-spacing: -0.01em;
-}
-
-.product__specs-value {
-  @apply text-slate-100 font-normal;
-  width: 60%;
-}
-
-/* Lżejsze FAQ - poprawiona wersja */
-.product__faq {
-  @apply space-y-6;
-  width: 100%;
-}
-
-.product__faq-item {
-  @apply border-b border-slate-700/50 last:border-0 pb-6 last:pb-0 mb-2;
-  transition: background-color 0.2s ease;
-  width: 100%;
-}
-
-.product__faq-question {
-  @apply text-white mb-3 font-bold;
-  font-family: var(--font-heading);
-  font-size: 1.05rem;
-  line-height: 1.4;
-  /* Poprawić kontrast dla pytania */
-  color: rgb(229, 231, 235);
-}
-
-.product__faq-answer {
-  /* Poprawić kontrast dla odpowiedzi */
-  @apply text-slate-200;
-  font-style: italic;
-  line-height: 1.6;
-  padding-left: 0.5rem;
 }
