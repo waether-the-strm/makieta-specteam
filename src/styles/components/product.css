@@ -272,7 +272,6 @@
   gap: 0.75rem;
   padding: 1.25rem 0;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   margin: 0.5rem 0;
 }
 
@@ -373,7 +372,7 @@ select.product__form-input {
 
 /* POPRAWKA: Przeprojektowane wyświetlanie zniżki ilościowej */
 .product__quantity-discount {
-  @apply text-rose-400 text-xs font-bold px-2 py-1 bg-gradient-to-r from-rose-500/20 to-pink-500/20 rounded-full border border-rose-400/30;
+  @apply text-rose-400 text-xs font-bold px-2 py-1 bg-gradient-to-r from-rose-500/20 to-pink-500/20 rounded-full border border-rose-400/30 mr-5;
   margin-left: 0.5rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(244, 63, 94, 0.1);
@@ -429,7 +428,7 @@ select.product__form-input {
 }
 
 .product__summary-footer {
-  @apply bg-slate-300/10 py-1 px-6 content-center backdrop-blur-sm;
+  @apply bg-slate-900/40 text-slate-300/50 py-1 px-6 content-center backdrop-blur-sm;
 }
 
 .product__summary-price-original {
@@ -458,8 +457,7 @@ select.product__form-input {
 
 /* Info bottom - subtelniejsze */
 .product__info-bottom {
-  @apply mt-5 pt-4;
-  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  @apply mt-5 pt-4 flex gap-6;
 }
 
 .product__info-bottom-row {
@@ -482,10 +480,6 @@ select.product__form-input {
 
   .product__form-row--dates {
     @apply grid-cols-1 gap-3;
-  }
-
-  .product__summary {
-    @apply p-3;
   }
 
   .product__summary-price {
