@@ -367,7 +367,23 @@ select.product__form-input {
 }
 
 .product__quantity-value {
-  @apply flex-1 text-center text-lg font-semibold text-white py-2;
+  @apply flex-1 text-center text-lg font-semibold text-white;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  width: 3.5rem;
+  min-width: 0;
+  appearance: textfield;
+  /* Remove number arrows for all browsers */
+}
+.product__quantity-value::-webkit-outer-spin-button,
+.product__quantity-value::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.product__quantity-value[type='number'] {
+  -moz-appearance: textfield;
 }
 
 /* POPRAWKA: Przeprojektowane wyświetlanie zniżki ilościowej */

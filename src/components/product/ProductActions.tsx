@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useCart } from '../../hooks/useCart'
+import { CartItem, Discount, useCart } from '../../hooks/useCart'
 import { Calendar } from 'lucide-react'
 
 interface Product {
@@ -49,7 +49,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const [rentalPeriod, setRentalPeriod] = useState('daily')
   const [quantity, setQuantity] = useState(1)
   const [rentalDate, setRentalDate] = useState<Date>(new Date())
-  const [appliedDiscounts, setAppliedDiscounts] = useState<{ [key: string]: boolean }>({})
+  const [appliedDiscounts, setAppliedDiscounts] = useState<Discount[]>([])
   const [discountCode, setDiscountCode] = useState('')
   const { addItem } = useCart()
 
@@ -69,7 +69,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   // Suma rabatów z checkboxów
   const discountsValue = DISCOUNTS.reduce(
-    (sum, d) => (appliedDiscounts[d.id] ? sum + d.value : sum),
+    (sum, d) => (appliedDiscounts.some(discount => discount.code === d.id) ? sum + d.value : sum),
     0
   )
 
@@ -93,12 +93,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
 
   // handleAddToCart korzysta teraz z finalPrice
   const handleAddToCart = () => {
-    const item = {
+    const item: CartItem = {
       id: product.id,
       name: product.name,
       price: finalPrice,
       quantity,
-      image: product.images[0],
+      imageUrl: product.images[0],
       isRental,
       rentalPeriod: isRental ? rentalPeriod : undefined,
       rentalDate: isRental ? rentalDate : undefined,
@@ -145,8 +145,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         {isRental && (
           <div className="product__form-row product__form-row--dates">
             <div className="product__form-field">
-              <label className="product__form-label">Okres wypożyczenia</label>
+              <label className="product__form-label" htmlFor="rental-period">
+                Okres wypożyczenia
+              </label>
               <select
+                id="rental-period"
+                name="rental-period"
                 value={rentalPeriod}
                 onChange={e => setRentalPeriod(e.target.value)}
                 className="product__form-input"
@@ -159,9 +163,13 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
               </select>
             </div>
             <div className="product__form-field">
-              <label className="product__form-label">Data wypożyczenia</label>
+              <label className="product__form-label" htmlFor="rental-date">
+                Data wypożyczenia
+              </label>
               <div className="product__rental-date-field">
                 <input
+                  id="rental-date"
+                  name="rental-date"
                   type="date"
                   min={formatDateForInput(today)}
                   value={formatDateForInput(rentalDate)}
@@ -175,24 +183,37 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         )}
 
         <div className="product__form-row product__form-row--quantity">
-          <label className="product__form-label">Ilość</label>
+          <label className="product__form-label" htmlFor="quantity-input">
+            Ilość
+          </label>
           <div className="product__quantity">
             <button
-              className="product__quantity-button"
               type="button"
               onClick={() => handleQuantityChange(-1)}
               disabled={quantity <= 1}
+              className="product__quantity-button"
+              aria-label="Zmniejsz ilość"
             >
               -
             </button>
-            <span className="product__quantity-value">{quantity}</span>
-            {/* Przykładowa zniżka ilościowa */}
+            <input
+              id="quantity-input"
+              name="quantity"
+              type="number"
+              min="1"
+              max="10"
+              value={quantity}
+              onChange={e => handleQuantityChange(parseInt(e.target.value) - quantity)}
+              className="product__quantity-value"
+              aria-label="Ilość produktu"
+            />
             {quantity >= 3 && <span className="product__quantity-discount">10% zniżki</span>}
             <button
-              className="product__quantity-button"
               type="button"
               onClick={() => handleQuantityChange(1)}
               disabled={quantity >= 10}
+              className="product__quantity-button"
+              aria-label="Zwiększ ilość"
             >
               +
             </button>
@@ -200,16 +221,20 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </div>
 
         <div className="product__form-row product__form-row--discounts">
-          <label className="product__form-label">Rabaty</label>
+          <label className="product__form-label" htmlFor="discount-code">
+            Rabaty
+          </label>
           <div className="product__discounts">
             {DISCOUNTS.map(discount => (
               <label className="product__discount" key={discount.id} title={discount.tooltip}>
                 <input
                   type="checkbox"
+                  id={`discount-${discount.id}`}
+                  name={`discount-${discount.id}`}
                   className="product__discount-checkbox"
-                  checked={!!appliedDiscounts[discount.id]}
-                  onChange={e =>
-                    setAppliedDiscounts(d => ({ ...d, [discount.id]: e.target.checked }))
+                  checked={appliedDiscounts.some(d => d.code === discount.id)}
+                  onChange={() =>
+                    setAppliedDiscounts(d => [...d, { code: discount.id, value: discount.value }])
                   }
                 />
                 <span>{discount.label}</span>
@@ -217,6 +242,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
               </label>
             ))}
             <input
+              id="discount-code"
+              name="discount-code"
               className="product__discount-code"
               type="text"
               placeholder="Dodatkowy kod rabatowy"
@@ -263,13 +290,17 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </div>
       </form>
 
-      <div className="product__info-bottom">
+      <div className="product__info-bottom" role="complementary" aria-label="Informacje dodatkowe">
         <div className="product__info-bottom-row">
-          <span className="product__info-bottom-row-icon">🚚</span>
+          <span className="product__info-bottom-row-icon" aria-hidden="true">
+            🚚
+          </span>
           <span className="product__info-bottom-row-text">Dostawa od 1zł w 24h</span>
         </div>
         <div className="product__info-bottom-row">
-          <span className="product__info-bottom-row-icon">👨‍💻</span>
+          <span className="product__info-bottom-row-icon" aria-hidden="true">
+            👨‍💻
+          </span>
           <span className="product__info-bottom-row-text">Pomoc techniczna 24/7</span>
         </div>
       </div>
