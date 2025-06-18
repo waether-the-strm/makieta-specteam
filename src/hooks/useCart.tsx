@@ -1,5 +1,10 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
+export interface Discount {
+  code: string
+  value: number
+}
+
 export interface CartItem {
   id: string
   name: string
@@ -9,6 +14,8 @@ export interface CartItem {
   rentalDate?: Date
   isRental: boolean
   imageUrl?: string
+  deposit?: number
+  discounts?: Discount[]
 }
 
 interface CartContextType {
