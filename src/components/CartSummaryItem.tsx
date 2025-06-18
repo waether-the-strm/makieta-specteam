@@ -1,6 +1,6 @@
 import React from 'react'
 import { Trash2 } from 'lucide-react'
-import type { CartItem } from '../hooks/useCart'
+import type { CartItem } from '../hooks'
 
 interface CartSummaryItemProps {
   item: CartItem

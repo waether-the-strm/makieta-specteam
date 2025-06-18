@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CartItem, Discount, useCart } from '../../hooks/useCart'
+import { CartItem, Discount, useCart } from '../../hooks'
 import { Calendar } from 'lucide-react'
 
 interface Product {

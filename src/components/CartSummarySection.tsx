@@ -1,5 +1,5 @@
 import React from 'react'
-import type { CartItem } from '../hooks/useCart'
+import type { CartItem } from '../hooks'
 import CartSummaryItem from './CartSummaryItem'
 
 interface CartSummarySectionProps {
