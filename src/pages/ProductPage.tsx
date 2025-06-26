@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { type FC, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { categories } from '../data/categories'
 import { getFaqsForCategory } from '../data/faqs'
@@ -6,17 +6,14 @@ import { getFaqsForCategory } from '../data/faqs'
 import ProductBreadcrumbs from '../components/product/ProductBreadcrumbs'
 import ProductGallery from '../components/product/ProductGallery'
 import ProductActions from '../components/product/ProductActions'
-
-enum ProductTab {
-  FAQ = 'faq',
-  SPECS = 'specs',
-}
+import LegacyProductInfoPanel from '../components/legacy/ProductInfoPanel'
+import { ProductTab } from '../components/legacy/types'
 
 interface ProductPageProps {
   defaultActiveTab?: ProductTab
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
+const ProductPage: FC<ProductPageProps> = ({ defaultActiveTab }) => {
   const { categoryId } = useParams<{ categoryId: string }>()
 
   const category = categories.find(cat => cat.title.toLowerCase() === categoryId?.toLowerCase())
@@ -69,7 +66,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
               </div>
             </div>
 
-            <div className="product__info-panel">
+            <LegacyProductInfoPanel
+              productData={productData}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
+
+            {/* <div className="product__info-panel">
               <div className="product__description">
                 <h2 className="product__description-title">Opis</h2>
                 <div className="product__description-content">{productData.description}</div>
@@ -152,7 +155,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ defaultActiveTab }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="product__right-column">
