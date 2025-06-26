@@ -44,7 +44,7 @@ const DISCOUNTS = [
   },
 ]
 
-const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
+export const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   const [isRental, setIsRental] = useState(true)
   const [rentalPeriod, setRentalPeriod] = useState('daily')
   const [quantity, setQuantity] = useState(1)
@@ -307,5 +307,3 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
     </div>
   )
 }
-
-export default ProductActions

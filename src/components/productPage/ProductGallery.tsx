@@ -5,7 +5,7 @@ interface ProductGalleryProps {
   images: string[]
 }
 
-const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
+export const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
   const [selectedImage, setSelectedImage] = useState(0)
   const [previewIndex, setPreviewIndex] = useState<number | null>(null)
 
@@ -94,7 +94,3 @@ const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) => {
     </div>
   )
 })
-
-ProductGallery.displayName = 'ProductGallery'
-
-export default ProductGallery

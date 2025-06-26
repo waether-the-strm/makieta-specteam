@@ -6,7 +6,7 @@ interface ProductBreadcrumbsProps {
   name: string
 }
 
-const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({ category, name }) => {
+export const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({ category, name }) => {
   return (
     <div className="text-meta-light mb-8">
       <Link to="/" className="product__breadcrumbs-link">
@@ -21,5 +21,3 @@ const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({ category, name 
     </div>
   )
 }
-
-export default ProductBreadcrumbs

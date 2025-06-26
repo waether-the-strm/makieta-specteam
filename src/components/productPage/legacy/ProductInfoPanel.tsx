@@ -4,7 +4,11 @@ import { ProductFAQ, ProductInfoPanelProps, ProductSpec, ProductTab } from '.'
 /**
  * UWAGA: Komponent legacy! Zachowano na czas przejściowy migracji na nowy ProductInfo.
  */
-const ProductInfoPanel: FC<ProductInfoPanelProps> = ({ productData, activeTab, setActiveTab }) => (
+export const ProductInfoPanel: FC<ProductInfoPanelProps> = ({
+  productData,
+  activeTab,
+  setActiveTab,
+}) => (
   <div className="product__info-panel">
     <div className="product__description">
       <h2 className="product__description-title">Opis</h2>
@@ -84,5 +88,3 @@ const ProductInfoPanel: FC<ProductInfoPanelProps> = ({ productData, activeTab, s
     </div>
   </div>
 )
-
-export default ProductInfoPanel
