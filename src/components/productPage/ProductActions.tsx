@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { type FC, useState } from 'react'
 import { CartItem, Discount, useCart } from '../../hooks'
 import { Calendar } from 'lucide-react'
 
@@ -44,7 +44,7 @@ const DISCOUNTS = [
   },
 ]
 
-export const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
+export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
   const [isRental, setIsRental] = useState(true)
   const [rentalPeriod, setRentalPeriod] = useState('daily')
   const [quantity, setQuantity] = useState(1)
