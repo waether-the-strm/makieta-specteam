@@ -4,11 +4,12 @@ import {
   ProductBreadcrumbs,
   ProductGallery,
   ProductActions,
-  LegacyProductInfoPanel,
+  // LegacyProductInfoPanel,
 } from '../components/productPage'
 
 import { useProductData } from '../hooks/useProductData'
 import { ProductInfoFeatures } from '../components/productPage/ProductInfoFeatures'
+import ProductInfo from '@/components/productPage/new/ProductInfo'
 
 const ProductPage: FC = () => {
   const productData = useProductData()
@@ -27,7 +28,8 @@ const ProductPage: FC = () => {
                 </div>
               </div>
 
-              <LegacyProductInfoPanel productData={productData} />
+              {/* <LegacyProductInfoPanel productData={productData} /> */}
+              <ProductInfo />
             </div>
 
             <div className="product__right-column">
