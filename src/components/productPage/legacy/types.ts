@@ -34,6 +34,4 @@ export interface ProductInfoPanelProps {
     rating: number
     isAvailable: boolean
   }
-  activeTab: ProductTab
-  setActiveTab: (tab: ProductTab) => void
 }
