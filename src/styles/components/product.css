@@ -1,7 +1,7 @@
 /* Product Page Styles */
 
 .product {
-  @apply bg-slate-900 text-white min-h-screen;
+  @apply bg-slate-900 text-white min-h-screen relative flex justify-center items-center;
 }
 
 .product__container {
@@ -38,6 +38,10 @@
   position: relative;
   display: block;
   min-height: 100vh;
+}
+
+.product__loading {
+  @apply flex items-center justify-center h-full text-slate-400 text-lg;
 }
 
 /* Wspólny kontener dla informacji i cech produktu */
