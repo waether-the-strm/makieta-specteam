@@ -127,5 +127,20 @@ const reviews = [
     rating: 5,
     text: 'Było stresująco ale sie udało! Dzięki za pomoc i cierpliwość do takiego nieogara jak ja 😅',
   },
+  {
+    name: 'Michał',
+    rating: 5,
+    text: 'Kamera działa super, wszystko zgodnie z opisem. Polecam!',
+  },
+  {
+    name: 'Krzysztof',
+    rating: 4,
+    text: 'Działa jak należy, ale instrukcja mogłaby być bardziej szczegółowa.',
+  },
+  {
+    name: 'Ewa',
+    rating: 5,
+    text: 'Bardzo pomocny sprzęt, dzięki niemu zdałam egzamin!',
+  },
 ]
 export { techSpecs, boxContents, questions, reviews }
