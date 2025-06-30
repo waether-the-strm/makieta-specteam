@@ -90,7 +90,11 @@ const ProductInfo = () => {
                   </div>
                 </div>
 
-                <Accordion type="single" collapsible className="w-full space-y-0">
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-3 space-y-3 lg:space-y-0"
+                >
                   {accordionData.map(item => (
                     <AccordionProductItem
                       key={item.name}
