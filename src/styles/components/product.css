@@ -25,12 +25,12 @@
 }
 
 .product__content {
-  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mb-12;
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12;
 }
 
 /* Lewa kolumna - galeria i treść */
 .product__left-column {
-  @apply space-y-8;
+  @apply space-y-8 lg:col-span-2;
 }
 
 /* Prawa kolumna - nagłówek, cechy i panel akcji */
