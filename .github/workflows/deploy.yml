@@ -80,6 +80,9 @@ jobs:
         env:
           VITE_BASE: '/makieta-specteam/previous/'
 
+      - name: Copy index.html to 404.html for SPA routing
+        run: cp ./dist/client/index.html ./dist/client/404.html
+
       - name: Deploy to the 'previous' directory on gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
