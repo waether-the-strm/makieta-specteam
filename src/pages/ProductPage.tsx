@@ -8,7 +8,7 @@ import {
 } from '../components/productPage'
 
 import { useProductData } from '../hooks/useProductData'
-import { ProductInfoFeatures } from '../components/productPage/ProductInfoFeatures'
+import { ProductInfoFeatures, ProductStatus } from '../components/productPage/ProductInfoFeatures'
 import ProductInfo from '@/components/productPage/new/ProductInfo'
 
 const ProductPage: FC = () => {
@@ -22,6 +22,8 @@ const ProductPage: FC = () => {
 
           <div className="product__content">
             <div className="product__left-column">
+              <ProductInfoFeatures productData={productData} />
+
               <div className="product__gallery-container">
                 <div className="product__gallery">
                   <ProductGallery images={productData.images} />
@@ -33,7 +35,7 @@ const ProductPage: FC = () => {
             </div>
 
             <div className="product__right-column">
-              <ProductInfoFeatures productData={productData} />
+              <ProductStatus productData={productData} />
               <ProductActions product={productData} />
             </div>
           </div>

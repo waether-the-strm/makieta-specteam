@@ -10,14 +10,28 @@ import { techSpecs, boxContents } from './data'
 import { BadgeVariant } from '@/components/ui/badge-variants'
 
 import { AccordionProductItem, accordionData } from './accordion'
+import { useParams } from 'react-router-dom'
+
+const tabs: { value: string; label: string }[] = [
+  { value: 'questions', label: 'Pytania i odpowiedzi' },
+  { value: 'specs', label: 'Szczegóły techniczne' },
+  { value: 'contents', label: 'Zawartość pudełka' },
+]
+const capitalizeFirstLetter = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
 const ProductInfo = () => {
+  const { categoryId } = useParams()
+
   return (
     <div className="min-h-screen bg-slate-900 text-white font-inter">
       <div className="max-w-6xl mx-auto">
-        <Card className="bg-slate-800 border-slate-700">
+        <Card className="bg-slate-800 border-0">
           <CardHeader className="pb-6">
-            <CardTitle className="text-3xl font-merriweather font-bold text-white">Opis</CardTitle>
+            {categoryId && (
+              <CardTitle className="text-3xl font-merriweather font-bold text-white hidden">
+                {capitalizeFirstLetter(categoryId)}
+              </CardTitle>
+            )}
             <div className="text-slate-100 leading-relaxed space-y-4">
               <p>
                 Mikrosłuchawki douszne Bluetooth zapewniające dyskretną komunikację. Idealne w
@@ -29,26 +43,17 @@ const ProductInfo = () => {
 
           <CardContent className="pt-0">
             <Tabs defaultValue="questions" className="w-full">
-              <div className="overflow-x-auto scrollbar-hide">
-                <TabsList className="flex w-max min-w-full h-16 p-1 bg-slate-700 border border-slate-600 mb-8">
-                  <TabsTrigger
-                    value="questions"
-                    className="flex-1 min-w-[200px] text-base font-medium text-slate-100 data-[state=active]:bg-rose-500 data-[state=active]:text-white h-full px-6 rounded-md"
-                  >
-                    PYTANIA I ODPOWIEDZI
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="specs"
-                    className="flex-1 min-w-[200px] text-base font-medium text-slate-100 data-[state=active]:bg-slate-600 data-[state=active]:text-white h-full px-6 rounded-md"
-                  >
-                    SZCZEGÓŁY TECHNICZNE
-                  </TabsTrigger>
-                  <TabsTrigger
-                    value="contents"
-                    className="flex-1 min-w-[200px] text-base font-medium text-slate-100 data-[state=active]:bg-slate-600 data-[state=active]:text-white h-full px-6 rounded-md"
-                  >
-                    ZAWARTOŚĆ PUDEŁKA
-                  </TabsTrigger>
+              <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-6">
+                <TabsList className="flex w-max min-w-full h-14 mb-8 gap-1 bg-slate-500/10 rounded-none">
+                  {tabs.map(tab => (
+                    <TabsTrigger
+                      key={tab.value}
+                      value={tab.value}
+                      className="flex-1 min-w-48 text-base uppercase font-medium text-slate-100 data-[state=active]:bg-rose-500 data-[state=active]:text-white hover:bg-slate-500/20 h-full px-6 rounded-md"
+                    >
+                      {tab.label}
+                    </TabsTrigger>
+                  ))}
                 </TabsList>
               </div>
 
