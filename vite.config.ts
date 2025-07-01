@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import compression from 'vite-plugin-compression'
 
 export default defineConfig({
-  base: '/makieta-specteam/',
+  base: process.env.VITE_BASE || '/makieta-specteam/',
   plugins: [
     react(),
     compression({
