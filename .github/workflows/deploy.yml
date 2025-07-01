@@ -43,13 +43,13 @@ jobs:
       - name: Build
         run: npm run build:static
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to GitHub Pages (main)
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: './dist/client'
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist/client
+          publish_branch: gh-pages
+          keep_files: true
 
   deploy:
     if: github.event_name == 'push'
