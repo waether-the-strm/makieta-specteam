@@ -4,6 +4,10 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
+    inputs:
+      commit_sha:
+        description: 'SHA of the commit to build and deploy to the "previous" directory'
+        required: false
 
 permissions:
   contents: read
@@ -16,6 +20,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,6 +52,7 @@ jobs:
           path: './dist/client'
 
   deploy:
+    if: github.event_name == 'push'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -56,3 +62,39 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  manual-previous-build:
+    # Triggered only manually
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.commit_sha != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the specified commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.commit_sha }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: npm run build:static
+
+      - name: Deploy to the 'previous' directory on gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/client
+          destination_dir: previous
+          publish_branch: gh-pages
+          keep_files: true
