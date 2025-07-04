@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Calendar } from 'lucide-react'
+import QuantityControl from '../ui/quantity-control'
 
 interface RentalPeriodSelectorProps {
   from: Date
@@ -43,30 +44,27 @@ export const RentalPeriodSelector: React.FC<RentalPeriodSelectorProps> = ({
   }
 
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <label className="product__form-label">Wypożyczenie od</label>
-      <div className="product__quantity w-full">
-        <button
-          type="button"
-          className="product__quantity-button"
-          style={{ flex: 'none' }}
-          onClick={() => handleStartChange(addDays(startDate, -1))}
-          aria-label="Poprzedni dzień"
+    <div className="rental-period-selector">
+      <div className="rental-period-selector__field">
+        <label className="rental-period-selector__label">Wypożyczenie od</label>
+        <QuantityControl
+          value={
+            <>
+              {startDate.toLocaleDateString('pl-PL')}
+              <Calendar className="rental-period-selector__icon" size={20} />
+            </>
+          }
+          onDecrease={() => handleStartChange(addDays(startDate, -1))}
+          onIncrease={() => handleStartChange(addDays(startDate, 1))}
+          onValueClick={() => setShowStartPicker(true)}
+          decreaseLabel="Poprzedni dzień"
+          increaseLabel="Następny dzień"
+          valueClassName="quantity-control__value--date"
         >
-          -
-        </button>
-        <div
-          className="product__quantity-value flex items-center justify-center gap-2 cursor-pointer select-none min-w-[8.5rem]"
-          tabIndex={0}
-          role="button"
-          onClick={() => setShowStartPicker(true)}
-        >
-          {startDate.toLocaleDateString('pl-PL')}
-          <Calendar className="ml-2 text-slate-400" size={20} />
           {showStartPicker && (
             <input
               type="date"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-white rounded p-2 z-10 shadow-lg"
+              className="rental-period-selector__date-input"
               value={formatDateForInput(startDate)}
               min={formatDateForInput(new Date())}
               max={formatDateForInput(endDate)}
@@ -78,43 +76,31 @@ export const RentalPeriodSelector: React.FC<RentalPeriodSelectorProps> = ({
                 setShowStartPicker(false)
               }}
               data-testid="start-date-input"
-              style={{ minWidth: 120 }}
             />
           )}
-        </div>
-        <button
-          type="button"
-          className="product__quantity-button"
-          style={{ flex: 'none' }}
-          onClick={() => handleStartChange(addDays(startDate, 1))}
-          aria-label="Następny dzień"
-        >
-          +
-        </button>
+        </QuantityControl>
       </div>
-      <label className="product__form-label mt-4">Wypożyczenie do</label>
-      <div className="product__quantity w-full">
-        <button
-          type="button"
-          className="product__quantity-button"
-          style={{ flex: 'none' }}
-          onClick={() => handleEndChange(addDays(endDate, -1))}
-          aria-label="Poprzedni dzień"
+
+      <div className="rental-period-selector__field">
+        <label className="rental-period-selector__label">Wypożyczenie do</label>
+        <QuantityControl
+          value={
+            <>
+              {endDate.toLocaleDateString('pl-PL')}
+              <Calendar className="rental-period-selector__icon" size={20} />
+            </>
+          }
+          onDecrease={() => handleEndChange(addDays(endDate, -1))}
+          onIncrease={() => handleEndChange(addDays(endDate, 1))}
+          onValueClick={() => setShowEndPicker(true)}
+          decreaseLabel="Poprzedni dzień"
+          increaseLabel="Następny dzień"
+          valueClassName="quantity-control__value--date"
         >
-          -
-        </button>
-        <div
-          className="product__quantity-value flex items-center justify-center gap-2 cursor-pointer select-none min-w-[8.5rem]"
-          tabIndex={0}
-          role="button"
-          onClick={() => setShowEndPicker(true)}
-        >
-          {endDate.toLocaleDateString('pl-PL')}
-          <Calendar className="ml-2 text-slate-400" size={20} />
           {showEndPicker && (
             <input
               type="date"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-white rounded p-2 z-10 shadow-lg"
+              className="rental-period-selector__date-input"
               value={formatDateForInput(endDate)}
               min={formatDateForInput(startDate)}
               autoFocus
@@ -125,19 +111,9 @@ export const RentalPeriodSelector: React.FC<RentalPeriodSelectorProps> = ({
                 setShowEndPicker(false)
               }}
               data-testid="end-date-input"
-              style={{ minWidth: 120 }}
             />
           )}
-        </div>
-        <button
-          type="button"
-          className="product__quantity-button"
-          style={{ flex: 'none' }}
-          onClick={() => handleEndChange(addDays(endDate, 1))}
-          aria-label="Następny dzień"
-        >
-          +
-        </button>
+        </QuantityControl>
       </div>
     </div>
   )

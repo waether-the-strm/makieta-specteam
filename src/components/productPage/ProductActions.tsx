@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react'
 import { CartItem, Discount, useCart } from '../../hooks'
 import RentalPeriodSelector from './RentalPeriodSelector'
+import QuantityControl from '../ui/quantity-control'
 
 interface Product {
   id: string
@@ -46,7 +47,7 @@ const DISCOUNTS = [
 
 export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
   const [isRental, setIsRental] = useState(true)
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState<number | ''>(1)
   // Nowe stany dla zakresu dat
   const [rentalFrom, setRentalFrom] = useState<Date>(new Date())
   const [rentalTo, setRentalTo] = useState<Date>(new Date())
@@ -70,7 +71,7 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
     Math.max(1, Math.ceil((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24)) + 1)
   const rentalDays = getDays(rentalFrom, rentalTo)
   const basePrice = isRental ? product.price.rental.daily * rentalDays : product.price.purchase
-  const originalPrice = basePrice * quantity
+  const originalPrice = basePrice * (typeof quantity === 'number' ? quantity : 1)
   const totalDiscount = discountsValue + codeDiscountValue
   const finalPrice = Math.max(0, originalPrice - totalDiscount)
 
@@ -83,7 +84,7 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
       id: product.id,
       name: product.name,
       price: finalPrice,
-      quantity,
+      quantity: typeof quantity === 'number' ? quantity : 1,
       imageUrl: product.images[0],
       isRental,
       rentalPeriod: isRental ? `${rentalDays}` : undefined,
@@ -96,9 +97,30 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
 
   // Obsługa zmiany ilości
   const handleQuantityChange = (delta: number) => {
+    if (typeof quantity !== 'number') return
     const newQuantity = quantity + delta
     if (newQuantity >= 1 && newQuantity <= 10) {
       setQuantity(newQuantity)
+    }
+  }
+
+  // Obsługa wpisywania liczby lub pustej wartości
+  const handleQuantityInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    if (value === '') {
+      setQuantity('')
+    } else {
+      const num = parseInt(value)
+      if (!isNaN(num) && num >= 1 && num <= 10) {
+        setQuantity(num)
+      }
+    }
+  }
+
+  // Po blur, jeśli quantity==="", ustaw na 1
+  const handleQuantityInputBlur = () => {
+    if (quantity === '') {
+      setQuantity(1)
     }
   }
 
@@ -145,37 +167,33 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
           <label className="product__form-label" htmlFor="quantity-input">
             Ilość
           </label>
-          <div className="product__quantity">
-            <button
-              type="button"
-              onClick={() => handleQuantityChange(-1)}
-              disabled={quantity <= 1}
-              className="product__quantity-button"
-              aria-label="Zmniejsz ilość"
-            >
-              -
-            </button>
-            <input
-              id="quantity-input"
-              name="quantity"
-              type="number"
-              min="1"
-              max="10"
-              value={quantity}
-              onChange={e => handleQuantityChange(parseInt(e.target.value) - quantity)}
-              className="product__quantity-value"
-              aria-label="Ilość produktu"
+          <div className="product__quantity-wrapper">
+            <QuantityControl
+              value={
+                <input
+                  id="quantity-input"
+                  name="quantity"
+                  type="number"
+                  min="1"
+                  max="10"
+                  value={quantity === '' ? '' : String(quantity)}
+                  onChange={handleQuantityInputChange}
+                  onBlur={handleQuantityInputBlur}
+                  className="quantity-control__value--number custom-quantity-input"
+                  aria-label="Ilość produktu"
+                  autoComplete="off"
+                />
+              }
+              onDecrease={() => handleQuantityChange(-1)}
+              onIncrease={() => handleQuantityChange(1)}
+              decreaseDisabled={typeof quantity !== 'number' || quantity <= 1}
+              increaseDisabled={typeof quantity !== 'number' || quantity >= 10}
+              decreaseLabel="Zmniejsz ilość"
+              increaseLabel="Zwiększ ilość"
             />
-            {quantity >= 3 && <span className="product__quantity-discount">10% zniżki</span>}
-            <button
-              type="button"
-              onClick={() => handleQuantityChange(1)}
-              disabled={quantity >= 10}
-              className="product__quantity-button"
-              aria-label="Zwiększ ilość"
-            >
-              +
-            </button>
+            {typeof quantity === 'number' && quantity >= 3 && (
+              <span className="product__quantity-discount">10% zniżki</span>
+            )}
           </div>
         </div>
 
