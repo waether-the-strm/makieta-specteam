@@ -14,6 +14,7 @@
 @import './components/cart-summary.css';
 @import './components/products.css';
 @import './components/cart-notification.css';
+@import './components/quantity-control.css';
 @import './pages/order-summary.css';
 
 /* Font Variables */
