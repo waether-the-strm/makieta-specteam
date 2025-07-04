@@ -1,6 +1,6 @@
 import { type FC, useState } from 'react'
 import { CartItem, Discount, useCart } from '../../hooks'
-import { Calendar } from 'lucide-react'
+import RentalPeriodSelector from './RentalPeriodSelector'
 
 interface Product {
   id: string
@@ -46,47 +46,33 @@ const DISCOUNTS = [
 
 export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
   const [isRental, setIsRental] = useState(true)
-  const [rentalPeriod, setRentalPeriod] = useState('daily')
   const [quantity, setQuantity] = useState(1)
-  const [rentalDate, setRentalDate] = useState<Date>(new Date())
+  // Nowe stany dla zakresu dat
+  const [rentalFrom, setRentalFrom] = useState<Date>(new Date())
+  const [rentalTo, setRentalTo] = useState<Date>(new Date())
   const [appliedDiscounts, setAppliedDiscounts] = useState<Discount[]>([])
   const [discountCode, setDiscountCode] = useState('')
   const { addItem } = useCart()
 
-  // Mapowanie okresów wypożyczenia na ich polskie etykiety i wartości
-  const rentalOptions = [
-    { id: 'daily', label: '1 dzień', price: product.price.rental.daily },
-    { id: 'weekly', label: '7 dni', price: product.price.rental.weekly },
-    { id: 'monthly', label: '30 dni', price: product.price.rental.monthly },
-  ]
-
-  const handleQuantityChange = (delta: number) => {
-    const newQuantity = quantity + delta
-    if (newQuantity >= 1 && newQuantity <= 10) {
-      setQuantity(newQuantity)
-    }
-  }
+  // Kaucja (jeśli nie ma w produkcie, domyślnie 300 zł)
+  const deposit = product.deposit ?? 300
 
   // Suma rabatów z checkboxów
   const discountsValue = DISCOUNTS.reduce(
     (sum, d) => (appliedDiscounts.some(discount => discount.code === d.id) ? sum + d.value : sum),
     0
   )
-
   // Przykładowa obsługa kodu rabatowego (możesz rozwinąć logikę)
   const codeDiscountValue = discountCode === 'EXTRA10' ? 10 : 0
 
-  // Kaucja (jeśli nie ma w produkcie, domyślnie 300 zł)
-  const deposit = product.deposit ?? 300
-
-  // Obliczenia cen
-  const basePrice = isRental ? product.price.rental[rentalPeriod] : product.price.purchase
+  // Przykładowa logika: cena = liczba dni * cena za dzień (możesz rozwinąć wg potrzeb)
+  const getDays = (from: Date, to: Date) =>
+    Math.max(1, Math.ceil((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24)) + 1)
+  const rentalDays = getDays(rentalFrom, rentalTo)
+  const basePrice = isRental ? product.price.rental.daily * rentalDays : product.price.purchase
   const originalPrice = basePrice * quantity
   const totalDiscount = discountsValue + codeDiscountValue
   const finalPrice = Math.max(0, originalPrice - totalDiscount)
-
-  // Formatowanie daty dla inputu
-  const today = new Date()
 
   // Format helper
   const formatPrice = (value: number) => `${value} zł`
@@ -100,20 +86,20 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
       quantity,
       imageUrl: product.images[0],
       isRental,
-      rentalPeriod: isRental ? rentalPeriod : undefined,
-      rentalDate: isRental ? rentalDate : undefined,
+      rentalPeriod: isRental ? `${rentalDays}` : undefined,
+      rentalDate: isRental ? rentalFrom : undefined,
       deposit: isRental ? deposit : undefined,
       discounts: appliedDiscounts,
     }
     addItem(item)
   }
 
-  // Ustaw minimalną datę jako dzisiaj
-  const formatDateForInput = (date: Date) => {
-    const year = date.getFullYear()
-    const month = String(date.getMonth() + 1).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
-    return `${year}-${month}-${day}`
+  // Obsługa zmiany ilości
+  const handleQuantityChange = (delta: number) => {
+    const newQuantity = quantity + delta
+    if (newQuantity >= 1 && newQuantity <= 10) {
+      setQuantity(newQuantity)
+    }
   }
 
   return (
@@ -143,42 +129,15 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
         }}
       >
         {isRental && (
-          <div className="product__form-row product__form-row--dates">
-            <div className="product__form-field">
-              <label className="product__form-label" htmlFor="rental-period">
-                Okres wypożyczenia
-              </label>
-              <select
-                id="rental-period"
-                name="rental-period"
-                value={rentalPeriod}
-                onChange={e => setRentalPeriod(e.target.value)}
-                className="product__form-input"
-              >
-                {rentalOptions.map(option => (
-                  <option key={option.id} value={option.id}>
-                    {option.label} ({option.price} zł)
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="product__form-field">
-              <label className="product__form-label" htmlFor="rental-date">
-                Data wypożyczenia
-              </label>
-              <div className="product__rental-date-field">
-                <input
-                  id="rental-date"
-                  name="rental-date"
-                  type="date"
-                  min={formatDateForInput(today)}
-                  value={formatDateForInput(rentalDate)}
-                  onChange={e => setRentalDate(new Date(e.target.value))}
-                  className="product__rental-date-input"
-                />
-                <Calendar className="product__rental-date-icon" size={20} />
-              </div>
-            </div>
+          <div className="product__form-row flex flex-col gap-4 w-full">
+            <RentalPeriodSelector
+              from={rentalFrom}
+              to={rentalTo}
+              onChange={(from, to) => {
+                setRentalFrom(from)
+                setRentalTo(to)
+              }}
+            />
           </div>
         )}
 
@@ -263,10 +222,7 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
             <div className="product__summary">
               <div className="product__summary-main">
                 <span className="product__summary-label">
-                  Suma{' '}
-                  {isRental &&
-                    `(za ${rentalPeriod === 'daily' ? '1 dzień' : rentalPeriod === 'weekly' ? '7 dni' : '30 dni'})`}
-                  :
+                  Suma {isRental && `(za ${rentalDays} dni)`}:
                 </span>
                 <div className="product__summary-prices">
                   {totalDiscount > 0 && (
