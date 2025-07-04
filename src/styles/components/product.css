@@ -359,36 +359,11 @@ select.product__form-input {
 }
 
 /* Quantity section - POPRAWKA: Lepsze wyświetlanie zniżek */
-.product__quantity {
-  @apply flex items-center bg-slate-700/60 rounded-lg p-1;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+.product__quantity-wrapper {
+  @apply flex items-center gap-2;
 }
 
-.product__quantity-button {
-  @apply w-10 h-10 flex items-center justify-center rounded-md bg-slate-600/80 hover:bg-rose-600 transition-all text-white font-semibold;
-  border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-.product__quantity-value {
-  @apply flex-1 text-center text-lg font-semibold text-white;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  outline: none;
-  width: 3.5rem;
-  min-width: 0;
-  appearance: textfield;
-  /* Remove number arrows for all browsers */
-}
-.product__quantity-value::-webkit-outer-spin-button,
-.product__quantity-value::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.product__quantity-value[type='number'] {
-  -moz-appearance: textfield;
-}
+/* Stare style usunięte - zastąpione przez uniwersalny komponent QuantityControl */
 
 /* POPRAWKA: Przeprojektowane wyświetlanie zniżki ilościowej */
 .product__quantity-discount {

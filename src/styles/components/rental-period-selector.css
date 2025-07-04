@@ -1,5 +1,5 @@
 .rental-period-selector {
-  @apply flex flex-col gap-6 w-full;
+  @apply flex flex-col gap-4 w-full;
 }
 
 .rental-period-selector__field {
@@ -10,18 +10,11 @@
   @apply text-sm font-medium text-slate-200 mb-1;
 }
 
-.rental-period-selector__input-group {
-  @apply flex flex-row items-center gap-2 bg-slate-800 rounded-lg px-4 py-2;
-}
-
-.rental-period-selector__button {
-  @apply w-8 h-8 flex items-center justify-center rounded bg-slate-700 text-white text-lg font-bold hover:bg-slate-600 transition disabled:opacity-50;
-}
-
-.rental-period-selector__date {
-  @apply flex items-center gap-2 cursor-pointer select-none px-3 py-1 rounded bg-slate-900 text-white text-base font-semibold focus:outline-none focus:ring-2 focus:ring-rose-400;
-}
-
 .rental-period-selector__icon {
-  @apply ml-1 text-slate-400;
+  @apply ml-2 text-slate-400;
+}
+
+.rental-period-selector__date-input {
+  @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-white rounded p-2 z-10 shadow-lg;
+  min-width: 120px;
 }
