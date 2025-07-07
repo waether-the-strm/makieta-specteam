@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
-import { BadgeVariant, badgeVariants } from './badge-variants'
 
 function Badge({
   className,
-  variant,
+  variant = 'default',
   ...props
-}: React.HTMLAttributes<HTMLDivElement> & { variant?: BadgeVariant }) {
-  return <div className={cn(badgeVariants({ variant }), className)} {...props} />
+}: React.HTMLAttributes<HTMLDivElement> & { variant?: string }) {
+  const variantClass = variant ? `badge--${variant}` : 'badge--default'
+  return <div className={cn('badge', variantClass, className)} {...props} />
 }
 
 export { Badge }

@@ -1,0 +1,55 @@
+/* Accordion Component Styles */
+
+.accordion__item {
+  @apply border-b;
+}
+
+.accordion__header {
+  @apply flex;
+}
+
+.accordion__trigger {
+  @apply flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline;
+}
+
+.accordion__trigger[data-state='open'] > svg {
+  @apply rotate-180;
+}
+
+.accordion__icon {
+  @apply h-4 w-4 shrink-0 transition-transform duration-200;
+}
+
+.accordion__content {
+  @apply overflow-hidden text-sm transition-all;
+}
+
+.accordion__content[data-state='closed'] {
+  animation: accordion-up 0.2s ease-out;
+}
+
+.accordion__content[data-state='open'] {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.accordion__content-inner {
+  @apply pb-4 pt-0;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

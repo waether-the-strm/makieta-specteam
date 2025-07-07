@@ -17,6 +17,11 @@
 @import './components/quantity-control.css';
 @import './components/rental-period-selector.css';
 @import './components/product-info.css';
+@import './components/accordion.css';
+@import './components/card.css';
+@import './components/separator.css';
+@import './components/tabs.css';
+@import './components/badge.css';
 @import './pages/order-summary.css';
 
 /* Font Variables */

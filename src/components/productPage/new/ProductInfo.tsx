@@ -7,7 +7,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@ui/tabs'
 import { Badge } from '@ui/badge'
 
 import { techSpecs, boxContents } from './data'
-import { BadgeVariant } from '@/components/ui/badge-variants'
 
 import { AccordionProductItem, accordionData } from './accordion'
 import { useParams } from 'react-router-dom'
@@ -145,10 +144,7 @@ const ProductInfo = () => {
                   <div className="product-info__contents-box product-info__contents-box--rental">
                     <div className="product-info__contents-box-header">
                       <h4 className="product-info__contents-box-title">Zawartość - Wynajem</h4>
-                      <Badge
-                        variant={BadgeVariant.Secondary}
-                        className="product-info__contents-badge"
-                      >
+                      <Badge variant="secondary" className="product-info__contents-badge">
                         Rental
                       </Badge>
                     </div>

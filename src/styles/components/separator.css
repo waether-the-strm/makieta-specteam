@@ -1,0 +1,13 @@
+/* Separator Component Styles */
+
+.separator {
+  @apply shrink-0 bg-slate-600;
+}
+
+.separator--horizontal {
+  @apply h-[1px] w-full;
+}
+
+.separator--vertical {
+  @apply h-full w-[1px];
+}

@@ -1,0 +1,21 @@
+/* Badge Component Styles */
+
+.badge {
+  @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2;
+}
+
+.badge--default {
+  @apply border-transparent bg-slate-600 text-slate-200 hover:bg-slate-500;
+}
+
+.badge--secondary {
+  @apply border-transparent bg-slate-700 text-slate-300 hover:bg-slate-600;
+}
+
+.badge--destructive {
+  @apply border-transparent bg-red-600 text-white hover:bg-red-500;
+}
+
+.badge--outline {
+  @apply text-slate-200;
+}
