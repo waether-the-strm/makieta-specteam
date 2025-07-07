@@ -70,8 +70,9 @@
 }
 
 .rental-period-range__input {
-  @apply bg-slate-700/80;
-  color: #f1f5f9;
+  background: rgb(201 187 169);
+  filter: invert(1);
+  color: #282828;
   flex: 1;
   padding: 0.3em 0;
   padding-right: 0.3em;
