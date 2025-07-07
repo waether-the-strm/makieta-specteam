@@ -36,72 +36,76 @@ export const RentalPeriodSelector: FC<RentalPeriodSelectorProps> = ({ from, to, 
   }
 
   return (
-    <div className="rental-period-range">
-      <label htmlFor="start-date-input" className="rental-period-range__label">
+    <div className="rental-period-selector">
+      <label htmlFor="start-date-input" className="rental-period-selector__label">
         Od
       </label>
 
-      <div className="rental-period-range__group mr-3">
-        <button
-          className="rental-period-range__btn rental-period-range__btn--left"
-          aria-label="Poprzedni dzień początkowy"
-          onClick={() => handleStartChange(addDays(startDate, -1))}
-          tabIndex={0}
-          type="button"
-        >
-          –
-        </button>
+      <div className="rental-period-selector__field">
+        <div className="rental-period-selector__group">
+          <button
+            className="rental-period-selector__btn rental-period-selector__btn--left"
+            aria-label="Poprzedni dzień początkowy"
+            onClick={() => handleStartChange(addDays(startDate, -1))}
+            tabIndex={0}
+            type="button"
+          >
+            –
+          </button>
 
-        <input
-          type="date"
-          className="rental-period-range__input"
-          value={formatDateForInput(startDate)}
-          min={formatDateForInput(new Date())}
-          onChange={e => handleStartChange(new Date(e.target.value))}
-          aria-label="Data początkowa"
-          id="start-date-input"
-        />
-        <button
-          className="rental-period-range__btn rental-period-range__btn--right"
-          aria-label="Następny dzień początkowy"
-          onClick={() => handleStartChange(addDays(startDate, 1))}
-          tabIndex={0}
-          type="button"
-        >
-          +
-        </button>
+          <input
+            type="date"
+            className="rental-period-selector__date-input"
+            value={formatDateForInput(startDate)}
+            min={formatDateForInput(new Date())}
+            onChange={e => handleStartChange(new Date(e.target.value))}
+            aria-label="Data początkowa"
+            id="start-date-input"
+          />
+          <button
+            className="rental-period-selector__btn rental-period-selector__btn--right"
+            aria-label="Następny dzień początkowy"
+            onClick={() => handleStartChange(addDays(startDate, 1))}
+            tabIndex={0}
+            type="button"
+          >
+            +
+          </button>
+        </div>
       </div>
-      <label htmlFor="end-date-input" className="rental-period-range__label">
+      <label htmlFor="end-date-input" className="rental-period-selector__label">
         Do
       </label>
-      <div className="rental-period-range__group">
-        <button
-          className="rental-period-range__btn rental-period-range__btn--left"
-          aria-label="Poprzedni dzień końcowy"
-          onClick={() => handleEndChange(addDays(endDate, -1))}
-          tabIndex={0}
-          type="button"
-        >
-          –
-        </button>
-        <input
-          type="date"
-          className="rental-period-range__input"
-          value={formatDateForInput(endDate)}
-          min={formatDateForInput(startDate)}
-          onChange={e => handleEndChange(new Date(e.target.value))}
-          aria-label="Data końcowa"
-          id="end-date-input"
-        />
-        <button
-          className="rental-period-range__btn rental-period-range__btn--right"
-          aria-label="Następny dzień końcowy"
-          onClick={() => handleEndChange(addDays(endDate, 1))}
-          tabIndex={0}
-          type="button"
-        >
-          +
-        </button>
+      <div className="rental-period-selector__field">
+        <div className="rental-period-selector__group">
+          <button
+            className="rental-period-selector__btn rental-period-selector__btn--left"
+            aria-label="Poprzedni dzień końcowy"
+            onClick={() => handleEndChange(addDays(endDate, -1))}
+            tabIndex={0}
+            type="button"
+          >
+            –
+          </button>
+          <input
+            type="date"
+            className="rental-period-selector__date-input"
+            value={formatDateForInput(endDate)}
+            min={formatDateForInput(startDate)}
+            onChange={e => handleEndChange(new Date(e.target.value))}
+            aria-label="Data końcowa"
+            id="end-date-input"
+          />
+          <button
+            className="rental-period-selector__btn rental-period-selector__btn--right"
+            aria-label="Następny dzień końcowy"
+            onClick={() => handleEndChange(addDays(endDate, 1))}
+            tabIndex={0}
+            type="button"
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   )

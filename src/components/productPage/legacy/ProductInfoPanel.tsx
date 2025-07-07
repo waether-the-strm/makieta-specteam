@@ -18,7 +18,7 @@ export const ProductInfoPanel: FC<ProductInfoPanelProps> = ({ productData }) => 
         <div className="product__tabs-header" role="tablist" aria-label="Informacje o produkcie">
           {productData.faq.length > 0 && (
             <button
-              className={`tab-button relative z-10 w-1/2 ${
+              className={`tab-button product__tab-button ${
                 activeTab === ProductTab.FAQ ? 'tab-button--active' : 'tab-button--inactive'
               }`}
               onClick={() => setActiveTab(ProductTab.FAQ)}
@@ -31,7 +31,7 @@ export const ProductInfoPanel: FC<ProductInfoPanelProps> = ({ productData }) => 
             </button>
           )}
           <button
-            className={`tab-button relative z-10 w-1/2 ${
+            className={`tab-button product__tab-button ${
               activeTab === ProductTab.SPECS ? 'tab-button--active' : 'tab-button--inactive'
             }`}
             onClick={() => setActiveTab(ProductTab.SPECS)}

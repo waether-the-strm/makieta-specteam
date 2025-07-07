@@ -583,3 +583,7 @@ select.product__form-input {
 .product-breadcrumbs__separator {
   @apply mx-2 text-slate-400 text-lg align-middle select-none relative bottom-0.5;
 }
+
+.product__tab-button {
+  @apply relative z-10 w-1/2;
+}
