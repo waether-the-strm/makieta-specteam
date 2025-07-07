@@ -3,11 +3,11 @@
 }
 
 .rental-period-selector__field {
-  @apply flex gap-5 items-center;
+  @apply flex gap-5 items-center justify-around;
 }
 
 .rental-period-selector__label {
-  @apply text-sm font-medium text-slate-200 mb-1;
+  @apply text-sm font-medium text-slate-200 mb-1 mr-3;
 }
 
 .rental-period-selector__icon {
@@ -49,4 +49,83 @@
 }
 .rental-period-selector__date-input[type='date'] {
   -moz-appearance: textfield;
+}
+
+.rental-period-range {
+  display: grid;
+  background: #1e293b; /* slate-800 */
+  border-radius: 8px;
+}
+
+.rental-period-range__label {
+  @apply text-sm font-medium text-slate-200 mb-1 mr-3 items-center flex;
+  grid-row: 1;
+}
+
+.rental-period-range__group {
+  display: flex;
+  background: #334155;
+  border-radius: 6px;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.rental-period-range__input {
+  background: #414f64;
+  color: #f1f5f9;
+  border: none;
+  flex: 1;
+  border-radius: 4px;
+  padding: 0.3em 0;
+  padding-right: 0.3em;
+  font-size: 1rem;
+  text-align: center;
+  outline: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.rental-period-range__separator {
+  color: #94a3b8; /* slate-400 */
+  font-size: 1.2rem;
+  margin: 0 4px;
+}
+
+.rental-period-range__btn {
+  height: 100%;
+  background: #334155; /* slate-700 */
+  color: #cbd5e1; /* slate-300 */
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    width 0.2s,
+    opacity 0.2s;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+}
+
+.rental-period-range__group:hover .rental-period-range__btn,
+.rental-period-range__group:focus-within .rental-period-range__btn {
+  opacity: 1;
+  pointer-events: auto;
+  width: 1.5rem;
+}
+
+.rental-period-range__btn:hover,
+.rental-period-range__btn:focus {
+  background: #475569; /* slate-600 */
+  color: #f1f5f9; /* slate-100 */
+}
+
+@media (max-width: 640px) {
+  .rental-period-range__btn {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }

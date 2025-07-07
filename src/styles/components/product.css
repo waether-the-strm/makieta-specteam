@@ -255,11 +255,11 @@
 
 .product__form {
   @apply flex flex-col;
-  gap: 1.5rem; /* POPRAWKA: Przywracam większy spacing między sekcjami */
 }
 
 .product__form-row {
-  @apply flex flex-col;
+  @apply flex;
+  padding: 1rem 0;
 }
 
 .product__form-row--dates {
@@ -267,16 +267,14 @@
 }
 
 .product__form-row--quantity {
-  @apply flex flex-col;
-  gap: 0.75rem;
+  @apply flex gap-3 items-center;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .product__form-row--discounts {
   @apply flex flex-col;
   gap: 0.75rem;
-  padding: 1.25rem 0;
   border-top: 1px solid rgba(148, 163, 184, 0.2);
-  margin: 0.5rem 0;
 }
 
 .product__form-row--summary {
@@ -290,7 +288,7 @@
 }
 
 .product__form-label {
-  @apply block text-sm text-slate-300 mb-2 font-medium;
+  @apply block text-sm text-slate-300 font-medium;
 }
 
 .product__form-input {
@@ -371,6 +369,7 @@ select.product__form-input {
   margin-left: 0.5rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 3px rgba(244, 63, 94, 0.1);
+  white-space: nowrap;
 }
 
 /* Discounts section - lepsze grupowanie */

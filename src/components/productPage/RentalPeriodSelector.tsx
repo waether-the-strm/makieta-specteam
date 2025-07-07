@@ -1,5 +1,4 @@
 import { type FC, useState } from 'react'
-import QuantityControl from '../ui/quantity-control'
 
 interface RentalPeriodSelectorProps {
   from: Date
@@ -37,66 +36,72 @@ export const RentalPeriodSelector: FC<RentalPeriodSelectorProps> = ({ from, to, 
   }
 
   return (
-    <div className="rental-period-selector">
-      <div className="rental-period-selector__field">
-        <label className="rental-period-selector__label" htmlFor="start-date-input">
-          Od
-        </label>
-        <QuantityControl
-          value={
-            <>
-              <input
-                type="date"
-                className="rental-period-selector__date-input"
-                value={formatDateForInput(startDate)}
-                min={formatDateForInput(new Date())}
-                max={formatDateForInput(endDate)}
-                onChange={e => {
-                  const newDate = new Date(e.target.value)
-                  handleStartChange(newDate)
-                }}
-                aria-label="Data początkowa wypożyczenia"
-                tabIndex={0}
-                id="start-date-input"
-              />
-            </>
-          }
-          onDecrease={() => handleStartChange(addDays(startDate, -1))}
-          onIncrease={() => handleStartChange(addDays(startDate, 1))}
-          decreaseLabel="Poprzedni dzień"
-          increaseLabel="Następny dzień"
-          valueClassName="quantity-control__value--date"
-        />
-      </div>
+    <div className="rental-period-range">
+      <label htmlFor="start-date-input" className="rental-period-range__label">
+        Od
+      </label>
 
-      <div className="rental-period-selector__field">
-        <label className="rental-period-selector__label" htmlFor="end-date-input">
-          Do
-        </label>
-        <QuantityControl
-          value={
-            <>
-              <input
-                type="date"
-                className="rental-period-selector__date-input"
-                value={formatDateForInput(endDate)}
-                min={formatDateForInput(startDate)}
-                onChange={e => {
-                  const newDate = new Date(e.target.value)
-                  handleEndChange(newDate)
-                }}
-                aria-label="Data końcowa wypożyczenia"
-                tabIndex={0}
-                id="end-date-input"
-              />
-            </>
-          }
-          onDecrease={() => handleEndChange(addDays(endDate, -1))}
-          onIncrease={() => handleEndChange(addDays(endDate, 1))}
-          decreaseLabel="Poprzedni dzień"
-          increaseLabel="Następny dzień"
-          valueClassName="quantity-control__value--date"
+      <div className="rental-period-range__group mr-3">
+        <button
+          className="rental-period-range__btn rental-period-range__btn--left"
+          aria-label="Poprzedni dzień początkowy"
+          onClick={() => handleStartChange(addDays(startDate, -1))}
+          tabIndex={0}
+          type="button"
+        >
+          –
+        </button>
+
+        <input
+          type="date"
+          className="rental-period-range__input"
+          value={formatDateForInput(startDate)}
+          min={formatDateForInput(new Date())}
+          onChange={e => handleStartChange(new Date(e.target.value))}
+          aria-label="Data początkowa"
+          id="start-date-input"
         />
+        <button
+          className="rental-period-range__btn rental-period-range__btn--right"
+          aria-label="Następny dzień początkowy"
+          onClick={() => handleStartChange(addDays(startDate, 1))}
+          tabIndex={0}
+          type="button"
+        >
+          +
+        </button>
+      </div>
+      <label htmlFor="end-date-input" className="rental-period-range__label">
+        Do
+      </label>
+      <div className="rental-period-range__group">
+        <button
+          className="rental-period-range__btn rental-period-range__btn--left"
+          aria-label="Poprzedni dzień końcowy"
+          onClick={() => handleEndChange(addDays(endDate, -1))}
+          tabIndex={0}
+          type="button"
+        >
+          –
+        </button>
+        <input
+          type="date"
+          className="rental-period-range__input"
+          value={formatDateForInput(endDate)}
+          min={formatDateForInput(startDate)}
+          onChange={e => handleEndChange(new Date(e.target.value))}
+          aria-label="Data końcowa"
+          id="end-date-input"
+        />
+        <button
+          className="rental-period-range__btn rental-period-range__btn--right"
+          aria-label="Następny dzień końcowy"
+          onClick={() => handleEndChange(addDays(endDate, 1))}
+          tabIndex={0}
+          type="button"
+        >
+          +
+        </button>
       </div>
     </div>
   )
