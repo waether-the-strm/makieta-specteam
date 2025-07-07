@@ -39,8 +39,8 @@ export default function OrderSummaryPage() {
 
   return (
     <main className="order-summary">
-      <div className="container">
-        <h1 className="page-title">Podsumowanie zamówienia</h1>
+      <div className="order-summary__container">
+        <h1 className="order-summary__title">Podsumowanie zamówienia</h1>
         <div className="order-summary__content">
           {/* Sekcja zamówienia */}
           <div className="order-summary__section">
@@ -115,7 +115,7 @@ export default function OrderSummaryPage() {
 
           {/* Przycisk podsumowania */}
           <div className="order-summary__actions">
-            <button className="btn-action-primary" disabled>
+            <button className="order-summary__button" disabled>
               Przejdź do podsumowania
             </button>
           </div>

@@ -38,7 +38,7 @@ const CartSummaryItem: React.FC<CartSummaryItemProps> = ({
             />
           )}
           <div className="cart-summary__item-title-details">
-            <span className="text-label-lg">{item.name}</span>
+            <span className="cart-summary__item-name">{item.name}</span>
             {isRentalSection && item.rentalPeriod && (
               <div className="cart-summary__item-meta text-meta">
                 {getRentalPeriodText(item.rentalPeriod, 1)}

@@ -9,7 +9,7 @@ const renderStars = (rating: number) => {
   return Array.from({ length: 5 }, (_, i) => (
     <Star
       key={i}
-      className={`product-reviews__star${i < rating ? ' fill-rose-400 text-rose-400' : ' text-slate-400'}`}
+      className={`product-reviews__star${i < rating ? ' product-reviews__star--filled' : ' product-reviews__star--empty'}`}
     />
   ))
 }

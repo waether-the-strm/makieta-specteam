@@ -20,10 +20,10 @@ export default function Hero() {
               <h1 className="hero__title">Wypożyczalnia Sprzętu Detektywistycznego</h1>
               <p className="hero__subtitle">Profesjonalny sprzęt dostępny od zaraz</p>
               <div className="hero__buttons">
-                <a href="#categories" className="button primary">
+                <a href="#categories" className="hero__button hero__button--primary">
                   Zobacz nasz sprzęt
                 </a>
-                <a href="#contact" className="button secondary">
+                <a href="#contact" className="hero__button hero__button--secondary">
                   Skontaktuj się z nami
                 </a>
               </div>

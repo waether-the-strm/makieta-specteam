@@ -587,3 +587,16 @@ select.product__form-input {
 .product__tab-button {
   @apply relative z-10 w-1/2;
 }
+
+/* Product Reviews Component */
+.product-reviews__star {
+  @apply w-4 h-4;
+}
+
+.product-reviews__star--filled {
+  @apply fill-rose-400 text-rose-400;
+}
+
+.product-reviews__star--empty {
+  @apply text-slate-400;
+}

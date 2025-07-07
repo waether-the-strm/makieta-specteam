@@ -22,7 +22,7 @@ export default function CategoryCard({
   const productId = title.toLowerCase().replace(/\s+/g, '-')
 
   return (
-    <article className="product-card group">
+    <article className="product-card">
       <Link to={`/product/${productId}`} className="product-card__link" aria-labelledby={titleId}>
         <figure className="product-card__image-container">
           <img
