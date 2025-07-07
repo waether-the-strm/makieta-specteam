@@ -562,3 +562,13 @@ select.product__form-input {
 .product__summary-prices {
   @apply flex items-baseline gap-2;
 }
+
+.product__gallery-image {
+  @apply w-full h-full object-contain absolute inset-0;
+}
+.product__gallery-thumb {
+  @apply flex-shrink-0;
+}
+.product__gallery-thumb-image {
+  @apply w-full h-full object-cover;
+}

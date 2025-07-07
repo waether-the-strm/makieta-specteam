@@ -68,7 +68,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) =
             initial="enter"
             animate="center"
             exit="exit"
-            className="w-full h-full object-contain absolute inset-0"
+            className="product__gallery-image"
             style={{ willChange: 'opacity, transform' }}
           />
         </AnimatePresence>
@@ -77,16 +77,16 @@ export const ProductGallery: React.FC<ProductGalleryProps> = memo(({ images }) =
         {displayImages.map((image, index) => (
           <div
             key={index}
-            className={`product__gallery-thumb flex-shrink-0 ${
-              selectedImage === index && previewIndex === null ? 'active' : ''
-            } ${previewIndex === index ? 'previewing' : ''}`}
+            className={`product__gallery-thumb${
+              selectedImage === index && previewIndex === null ? ' active' : ''
+            }${previewIndex === index ? ' previewing' : ''}`}
             onClick={() => handleThumbnailClick(index)}
             onMouseEnter={() => handleMouseEnter(index)}
           >
             <img
               src={getFullImageUrl(image)}
               alt={`Miniatura ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="product__gallery-thumb-image"
             />
           </div>
         ))}
