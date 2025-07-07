@@ -1,19 +1,14 @@
-/* Contact Component Styles */
-
+/* Contact Component */
 .contact {
-  @apply py-16 bg-slate-900;
-}
-
-.contact__container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply bg-slate-900 text-white py-16;
 }
 
 .contact__title {
-  @apply text-3xl font-bold text-center text-white mb-12;
+  @apply text-3xl font-bold text-center mb-12;
 }
 
 .contact__grid {
-  @apply grid md:grid-cols-2 gap-8;
+  @apply grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto;
 }
 
 .contact__info {
@@ -21,53 +16,50 @@
 }
 
 .contact__info-title {
-  @apply text-xl font-semibold text-white mb-4;
+  @apply text-2xl font-bold mb-8;
 }
 
 .contact__info-item {
-  @apply flex items-center space-x-3 p-2 rounded-md hover:bg-gray-800/30 transition-all duration-200;
+  @apply flex items-center gap-4 text-slate-300;
 }
 
 .contact__info-item .icon {
-  @apply text-slate-400;
-}
-
-.contact__info-item span {
-  @apply text-slate-300;
-}
-
-.contact__info-icon {
-  @apply text-slate-400;
+  @apply text-rose-500;
 }
 
 .contact__payment {
-  @apply mt-8;
+  @apply mt-8 space-y-4;
 }
 
 .contact__payment-title {
-  @apply text-lg font-medium text-white mb-3;
+  @apply text-lg font-semibold;
 }
 
-.contact__payment-icons {
-  @apply flex space-x-4;
+.contact__payment .icon {
+  @apply text-slate-300 mr-4;
 }
 
-.contact__payment-icons .icon {
-  @apply text-slate-400;
-}
-
-.contact__payment-icon {
-  @apply text-slate-400;
-}
-
+/* Contact Form */
 .contact-form {
-  @apply space-y-4;
+  @apply space-y-6;
 }
 
 .contact-form__input {
-  @apply w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent;
+  @apply w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg;
+  @apply text-white placeholder-slate-400;
+  @apply focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent;
+  @apply transition-all duration-200;
+}
+
+.contact-form__input[type='text'],
+.contact-form__input[type='email'] {
+  @apply h-12;
+}
+
+.contact-form__input[type='textarea'] {
+  @apply resize-none;
 }
 
 .contact-form__submit {
-  @apply w-full px-6 py-3 bg-slate-600 text-white font-medium rounded-lg hover:bg-slate-500 transition-colors;
+  @apply bg-rose-500 hover:bg-rose-600;
 }

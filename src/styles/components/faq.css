@@ -1,29 +1,47 @@
-/* FAQ Component Styles */
-
+/* FAQ Component */
 .faq {
-  @apply py-16 bg-slate-900;
+  @apply section space-y-6;
+  touch-action: pan-y pinch-zoom;
 }
-
 .faq__title {
-  @apply text-3xl font-bold text-center text-white mb-12;
+  @apply section-title;
 }
-
 .faq__list {
-  @apply max-w-4xl mx-auto space-y-6;
+  @apply gap-5 flex flex-row overflow-x-auto px-4 md:grid md:grid-cols-3 md:px-0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
 }
-
-.faq__spacer {
-  @apply h-0;
+.faq__list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
-
+@media (min-width: 768px) {
+  .faq__list {
+    overflow-x: unset;
+    scroll-snap-type: none;
+  }
+}
 .faq__item {
-  @apply bg-slate-800 rounded-lg p-6 border border-slate-700;
+  @apply bg-white rounded-lg shadow p-8 flex-shrink-0 min-w-[60vw] max-w-[65vw] mr-5 md:min-w-0 md:max-w-none md:mr-0;
+  scroll-snap-align: start;
 }
-
+.faq__item:last-child {
+  @apply mr-0;
+}
+.faq__spacer {
+  @apply block md:hidden;
+  width: 1rem;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  pointer-events: none;
+  user-select: none;
+}
 .faq__question {
-  @apply text-lg font-semibold text-white mb-3;
+  @apply font-heading text-xl font-semibold text-rose-600 mb-2;
 }
-
 .faq__answer {
-  @apply text-slate-300 leading-relaxed;
+  @apply font-body text-gray-600 md:text-lg pl-6 pt-3;
 }

@@ -33,7 +33,7 @@ const CartSummarySection: React.FC<CartSummarySectionProps> = ({
     <div className="cart-summary__section">
       <div className="cart-summary__section-header">
         {icon}
-        <h3 className="cart-summary__section-title">{title}</h3>
+        <h3 className="text-title-section">{title}</h3>
       </div>
       <ul className="cart-summary__items">
         {items.map(item => (
