@@ -1,0 +1,116 @@
+/* ProductInfo BEM styles migrated from Tailwind */
+
+.product-info {
+  @apply min-h-screen bg-slate-900 text-white;
+}
+.product-info__container {
+  @apply max-w-6xl mx-auto;
+}
+.product-info__card {
+  @apply bg-slate-800 !border-0;
+}
+.product-info__header {
+  @apply pb-6;
+}
+.product-info__category-title {
+  @apply text-3xl font-heading font-bold text-white hidden;
+}
+.product-info__intro {
+  @apply text-slate-100 leading-relaxed space-y-4;
+}
+.product-info__content {
+  @apply pt-0;
+}
+.product-info__tabs {
+  @apply w-full;
+}
+.product-info__tabs-scroll {
+  @apply overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-6;
+}
+.product-info__tabs-list {
+  @apply flex w-max min-w-full h-14 mb-8 gap-1 bg-slate-500/10 rounded-none;
+}
+.product-info__tab-trigger {
+  @apply flex-1 min-w-48 text-base uppercase font-medium text-slate-100 data-[state=active]:bg-rose-500 data-[state=active]:text-white hover:bg-slate-500/20 h-full px-6 rounded-md;
+}
+.product-info__tab-content {
+  @apply space-y-8 mt-0;
+}
+.product-info__questions-list {
+  @apply space-y-8;
+}
+.product-info__question-block {
+  @apply space-y-6;
+}
+.product-info__question-title {
+  @apply text-xl font-heading font-bold text-white;
+}
+.product-info__question-text {
+  @apply text-slate-100 leading-relaxed;
+}
+.product-info__separator {
+  @apply bg-slate-700;
+}
+.product-info__accordion {
+  @apply lg:grid lg:grid-cols-2 lg:items-start lg:gap-3 space-y-3 lg:space-y-0;
+}
+.product-info__specs-list {
+  @apply space-y-8;
+}
+.product-info__specs-header {
+  @apply flex items-center gap-3 mb-6;
+}
+.product-info__specs-icon {
+  @apply w-6 h-6 text-rose-400;
+}
+.product-info__specs-title {
+  @apply text-xl font-heading font-bold text-white;
+}
+.product-info__specs-table {
+  @apply grid gap-4;
+}
+.product-info__specs-row {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 py-3 border-b border-slate-600 last:border-0;
+}
+.product-info__specs-label {
+  @apply font-medium text-slate-200;
+}
+.product-info__specs-value {
+  @apply md:col-span-2 whitespace-pre-line text-slate-100;
+}
+.product-info__contents-header {
+  @apply flex items-center gap-3 mb-6;
+}
+.product-info__contents-icon {
+  @apply w-6 h-6 text-rose-400;
+}
+.product-info__contents-title {
+  @apply text-xl font-heading font-bold text-white;
+}
+.product-info__contents-list {
+  @apply grid md:grid-cols-2 gap-6;
+}
+.product-info__contents-box {
+  @apply bg-slate-700 rounded-lg p-6 border border-slate-600;
+}
+.product-info__contents-box-header {
+  @apply flex items-center gap-2 mb-4;
+}
+.product-info__contents-box-title {
+  @apply font-heading font-bold text-white;
+}
+.product-info__contents-badge {
+  @apply bg-rose-500 text-white;
+}
+.product-info__contents-list-items {
+  @apply space-y-3;
+}
+.product-info__contents-list-item {
+  @apply flex items-start gap-3 text-slate-100;
+}
+.product-info__contents-list-dot {
+  @apply text-rose-400 mt-1 text-sm;
+}
+.product-info__contents-list-text {
+  @apply leading-relaxed;
+}

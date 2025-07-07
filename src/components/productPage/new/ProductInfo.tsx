@@ -23,16 +23,16 @@ const ProductInfo = () => {
   const { categoryId } = useParams()
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white font-inter">
-      <div className="max-w-6xl mx-auto">
-        <Card className="bg-slate-800 border-0">
-          <CardHeader className="pb-6">
+    <div className="product-info">
+      <div className="product-info__container">
+        <Card className="product-info__card">
+          <CardHeader className="product-info__header">
             {categoryId && (
-              <CardTitle className="text-3xl font-merriweather font-bold text-white hidden">
+              <CardTitle className="product-info__category-title">
                 {capitalizeFirstLetter(categoryId)}
               </CardTitle>
             )}
-            <div className="text-slate-100 leading-relaxed space-y-4">
+            <div className="product-info__intro">
               <p>
                 Mikrosłuchawki douszne Bluetooth zapewniające dyskretną komunikację. Idealne w
                 sytuacjach wymagających ukrytego kontaktu audio. Współpracują z telefonami
@@ -41,15 +41,15 @@ const ProductInfo = () => {
             </div>
           </CardHeader>
 
-          <CardContent className="pt-0">
-            <Tabs defaultValue="questions" className="w-full">
-              <div className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -mx-6">
-                <TabsList className="flex w-max min-w-full h-14 mb-8 gap-1 bg-slate-500/10 rounded-none">
+          <CardContent className="product-info__content">
+            <Tabs defaultValue="questions" className="product-info__tabs">
+              <div className="product-info__tabs-scroll">
+                <TabsList className="product-info__tabs-list">
                   {tabs.map(tab => (
                     <TabsTrigger
                       key={tab.value}
                       value={tab.value}
-                      className="flex-1 min-w-48 text-base uppercase font-medium text-slate-100 data-[state=active]:bg-rose-500 data-[state=active]:text-white hover:bg-slate-500/20 h-full px-6 rounded-md"
+                      className="product-info__tab-trigger"
                     >
                       {tab.label}
                     </TabsTrigger>
@@ -57,49 +57,48 @@ const ProductInfo = () => {
                 </TabsList>
               </div>
 
-              <TabsContent value="questions" className="space-y-8 mt-0">
-                <div className="space-y-8">
-                  <div className="space-y-6">
-                    <h3 className="text-xl font-merriweather font-bold text-white">
+              <TabsContent
+                value="questions"
+                className="product-info__tab-content product-info__tab-content--questions"
+              >
+                <div className="product-info__questions-list">
+                  <div className="product-info__question-block">
+                    <h3 className="product-info__question-title">
                       Jak działają mikrosłuchawki Bluetooth?
                     </h3>
-                    <p className="text-slate-100 leading-relaxed">
+                    <p className="product-info__question-text">
                       Mikrosłuchawki wykorzystują technologię Bluetooth do bezprzewodowej
                       komunikacji z urządzeniem nadawczym. Sygnał jest przekazywany przez pętlę
                       indukcyjną noszoną na szyi, która jest prawie niewidoczna.
                     </p>
                   </div>
 
-                  <Separator className="bg-slate-700" />
+                  <Separator className="product-info__separator" />
 
-                  <div className="space-y-6">
-                    <h3 className="text-xl font-merriweather font-bold text-white">
+                  <div className="product-info__question-block">
+                    <h3 className="product-info__question-title">
                       Czy mikrosłuchawki są widoczne dla innych osób?
                     </h3>
-                    <p className="text-slate-100 leading-relaxed">
+                    <p className="product-info__question-text">
                       Nasze mikrosłuchawki mają cielisty kolor i są tak małe, że pozostają
                       praktycznie niewidoczne dla osób trzecich, nawet z bliskiej odległości.
                     </p>
                   </div>
 
-                  <Separator className="bg-slate-700" />
+                  <Separator className="product-info__separator" />
 
-                  <div className="space-y-6">
-                    <h3 className="text-xl font-merriweather font-bold text-white">
+                  <div className="product-info__question-block">
+                    <h3 className="product-info__question-title">
                       Jak długo działają mikrosłuchawki?
                     </h3>
-                    <p className="text-slate-100 leading-relaxed">
+                    <p className="product-info__question-text">
                       Bateria w mikrosłuchawce zapewnia do 6-8 godzin ciągłej pracy. W zestawie
                       otrzymujesz zapasowe baterie.
                     </p>
                   </div>
                 </div>
 
-                <Accordion
-                  type="single"
-                  collapsible
-                  className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-3 space-y-3 lg:space-y-0"
-                >
+                <Accordion type="single" collapsible className="product-info__accordion">
                   {accordionData.map(item => (
                     <AccordionProductItem
                       key={item.name}
@@ -112,69 +111,67 @@ const ProductInfo = () => {
                 </Accordion>
               </TabsContent>
 
-              <TabsContent value="specs" className="space-y-8 mt-0">
-                <div className="space-y-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Cog className="w-6 h-6 text-rose-400" />
-                    <h3 className="text-xl font-merriweather font-bold text-white">
-                      Szczegóły techniczne
-                    </h3>
+              <TabsContent
+                value="specs"
+                className="product-info__tab-content product-info__tab-content--specs"
+              >
+                <div className="product-info__specs-list">
+                  <div className="product-info__specs-header">
+                    <Cog className="product-info__specs-icon" />
+                    <h3 className="product-info__specs-title">Szczegóły techniczne</h3>
                   </div>
 
-                  <div className="grid gap-4">
+                  <div className="product-info__specs-table">
                     {techSpecs.map((spec, index) => (
-                      <div
-                        key={index}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-4 py-3 border-b border-slate-600 last:border-0"
-                      >
-                        <div className="font-medium text-slate-200">{spec.label}</div>
-                        <div className="md:col-span-2 whitespace-pre-line text-slate-100">
-                          {spec.value}
-                        </div>
+                      <div key={index} className="product-info__specs-row">
+                        <div className="product-info__specs-label">{spec.label}</div>
+                        <div className="product-info__specs-value">{spec.value}</div>
                       </div>
                     ))}
                   </div>
                 </div>
               </TabsContent>
 
-              <TabsContent value="contents" className="space-y-8 mt-0">
-                <div className="flex items-center gap-3 mb-6">
-                  <Package className="w-6 h-6 text-rose-400" />
-                  <h3 className="text-xl font-merriweather font-bold text-white">
-                    Zawartość pudełka
-                  </h3>
+              <TabsContent
+                value="contents"
+                className="product-info__tab-content product-info__tab-content--contents"
+              >
+                <div className="product-info__contents-header">
+                  <Package className="product-info__contents-icon" />
+                  <h3 className="product-info__contents-title">Zawartość pudełka</h3>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-slate-700 rounded-lg p-6 border border-slate-600">
-                    <div className="flex items-center gap-2 mb-4">
-                      <h4 className="font-merriweather font-bold text-white">
-                        Zawartość - Wynajem
-                      </h4>
-                      <Badge variant={BadgeVariant.Secondary} className="bg-rose-500 text-white">
+                <div className="product-info__contents-list">
+                  <div className="product-info__contents-box product-info__contents-box--rental">
+                    <div className="product-info__contents-box-header">
+                      <h4 className="product-info__contents-box-title">Zawartość - Wynajem</h4>
+                      <Badge
+                        variant={BadgeVariant.Secondary}
+                        className="product-info__contents-badge"
+                      >
                         Rental
                       </Badge>
                     </div>
-                    <ul className="space-y-3">
+                    <ul className="product-info__contents-list-items">
                       {boxContents.rental.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3 text-slate-100">
-                          <span className="text-rose-400 mt-1 text-sm">•</span>
-                          <span className="leading-relaxed">{item}</span>
+                        <li key={index} className="product-info__contents-list-item">
+                          <span className="product-info__contents-list-dot">•</span>
+                          <span className="product-info__contents-list-text">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <div className="bg-slate-700 rounded-lg p-6 border border-slate-600">
-                    <div className="flex items-center gap-2 mb-4">
-                      <h4 className="font-merriweather font-bold text-white">Zawartość - Zakup</h4>
-                      <Badge className="bg-rose-500 text-white">Purchase</Badge>
+                  <div className="product-info__contents-box product-info__contents-box--purchase">
+                    <div className="product-info__contents-box-header">
+                      <h4 className="product-info__contents-box-title">Zawartość - Zakup</h4>
+                      <Badge className="product-info__contents-badge">Purchase</Badge>
                     </div>
-                    <ul className="space-y-3">
+                    <ul className="product-info__contents-list-items">
                       {boxContents.purchase.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3 text-slate-100">
-                          <span className="text-rose-400 mt-1 text-sm">•</span>
-                          <span className="leading-relaxed">{item}</span>
+                        <li key={index} className="product-info__contents-list-item">
+                          <span className="product-info__contents-list-dot">•</span>
+                          <span className="product-info__contents-list-text">{item}</span>
                         </li>
                       ))}
                     </ul>
