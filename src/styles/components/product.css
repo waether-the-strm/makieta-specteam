@@ -323,7 +323,7 @@
 }
 
 .product__form-row--summary {
-  @apply flex flex-col;
+  @apply flex flex-col my-3 border-b border-slate-700/30;
   gap: 0.75rem;
   padding-top: 0.75rem;
 }
@@ -407,18 +407,28 @@ select.product__form-input {
 
 /* Quantity section - POPRAWKA: Lepsze wyświetlanie zniżek */
 .product__quantity-wrapper {
-  @apply flex items-center gap-2;
+  @apply flex items-center gap-2 flex-1;
 }
 
 /* Stare style usunięte - zastąpione przez uniwersalny komponent QuantityControl */
 
 /* POPRAWKA: Przeprojektowane wyświetlanie zniżki ilościowej */
 .product__quantity-discount {
-  @apply text-rose-400 text-xs font-bold px-2 py-1 bg-gradient-to-r from-rose-500/20 to-pink-500/20 rounded-full border border-rose-400/30 mr-5;
-  margin-left: 0.5rem;
+  @apply text-xs font-bold px-2 py-1 rounded-full border mr-5 ml-2;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(244, 63, 94, 0.1);
   white-space: nowrap;
+}
+
+/* active = blue  bg-gradient-to-r from-rose-500/20 to-pink-500/20 border-rose-400/30 
+box-shadow: 0 1px 3px rgba(244, 63, 94, 0.1);
+*/
+.product__quantity-discount--active {
+  @apply bg-gradient-to-r from-blue-500/20 to-blue-400/20 text-blue-400 border-2 border-blue-400/30;
+}
+
+/* inactive = gray */
+.product__quantity-discount--inactive {
+  @apply text-slate-400 bg-slate-700/60 border-dashed border-slate-400/30;
 }
 
 /* Discounts section - lepsze grupowanie */
@@ -451,7 +461,7 @@ select.product__form-input {
 
 /* Podsumowanie w panelu akcji */
 .product__summary-group {
-  @apply w-full flex flex-col overflow-hidden shadow-lg pt-3;
+  @apply w-full flex flex-col overflow-hidden;
   border-radius: 0.75rem;
   background: #1e293b;
 }
@@ -463,7 +473,7 @@ select.product__form-input {
 }
 
 .product__summary-main {
-  @apply p-0 flex items-center justify-between flex-1 whitespace-nowrap flex-wrap;
+  @apply py-4 mt-2 flex items-center justify-center flex-1 whitespace-nowrap flex-wrap;
   min-height: unset;
 }
 

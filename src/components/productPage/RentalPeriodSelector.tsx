@@ -37,11 +37,10 @@ export const RentalPeriodSelector: FC<RentalPeriodSelectorProps> = ({ from, to, 
 
   return (
     <div className="rental-period-selector">
-      <label htmlFor="start-date-input" className="rental-period-selector__label">
-        Od
-      </label>
-
       <div className="rental-period-selector__field">
+        <label htmlFor="start-date-input" className="rental-period-selector__label">
+          Od
+        </label>
         <div className="rental-period-selector__group">
           <button
             className="rental-period-selector__btn rental-period-selector__btn--left"
@@ -73,10 +72,10 @@ export const RentalPeriodSelector: FC<RentalPeriodSelectorProps> = ({ from, to, 
           </button>
         </div>
       </div>
-      <label htmlFor="end-date-input" className="rental-period-selector__label">
-        Do
-      </label>
       <div className="rental-period-selector__field">
+        <label htmlFor="end-date-input" className="rental-period-selector__label">
+          Do
+        </label>
         <div className="rental-period-selector__group">
           <button
             className="rental-period-selector__btn rental-period-selector__btn--left"

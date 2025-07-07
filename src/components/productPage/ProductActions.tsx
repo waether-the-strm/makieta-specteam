@@ -193,8 +193,14 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
               decreaseLabel="Zmniejsz ilość"
               increaseLabel="Zwiększ ilość"
             />
-            {typeof quantity === 'number' && quantity >= 3 && (
-              <span className="product__quantity-discount">10% zniżki</span>
+            {typeof quantity === 'number' && quantity >= 3 ? (
+              <span className="product__quantity-discount product__quantity-discount--active">
+                10% zniżki
+              </span>
+            ) : (
+              <span className="product__quantity-discount product__quantity-discount--inactive">
+                zniżka od 3 sztuk
+              </span>
             )}
           </div>
         </div>

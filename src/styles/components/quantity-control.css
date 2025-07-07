@@ -1,13 +1,13 @@
 /* Universal Quantity Control Component */
 
 .quantity-control {
-  @apply flex items-center bg-slate-700/60 rounded-lg p-1 w-full;
+  @apply flex items-center bg-slate-700/60 rounded-lg p-1;
   backdrop-filter: blur(8px);
   border: 1px solid rgba(148, 163, 184, 0.1);
 }
 
 .quantity-control__button {
-  @apply w-8 flex items-center justify-center rounded-md bg-slate-600/80 hover:bg-rose-600 transition-all text-white font-semibold border-slate-600/70;
+  @apply size-8 flex items-center justify-center rounded-md bg-slate-600/80 hover:bg-rose-600 transition-all text-white font-semibold border-slate-600/70;
   flex: none;
 }
 
