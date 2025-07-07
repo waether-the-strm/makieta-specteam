@@ -160,3 +160,35 @@
 .product-questions__icon {
   @apply w-4 h-4;
 }
+
+/* Reviews BEM styles */
+.product-reviews {
+  @apply space-y-4;
+}
+.product-reviews__card {
+  @apply bg-slate-600 border-slate-500;
+}
+.product-reviews__content {
+  @apply !pt-6;
+}
+.product-reviews__header {
+  @apply flex items-center gap-2 mb-2;
+}
+.product-reviews__stars {
+  @apply flex gap-1;
+}
+.product-reviews__star {
+  @apply w-4 h-4;
+}
+.product-reviews__name {
+  @apply font-medium text-rose-400;
+}
+.product-reviews__text {
+  @apply text-slate-100 italic whitespace-pre-line;
+}
+.product-reviews__toggle {
+  @apply flex items-center gap-2 text-rose-400 hover:text-rose-300 font-medium mt-4;
+}
+.product-reviews__icon {
+  @apply w-4 h-4;
+}
