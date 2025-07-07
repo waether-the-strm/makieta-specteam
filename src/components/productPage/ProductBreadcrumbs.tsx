@@ -8,15 +8,15 @@ interface ProductBreadcrumbsProps {
 
 export const ProductBreadcrumbs: React.FC<ProductBreadcrumbsProps> = ({ category, name }) => {
   return (
-    <div className="text-meta-light mb-8">
+    <div className="product-breadcrumbs">
       <Link to="/" className="product__breadcrumbs-link">
         Oferta
       </Link>
-      <span className="mx-2">&gt;</span>
+      <span className="product-breadcrumbs__separator">›</span>
       <Link to={`/category/${category.toLowerCase()}`} className="product__breadcrumbs-link">
         {category}
       </Link>
-      <span className="mx-2">&gt;</span>
+      <span className="product-breadcrumbs__separator">›</span>
       <span className="product__breadcrumbs-current">{name}</span>
     </div>
   )

@@ -576,3 +576,10 @@ select.product__form-input {
 .product__gallery-thumb-image {
   @apply w-full h-full object-cover;
 }
+
+.product-breadcrumbs {
+  @apply text-slate-400 mb-8;
+}
+.product-breadcrumbs__separator {
+  @apply mx-2 text-slate-400 text-lg align-middle select-none relative bottom-0.5;
+}
