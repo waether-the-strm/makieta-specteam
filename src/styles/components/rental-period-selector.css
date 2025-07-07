@@ -63,19 +63,16 @@
 }
 
 .rental-period-range__group {
+  @apply rounded-lg border border-slate-600/70 overflow-hidden;
   display: flex;
-  background: #334155;
-  border-radius: 6px;
   position: relative;
   transition: box-shadow 0.2s;
 }
 
 .rental-period-range__input {
-  background: #414f64;
+  @apply bg-slate-700/80;
   color: #f1f5f9;
-  border: none;
   flex: 1;
-  border-radius: 4px;
   padding: 0.3em 0;
   padding-right: 0.3em;
   font-size: 1rem;
@@ -97,7 +94,6 @@
   background: #334155; /* slate-700 */
   color: #cbd5e1; /* slate-300 */
   border: none;
-  border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   transition:
@@ -110,11 +106,10 @@
   width: 0;
 }
 
-.rental-period-range__group:hover .rental-period-range__btn,
-.rental-period-range__group:focus-within .rental-period-range__btn {
+.rental-period-range__group:hover .rental-period-range__btn {
   opacity: 1;
   pointer-events: auto;
-  width: 1.5rem;
+  width: 2rem;
 }
 
 .rental-period-range__btn:hover,

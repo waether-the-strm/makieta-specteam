@@ -7,8 +7,7 @@
 }
 
 .quantity-control__button {
-  @apply w-8 flex items-center justify-center rounded-md bg-slate-600/80 hover:bg-rose-600 transition-all text-white font-semibold;
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  @apply w-8 flex items-center justify-center rounded-md bg-slate-600/80 hover:bg-rose-600 transition-all text-white font-semibold border-slate-600/70;
   flex: none;
 }
 
