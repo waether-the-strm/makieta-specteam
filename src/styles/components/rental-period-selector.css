@@ -1,5 +1,5 @@
 .rental-period-selector {
-  @apply flex flex-col gap-4 w-full;
+  @apply flex flex-col gap-x-3 w-full;
   display: grid;
   background: #1e293b; /* slate-800 */
   border-radius: 8px;

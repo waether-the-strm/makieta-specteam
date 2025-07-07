@@ -14,14 +14,14 @@ export const ProductStatus: FC<Props> = ({ productData }) => {
           {productData.isAvailable ? 'Produkt dostępny' : 'Produkt niedostępny'}
         </span>
       </div>
-      <span className="product__status-separator">|</span>
-      <div className="product__status-rating">
-        <span className="product__status-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <span className="product__status-separator">|</span>
-      <div className="product__status-score">
-        <span className="product__status-score-value">{productData.rating}</span>
-        <span className="product__status-score-max">/5</span>
+      <div className="product__status-rating-container">
+        <div className="product__status-rating">
+          <span className="product__status-stars">⭐⭐⭐⭐⭐</span>
+        </div>
+        <div className="product__status-score">
+          <span className="product__status-score-value">{productData.rating}</span>
+          <span className="product__status-score-max">/ 5</span>
+        </div>
       </div>
     </div>
   )
