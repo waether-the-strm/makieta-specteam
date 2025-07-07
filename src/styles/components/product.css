@@ -419,14 +419,10 @@ select.product__form-input {
   white-space: nowrap;
 }
 
-/* active = blue  bg-gradient-to-r from-rose-500/20 to-pink-500/20 border-rose-400/30 
-box-shadow: 0 1px 3px rgba(244, 63, 94, 0.1);
-*/
 .product__quantity-discount--active {
-  @apply bg-gradient-to-r from-blue-500/20 to-blue-400/20 text-blue-400 border-2 border-blue-400/30;
+  @apply bg-gradient-to-r from-emerald-500/20 to-emerald-400/20 text-emerald-400 border-2 border-emerald-400/30 shadow-sm;
 }
 
-/* inactive = gray */
 .product__quantity-discount--inactive {
   @apply text-slate-400 bg-slate-700/60 border-dashed border-slate-400/30;
 }

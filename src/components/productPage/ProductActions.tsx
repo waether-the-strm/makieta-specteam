@@ -199,7 +199,7 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
               </span>
             ) : (
               <span className="product__quantity-discount product__quantity-discount--inactive">
-                zniżka od 3 sztuk
+                -10% od 3
               </span>
             )}
           </div>
@@ -225,10 +225,11 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
                       className="product__discount-checkbox"
                       checked={appliedDiscounts.some(d => d.code === discount.id)}
                       onChange={() =>
-                        setAppliedDiscounts(d => [
-                          ...d,
-                          { code: discount.id, value: discount.value },
-                        ])
+                        setAppliedDiscounts(d =>
+                          d.some(item => item.code === discount.id)
+                            ? d.filter(item => item.code !== discount.id)
+                            : [...d, { code: discount.id, value: discount.value }]
+                        )
                       }
                     />
                     <span>{discount.label}</span>
