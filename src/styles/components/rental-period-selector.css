@@ -3,7 +3,7 @@
 }
 
 .rental-period-selector__field {
-  @apply flex flex-col gap-2;
+  @apply flex gap-5 items-center;
 }
 
 .rental-period-selector__label {
@@ -15,6 +15,38 @@
 }
 
 .rental-period-selector__date-input {
-  @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-white rounded p-2 z-10 shadow-lg;
-  min-width: 120px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  min-width: 8.5rem;
+  width: 8.5rem;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s;
+}
+.rental-period-selector__date-input:focus {
+  color: #fbbf24;
+}
+.rental-period-selector__date-input::-webkit-input-placeholder {
+  color: #cbd5e1;
+  opacity: 0.7;
+}
+.rental-period-selector__date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.rental-period-selector__date-input[type='date']::-webkit-input-placeholder {
+  color: #cbd5e1;
+  opacity: 0.7;
+}
+.rental-period-selector__date-input[type='date']::-webkit-inner-spin-button,
+.rental-period-selector__date-input[type='date']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.rental-period-selector__date-input[type='date'] {
+  -moz-appearance: textfield;
 }

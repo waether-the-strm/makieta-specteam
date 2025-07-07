@@ -83,7 +83,7 @@ interface QuantityControlProps {
 
 ### 3. Łatwiejsze utrzymanie
 
-- Zmiany w jednym miejscu wpływają na wszystkie kontroleki
+- Zmiany w jednym miejscu wpływają na wszystkie kontrolki
 - Mniej kodu do testowania
 
 ### 4. Lepsza dostępność
@@ -93,7 +93,7 @@ interface QuantityControlProps {
 
 ## Struktura plików
 
-```
+```sh
 src/
 ├── components/
 │   ├── ui/

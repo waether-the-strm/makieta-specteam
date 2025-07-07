@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Calendar } from 'lucide-react'
+import { type FC, useState } from 'react'
 import QuantityControl from '../ui/quantity-control'
 
 interface RentalPeriodSelectorProps {
@@ -8,15 +7,9 @@ interface RentalPeriodSelectorProps {
   onChange: (from: Date, to: Date) => void
 }
 
-export const RentalPeriodSelector: React.FC<RentalPeriodSelectorProps> = ({
-  from,
-  to,
-  onChange,
-}) => {
+export const RentalPeriodSelector: FC<RentalPeriodSelectorProps> = ({ from, to, onChange }) => {
   const [startDate, setStartDate] = useState(from)
   const [endDate, setEndDate] = useState(to)
-  const [showStartPicker, setShowStartPicker] = useState(false)
-  const [showEndPicker, setShowEndPicker] = useState(false)
 
   const addDays = (date: Date, days: number) => {
     const result = new Date(date)
@@ -46,74 +39,64 @@ export const RentalPeriodSelector: React.FC<RentalPeriodSelectorProps> = ({
   return (
     <div className="rental-period-selector">
       <div className="rental-period-selector__field">
-        <label className="rental-period-selector__label">Wypożyczenie od</label>
+        <label className="rental-period-selector__label" htmlFor="start-date-input">
+          Od
+        </label>
         <QuantityControl
           value={
             <>
-              {startDate.toLocaleDateString('pl-PL')}
-              <Calendar className="rental-period-selector__icon" size={20} />
+              <input
+                type="date"
+                className="rental-period-selector__date-input"
+                value={formatDateForInput(startDate)}
+                min={formatDateForInput(new Date())}
+                max={formatDateForInput(endDate)}
+                onChange={e => {
+                  const newDate = new Date(e.target.value)
+                  handleStartChange(newDate)
+                }}
+                aria-label="Data początkowa wypożyczenia"
+                tabIndex={0}
+                id="start-date-input"
+              />
             </>
           }
           onDecrease={() => handleStartChange(addDays(startDate, -1))}
           onIncrease={() => handleStartChange(addDays(startDate, 1))}
-          onValueClick={() => setShowStartPicker(true)}
           decreaseLabel="Poprzedni dzień"
           increaseLabel="Następny dzień"
           valueClassName="quantity-control__value--date"
-        >
-          {showStartPicker && (
-            <input
-              type="date"
-              className="rental-period-selector__date-input"
-              value={formatDateForInput(startDate)}
-              min={formatDateForInput(new Date())}
-              max={formatDateForInput(endDate)}
-              autoFocus
-              onBlur={() => setShowStartPicker(false)}
-              onChange={e => {
-                const newDate = new Date(e.target.value)
-                handleStartChange(newDate)
-                setShowStartPicker(false)
-              }}
-              data-testid="start-date-input"
-            />
-          )}
-        </QuantityControl>
+        />
       </div>
 
       <div className="rental-period-selector__field">
-        <label className="rental-period-selector__label">Wypożyczenie do</label>
+        <label className="rental-period-selector__label" htmlFor="end-date-input">
+          Do
+        </label>
         <QuantityControl
           value={
             <>
-              {endDate.toLocaleDateString('pl-PL')}
-              <Calendar className="rental-period-selector__icon" size={20} />
+              <input
+                type="date"
+                className="rental-period-selector__date-input"
+                value={formatDateForInput(endDate)}
+                min={formatDateForInput(startDate)}
+                onChange={e => {
+                  const newDate = new Date(e.target.value)
+                  handleEndChange(newDate)
+                }}
+                aria-label="Data końcowa wypożyczenia"
+                tabIndex={0}
+                id="end-date-input"
+              />
             </>
           }
           onDecrease={() => handleEndChange(addDays(endDate, -1))}
           onIncrease={() => handleEndChange(addDays(endDate, 1))}
-          onValueClick={() => setShowEndPicker(true)}
           decreaseLabel="Poprzedni dzień"
           increaseLabel="Następny dzień"
           valueClassName="quantity-control__value--date"
-        >
-          {showEndPicker && (
-            <input
-              type="date"
-              className="rental-period-selector__date-input"
-              value={formatDateForInput(endDate)}
-              min={formatDateForInput(startDate)}
-              autoFocus
-              onBlur={() => setShowEndPicker(false)}
-              onChange={e => {
-                const newDate = new Date(e.target.value)
-                handleEndChange(newDate)
-                setShowEndPicker(false)
-              }}
-              data-testid="end-date-input"
-            />
-          )}
-        </QuantityControl>
+        />
       </div>
     </div>
   )
