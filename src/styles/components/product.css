@@ -455,27 +455,38 @@ select.product__form-input {
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 0.75rem;
   background: #1e293b;
+  padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .product__summary {
   @apply bg-transparent rounded-none border-none shadow-none flex justify-between;
+  min-height: unset;
+  padding: 0;
 }
 
 .product__summary-main {
-  @apply p-4 flex gap-4 items-center;
+  @apply p-0 flex gap-2 items-center;
+  min-height: unset;
 }
 
 .product__summary-price {
-  @apply text-2xl font-bold text-white;
+  @apply text-xl font-bold text-white;
   font-family: var(--font-heading);
+  line-height: 1.1;
 }
 
 .product__summary-footer {
-  @apply bg-slate-900/40 text-slate-300/50 py-1 px-6 content-center backdrop-blur-sm;
+  @apply bg-slate-900/40 text-slate-300/50 py-0 px-3 content-center backdrop-blur-sm;
+  font-size: 0.95rem;
 }
 
 .product__summary-price-original {
-  @apply text-lg line-through text-slate-400 decoration-rose-500 decoration-2;
+  @apply text-base line-through text-slate-400 decoration-rose-500 decoration-2;
+}
+
+.product__summary-prices {
+  @apply flex items-baseline gap-1;
 }
 
 .product__button {
@@ -599,4 +610,17 @@ select.product__form-input {
 
 .product-reviews__star--empty {
   @apply text-slate-400;
+}
+
+.product__summary-main--vertical {
+  @apply flex flex-col gap-1 p-0;
+}
+.product__summary-row {
+  @apply flex items-baseline gap-2;
+}
+.product__summary-row--deposit {
+  @apply mt-0 text-slate-400 text-sm;
+}
+.product__button--compact {
+  @apply py-2 text-base font-medium rounded-lg mt-2;
 }

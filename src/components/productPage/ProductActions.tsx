@@ -2,6 +2,8 @@ import { type FC, useState } from 'react'
 import { CartItem, Discount, useCart } from '../../hooks'
 import RentalPeriodSelector from './RentalPeriodSelector'
 import QuantityControl from '../ui/quantity-control'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '../ui/accordion'
+import { PercentSquare } from 'lucide-react'
 
 interface Product {
   id: string
@@ -197,67 +199,80 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
           </div>
         </div>
 
-        <div className="product__form-row product__form-row--discounts">
-          <label className="product__form-label" htmlFor="discount-code">
-            Rabaty
-          </label>
-          <div className="product__discounts">
-            {DISCOUNTS.map(discount => (
-              <label className="product__discount" key={discount.id} title={discount.tooltip}>
+        {/* Sekcja rabatów w akordeonie */}
+        <Accordion type="single" collapsible defaultValue="">
+          <AccordionItem value="discounts" className="product-accordion__item">
+            <AccordionTrigger className="product-accordion__trigger">
+              <div className="product-accordion__row">
+                <PercentSquare className="product-accordion__icon text-rose-400" />
+                <span className="product-accordion__title">Rabaty</span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="product-accordion__content">
+              <div className="product__discounts">
+                {DISCOUNTS.map(discount => (
+                  <label className="product__discount" key={discount.id} title={discount.tooltip}>
+                    <input
+                      type="checkbox"
+                      id={`discount-${discount.id}`}
+                      name={`discount-${discount.id}`}
+                      className="product__discount-checkbox"
+                      checked={appliedDiscounts.some(d => d.code === discount.id)}
+                      onChange={() =>
+                        setAppliedDiscounts(d => [
+                          ...d,
+                          { code: discount.id, value: discount.value },
+                        ])
+                      }
+                    />
+                    <span>{discount.label}</span>
+                    <span className="product__discount-info">ℹ️</span>
+                  </label>
+                ))}
                 <input
-                  type="checkbox"
-                  id={`discount-${discount.id}`}
-                  name={`discount-${discount.id}`}
-                  className="product__discount-checkbox"
-                  checked={appliedDiscounts.some(d => d.code === discount.id)}
-                  onChange={() =>
-                    setAppliedDiscounts(d => [...d, { code: discount.id, value: discount.value }])
-                  }
+                  id="discount-code"
+                  name="discount-code"
+                  className="product__discount-code"
+                  type="text"
+                  placeholder="Dodatkowy kod rabatowy"
+                  value={discountCode}
+                  onChange={e => setDiscountCode(e.target.value)}
                 />
-                <span>{discount.label}</span>
-                <span className="product__discount-info">ℹ️</span>
-              </label>
-            ))}
-            <input
-              id="discount-code"
-              name="discount-code"
-              className="product__discount-code"
-              type="text"
-              placeholder="Dodatkowy kod rabatowy"
-              value={discountCode}
-              onChange={e => setDiscountCode(e.target.value)}
-            />
-            {codeDiscountValue > 0 && (
-              <span className="product__discount-code-info">
-                Kod aktywny: -{codeDiscountValue} zł
-              </span>
-            )}
-          </div>
-        </div>
+                {codeDiscountValue > 0 && (
+                  <span className="product__discount-code-info">
+                    Kod aktywny: -{codeDiscountValue} zł
+                  </span>
+                )}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         <div className="product__form-row product__form-row--summary">
           <div className="product__summary-group">
             <div className="product__summary">
-              <div className="product__summary-main">
-                <span className="product__summary-label">
-                  Suma {isRental && `(za ${rentalDays} dni)`}:
-                </span>
-                <div className="product__summary-prices">
-                  {totalDiscount > 0 && (
-                    <span className="product__summary-price-original">
-                      {formatPrice(originalPrice)}
-                    </span>
-                  )}
-                  <span className="product__summary-price">{formatPrice(finalPrice)}</span>
+              <div className="product__summary-main product__summary-main--vertical">
+                <div className="product__summary-row">
+                  <span className="product__summary-label">
+                    Suma {isRental && `(za ${rentalDays} dni)`}:
+                  </span>
+                  <div className="product__summary-prices">
+                    {totalDiscount > 0 && (
+                      <span className="product__summary-price-original">
+                        {formatPrice(originalPrice)}
+                      </span>
+                    )}
+                    <span className="product__summary-price">{formatPrice(finalPrice)}</span>
+                  </div>
                 </div>
+                {isRental && deposit > 0 && (
+                  <div className="product__summary-row product__summary-row--deposit">
+                    <span className="product__summary-deposit">+ {deposit} zł kaucji zwrotnej</span>
+                  </div>
+                )}
               </div>
-              {isRental && deposit > 0 && (
-                <div className="product__summary-footer">
-                  <span className="product__summary-deposit">+ {deposit} zł kaucji zwrotnej</span>
-                </div>
-              )}
             </div>
-            <button type="submit" className="product__button">
+            <button type="submit" className="product__button product__button--compact">
               Dodaj do koszyka
             </button>
           </div>
