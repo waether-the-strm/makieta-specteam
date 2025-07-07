@@ -134,3 +134,29 @@
 .product-accordion__content {
   @apply !px-4 !py-6;
 }
+
+/* Questions BEM styles */
+.product-questions {
+  @apply space-y-6;
+}
+.product-questions__item {
+  @apply space-y-3;
+}
+.product-questions__box {
+  @apply border-l-4 border-rose-500 pl-4 py-2;
+}
+.product-questions__question {
+  @apply font-medium text-rose-400 mb-2;
+}
+.product-questions__answer {
+  @apply text-slate-100;
+}
+.product-questions__separator {
+  @apply bg-slate-600;
+}
+.product-questions__toggle {
+  @apply flex items-center gap-2 text-rose-400 hover:text-rose-300 font-medium mt-6;
+}
+.product-questions__icon {
+  @apply w-4 h-4;
+}
