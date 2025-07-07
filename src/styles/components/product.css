@@ -328,6 +328,10 @@
   padding-top: 0.75rem;
 }
 
+.product__form-row--rental-period {
+  @apply flex flex-col gap-4 w-full;
+}
+
 .product__form-field {
   @apply flex-1;
 }

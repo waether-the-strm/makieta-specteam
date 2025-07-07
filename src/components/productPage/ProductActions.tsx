@@ -151,7 +151,7 @@ export const ProductActions: FC<ProductActionsProps> = ({ product }) => {
         }}
       >
         {isRental && (
-          <div className="product__form-row flex flex-col gap-4 w-full">
+          <div className="product__form-row product__form-row--rental-period">
             <RentalPeriodSelector
               from={rentalFrom}
               to={rentalTo}
