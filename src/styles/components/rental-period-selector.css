@@ -86,7 +86,8 @@
     opacity 0.2s;
   opacity: 0;
   pointer-events: none;
-  width: 0;
+  width: 2rem;
+  @apply sm:w-0;
 }
 
 .rental-period-selector__group:hover .rental-period-selector__btn {
